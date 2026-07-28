@@ -2845,6 +2845,180 @@
           transform: none;
         }
       }
+
+      /* =========================================================
+         FINAL HEADER LOGO FIX
+         Keeps the DSI logo correctly sized and vertically centered
+         at mobile, desktop, ultrawide, and 2K resolutions.
+         ========================================================= */
+      .site-header .header-inner {
+        position: relative;
+      }
+
+      .site-header .brand {
+        flex: 0 0 auto;
+        min-width: 0;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0;
+        padding: 0;
+        line-height: 0;
+      }
+
+      .site-header .brand-logo {
+        display: block;
+        width: clamp(178px, 12vw, 224px);
+        max-width: none;
+        height: auto;
+        max-height: calc(var(--dsi-header) - 24px);
+        margin: 0;
+        object-fit: contain;
+        object-position: left center;
+        flex-shrink: 0;
+      }
+
+      @media (min-width: 1440px) {
+        .site-header .brand {
+          min-width: 0;
+        }
+
+        .site-header .brand-logo {
+          width: 226px;
+          max-height: calc(var(--dsi-header) - 28px);
+        }
+      }
+
+      @media (min-width: 1920px) {
+        .site-header .brand {
+          min-width: 0;
+        }
+
+        .site-header .brand-logo {
+          width: 238px;
+          max-height: calc(var(--dsi-header) - 30px);
+        }
+      }
+
+      @media (min-width: 2400px) {
+        .site-header .brand {
+          min-width: 0;
+        }
+
+        .site-header .brand-logo {
+          width: 250px;
+          max-height: calc(var(--dsi-header) - 32px);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .site-header .brand-logo {
+          width: 176px;
+          max-height: calc(var(--dsi-header) - 20px);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .site-header .brand-logo {
+          width: 152px;
+          max-height: calc(var(--dsi-header) - 18px);
+        }
+      }
+
+      @media (max-width: 380px) {
+        .site-header .brand-logo {
+          width: 136px;
+        }
+      }
+
+      /* Final fix: Local experts / trust point icon alignment */
+      .trust-points {
+        align-items: stretch;
+      }
+
+      .trust-point {
+        grid-template-columns: clamp(50px, 3vw, 58px) minmax(0, 1fr);
+        align-items: center;
+        column-gap: clamp(14px, 1.1vw, 20px);
+        min-width: 0;
+      }
+
+      .trust-point-icon {
+        display: grid !important;
+        place-items: center;
+        justify-self: center;
+        align-self: center;
+        width: clamp(50px, 3vw, 58px) !important;
+        height: clamp(50px, 3vw, 58px) !important;
+        min-width: clamp(50px, 3vw, 58px);
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        border: 1px solid rgba(135, 195, 255, 0.28);
+        border-radius: 50%;
+        color: #87c3ff !important;
+        background: rgba(255, 255, 255, 0.12);
+        font-size: initial !important;
+        line-height: 1 !important;
+      }
+
+      .trust-point-icon svg {
+        display: block;
+        width: 48% !important;
+        height: 48% !important;
+        max-width: none;
+        max-height: none;
+        margin: 0;
+        overflow: visible;
+        color: inherit;
+        stroke: currentColor;
+        fill: none;
+      }
+
+      .trust-point-content {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+      }
+
+      .trust-point-title {
+        display: block;
+        margin: 0;
+        color: #ffffff;
+        font-size: clamp(0.96rem, 0.9vw, 1.06rem);
+        font-weight: 800;
+        line-height: 1.25;
+      }
+
+      .trust-point-description {
+        display: block;
+        margin: 0;
+        color: #bdcfe7;
+        font-size: clamp(0.78rem, 0.72vw, 0.88rem);
+        line-height: 1.5;
+      }
+
+      @media (max-width: 640px) {
+        .trust-point {
+          grid-template-columns: 48px minmax(0, 1fr);
+          padding: 17px;
+          column-gap: 13px;
+        }
+
+        .trust-point-icon {
+          width: 48px !important;
+          height: 48px !important;
+          min-width: 48px;
+        }
+
+        .trust-point-icon svg {
+          width: 23px !important;
+          height: 23px !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -3261,7 +3435,7 @@
 
     <header class="site-header" aria-label="Main navigation">
       <div class="container header-inner">
-        <a class="brand" href="/" aria-label="Dimension Systems Inc. home">
+        <a class="brand" href="#top" aria-label="Dimension Systems Inc. home">
           <img
             src="./image/dsi-logo-3600.png"
             alt="Dimension Systems Inc."
@@ -4095,45 +4269,60 @@
           </div>
           <div class="trust-points">
             <div class="trust-point reveal">
-              <span class="trust-point-icon"
-                ><svg><use href="#i-map" /></svg></span
-              ><span
-                ><strong>Regional Presence</strong
-                ><span
+              <span class="trust-point-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <use href="#i-map"></use>
+                </svg>
+              </span>
+              <div class="trust-point-content">
+                <strong class="trust-point-title">Regional Presence</strong>
+                <span class="trust-point-description"
                   >Guam, Saipan, and Philippines contact support</span
-                ></span
-              >
+                >
+              </div>
             </div>
+
             <div class="trust-point reveal">
-              <span class="trust-point-icon"
-                ><svg><use href="#i-build" /></svg></span
-              ><span
-                ><strong>End-to-End Delivery</strong
-                ><span
+              <span class="trust-point-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <use href="#i-build"></use>
+                </svg>
+              </span>
+              <div class="trust-point-content">
+                <strong class="trust-point-title">End-to-End Delivery</strong>
+                <span class="trust-point-description"
                   >Assessment, design, installation, training, and support</span
-                ></span
-              >
+                >
+              </div>
             </div>
+
             <div class="trust-point reveal">
-              <span class="trust-point-icon"
-                ><svg><use href="#i-shield" /></svg></span
-              ><span
-                ><strong>Integrated Solutions</strong
-                ><span
+              <span class="trust-point-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <use href="#i-shield"></use>
+                </svg>
+              </span>
+              <div class="trust-point-content">
+                <strong class="trust-point-title">Integrated Solutions</strong>
+                <span class="trust-point-description"
                   >IT, communications, security, signage, and
                   collaboration</span
-                ></span
-              >
+                >
+              </div>
             </div>
+
             <div class="trust-point reveal">
-              <span class="trust-point-icon"
-                ><svg><use href="#i-headset" /></svg></span
-              ><span
-                ><strong>Responsive Assistance</strong
-                ><span
+              <span class="trust-point-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <use href="#i-headset"></use>
+                </svg>
+              </span>
+              <div class="trust-point-content">
+                <strong class="trust-point-title">Responsive Assistance</strong>
+                <span class="trust-point-description"
                   >Remote and on-site technical support for customers</span
-                ></span
-              >
+                >
+              </div>
             </div>
           </div>
         </div>
