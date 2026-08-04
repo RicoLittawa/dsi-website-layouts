@@ -3863,6 +3863,876 @@
         }
       }
 
+    
+      /* =========================================================
+         Subtle interaction and motion enhancements
+         Preserves the existing layout, hero structure, and breakpoints.
+         ========================================================= */
+
+      :root {
+        --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --motion-ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+      }
+
+      /* Sticky header gains a quiet sense of depth after scrolling. */
+      .site-header {
+        transition:
+          background-color 0.35s ease,
+          border-color 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+
+      .site-header.is-scrolled {
+        border-bottom-color: rgba(7, 17, 31, 0.12);
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 12px 32px rgba(7, 31, 69, 0.08);
+      }
+
+      /* Hero: staged content entrance whenever a slide becomes active. */
+      .solution-slide.is-active .solution-slide__eyebrow,
+      .solution-slide.is-active .solution-slide__copy h1,
+      .solution-slide.is-active .solution-slide__copy > p,
+      .solution-slide.is-active .solution-slide__actions,
+      .solution-slide.is-active .solution-slide__tags {
+        animation: dsiHeroReveal 0.82s var(--motion-ease) both;
+      }
+
+      .solution-slide.is-active .solution-slide__eyebrow {
+        animation-delay: 0.06s;
+      }
+
+      .solution-slide.is-active .solution-slide__copy h1 {
+        animation-delay: 0.13s;
+      }
+
+      .solution-slide.is-active .solution-slide__copy > p {
+        animation-delay: 0.21s;
+      }
+
+      .solution-slide.is-active .solution-slide__actions {
+        animation-delay: 0.29s;
+      }
+
+      .solution-slide.is-active .solution-slide__tags {
+        animation-delay: 0.36s;
+      }
+
+      @keyframes dsiHeroReveal {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 20px, 0);
+          filter: blur(3px);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+          filter: blur(0);
+        }
+      }
+
+      /* Gentle pointer depth is applied by JavaScript on capable devices. */
+      .solution-slide__media {
+        transform:
+          translate3d(
+            var(--hero-shift-x, 0px),
+            var(--hero-shift-y, 0px),
+            0
+          )
+          scale(1.018);
+        transition: transform 0.42s var(--motion-ease-soft);
+        will-change: transform;
+      }
+
+      .solution-slide__glow {
+        animation: dsiGlowDrift 12s ease-in-out infinite;
+      }
+
+      @keyframes dsiGlowDrift {
+        0%,
+        100% {
+          transform: rotate(0deg) scale(1);
+          opacity: 0.72;
+        }
+        50% {
+          transform: rotate(4deg) scale(1.025);
+          opacity: 0.9;
+        }
+      }
+
+      /* Centered hero controls remain quiet until hovered or focused. */
+      .solution-hero__arrow {
+        opacity: 0.76;
+        transition:
+          opacity 0.24s ease,
+          transform 0.24s var(--motion-ease),
+          background-color 0.24s ease,
+          color 0.24s ease,
+          border-color 0.24s ease,
+          box-shadow 0.24s ease;
+      }
+
+      .solution-hero__arrow:hover,
+      .solution-hero__arrow:focus-visible {
+        opacity: 1;
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.26);
+      }
+
+      .solution-hero__controls
+        .solution-hero__arrow--prev:hover,
+      .solution-hero__controls
+        .solution-hero__arrow--prev:focus-visible {
+        transform: translateY(-50%) scale(1.06);
+      }
+
+      .solution-hero__controls
+        .solution-hero__arrow--next:hover,
+      .solution-hero__controls
+        .solution-hero__arrow--next:focus-visible {
+        transform: translateY(-50%) scale(1.06);
+      }
+
+      /* Buttons and linked arrows receive small, consistent micro-movement. */
+      .btn svg,
+      .dsi-capability-card a svg {
+        transition: transform 0.24s var(--motion-ease);
+      }
+
+      .btn:hover svg,
+      .btn:focus-visible svg,
+      .dsi-capability-card a:hover svg,
+      .dsi-capability-card a:focus-visible svg {
+        transform: translateX(4px);
+      }
+
+      /* Improved scroll reveal with automatic stagger delays. */
+      .reveal {
+        opacity: 0;
+        filter: blur(4px);
+        transform: translate3d(0, 28px, 0) scale(0.992);
+        transition:
+          opacity 0.72s var(--motion-ease),
+          transform 0.78s var(--motion-ease),
+          filter 0.72s ease;
+        transition-delay: var(--reveal-delay, 0ms);
+        will-change: opacity, transform;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      /* Credibility strip */
+      .dsi-credibility__item {
+        transition:
+          background-color 0.28s ease,
+          transform 0.28s var(--motion-ease);
+      }
+
+      .dsi-credibility__item:hover {
+        background: var(--sky);
+        transform: translateY(-3px);
+      }
+
+      .dsi-credibility__icon,
+      .dsi-checklist__icon,
+      .dsi-contact__icon {
+        transition:
+          transform 0.28s var(--motion-ease),
+          background-color 0.28s ease,
+          color 0.28s ease;
+      }
+
+      .dsi-credibility__item:hover .dsi-credibility__icon,
+      .dsi-checklist li:hover .dsi-checklist__icon,
+      .dsi-contact__row:hover .dsi-contact__icon {
+        transform: translateY(-2px) scale(1.06);
+      }
+
+      /* Positioning checklist and partnership diagram */
+      .dsi-checklist li {
+        transition: transform 0.28s var(--motion-ease);
+      }
+
+      .dsi-checklist li:hover {
+        transform: translateX(5px);
+      }
+
+      .dsi-partner-map.visible::before {
+        animation: dsiMapPulse 8s ease-in-out infinite;
+      }
+
+      @keyframes dsiMapPulse {
+        0%,
+        100% {
+          transform: scale(0.98);
+          opacity: 0.72;
+        }
+        50% {
+          transform: scale(1.03);
+          opacity: 1;
+        }
+      }
+
+      .dsi-partner-node,
+      .dsi-partner-map__center {
+        transition:
+          transform 0.32s var(--motion-ease),
+          border-color 0.32s ease,
+          background-color 0.32s ease,
+          box-shadow 0.32s ease;
+      }
+
+      .dsi-partner-node:hover,
+      .dsi-partner-map__center:hover {
+        transform: translateY(-5px);
+        border-color: rgba(99, 220, 255, 0.45);
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
+      }
+
+      /* Capability cards use a very light cursor-following highlight. */
+      .dsi-capability-card {
+        --spot-x: 50%;
+        --spot-y: 50%;
+        background:
+          radial-gradient(
+            circle 230px at var(--spot-x) var(--spot-y),
+            rgba(7, 91, 232, 0.08),
+            transparent 66%
+          ),
+          #fff;
+      }
+
+      .dsi-capability-card__icon {
+        transition:
+          transform 0.3s var(--motion-ease),
+          box-shadow 0.3s ease;
+      }
+
+      .dsi-capability-card:hover .dsi-capability-card__icon {
+        transform: translateY(-3px) rotate(-3deg) scale(1.06);
+        box-shadow: 0 12px 25px rgba(7, 91, 232, 0.15);
+      }
+
+      /* Industries */
+      .dsi-industry-item {
+        transition:
+          transform 0.3s var(--motion-ease),
+          background-color 0.3s ease,
+          border-color 0.3s ease;
+      }
+
+      .dsi-industry-item:hover {
+        transform: translateY(-5px);
+        border-color: rgba(99, 220, 255, 0.38);
+        background: rgba(255, 255, 255, 0.085);
+      }
+
+      .dsi-industry-item > svg {
+        transition: transform 0.3s var(--motion-ease);
+      }
+
+      .dsi-industry-item:hover > svg {
+        transform: translateY(-2px) scale(1.1);
+      }
+
+      /* Featured projects */
+      .dsi-project-card {
+        transition:
+          transform 0.34s var(--motion-ease),
+          box-shadow 0.34s ease,
+          border-color 0.34s ease;
+      }
+
+      .dsi-project-card:hover {
+        transform: translateY(-7px);
+        border-color: #bfd7ef;
+        box-shadow: 0 26px 58px rgba(7, 31, 69, 0.14);
+      }
+
+      .dsi-project-card__tag {
+        transition:
+          transform 0.3s var(--motion-ease),
+          background-color 0.3s ease;
+      }
+
+      .dsi-project-card:hover .dsi-project-card__tag {
+        transform: translateY(-2px);
+        background: rgba(7, 17, 31, 0.9);
+      }
+
+      /* Process steps */
+      .dsi-process-step {
+        transition: transform 0.3s var(--motion-ease);
+      }
+
+      .dsi-process-step:hover {
+        transform: translateY(-5px);
+      }
+
+      .dsi-process-step__number {
+        transition:
+          transform 0.3s var(--motion-ease),
+          background-color 0.3s ease,
+          color 0.3s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .dsi-process-step:hover .dsi-process-step__number {
+        transform: scale(1.07);
+        border-color: var(--blue);
+        background: var(--blue);
+        color: #fff;
+        box-shadow: 0 15px 30px rgba(7, 91, 232, 0.2);
+      }
+
+      /* Partnership and contact */
+      .dsi-partnership__panel {
+        transition:
+          transform 0.34s var(--motion-ease),
+          background-color 0.34s ease,
+          border-color 0.34s ease;
+      }
+
+      .dsi-partnership__panel:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .dsi-contact__row {
+        transition:
+          transform 0.28s var(--motion-ease),
+          color 0.28s ease;
+      }
+
+      .dsi-contact__row:hover {
+        transform: translateX(5px);
+        color: var(--blue);
+      }
+
+      /* Keyboard focus remains clearly visible. */
+      .btn:focus-visible,
+      .solution-hero__arrow:focus-visible,
+      .dsi-capability-card a:focus-visible,
+      .dsi-contact__row:focus-visible {
+        outline: 3px solid rgba(22, 135, 255, 0.42);
+        outline-offset: 4px;
+      }
+
+      /* Motion is intentionally reduced on touch layouts. */
+      @media (max-width: 1024px), (hover: none) {
+        .solution-slide__media {
+          transform: scale(1.01);
+        }
+
+        .dsi-capability-card {
+          --spot-x: 50%;
+          --spot-y: 50%;
+        }
+
+        .dsi-credibility__item:hover,
+        .dsi-checklist li:hover,
+        .dsi-industry-item:hover,
+        .dsi-project-card:hover,
+        .dsi-process-step:hover,
+        .dsi-partnership__panel:hover,
+        .dsi-contact__row:hover {
+          transform: none;
+        }
+      }
+
+      /* Full reduced-motion support. */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          transition-delay: 0ms !important;
+        }
+
+        .reveal,
+        .reveal.visible {
+          opacity: 1;
+          filter: none;
+          transform: none;
+        }
+
+        .solution-slide__media,
+        .solution-slide__glow,
+        .dsi-partner-map::before {
+          transform: none !important;
+        }
+      }
+
+    
+      /* =========================================================
+         Strategic positioning: lightweight CSS 3D interaction
+         ========================================================= */
+      .dsi-partner-map {
+        --map-rotate-x: 0deg;
+        --map-rotate-y: 0deg;
+        perspective: 1250px;
+        perspective-origin: 50% 48%;
+        isolation: isolate;
+      }
+
+      .dsi-partner-map::before {
+        z-index: 0;
+        transform: translateZ(-80px);
+        animation: dsiMapBackgroundPulse 8s ease-in-out infinite;
+      }
+
+      .dsi-partner-map::after {
+        z-index: 0;
+      }
+
+      .dsi-partner-map__scene {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        transform-style: preserve-3d;
+        transform:
+          rotateX(var(--map-rotate-x))
+          rotateY(var(--map-rotate-y));
+        transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform;
+      }
+
+      .dsi-partner-map__stage {
+        position: absolute;
+        inset: 0;
+        transform-style: preserve-3d;
+        animation: dsiMapStageFloat 9s ease-in-out infinite;
+      }
+
+      .dsi-partner-map__links {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        pointer-events: none;
+        transform: translateZ(18px);
+      }
+
+      .dsi-partner-map__links path {
+        fill: none;
+        stroke: rgba(99, 220, 255, 0.38);
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-dasharray: 7 11;
+        vector-effect: non-scaling-stroke;
+        animation: dsiMapDataFlow 8s linear infinite;
+      }
+
+      .dsi-partner-map__links path:nth-child(2) {
+        animation-delay: -2s;
+      }
+
+      .dsi-partner-map__links path:nth-child(3) {
+        animation-delay: -4s;
+      }
+
+      .dsi-partner-map__links path:nth-child(4) {
+        animation-delay: -6s;
+      }
+
+      .dsi-partner-map__orbit {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 0;
+        aspect-ratio: 1;
+        border: 1px solid rgba(99, 220, 255, 0.2);
+        border-radius: 50%;
+        transform-style: preserve-3d;
+        pointer-events: none;
+      }
+
+      .dsi-partner-map__orbit::before,
+      .dsi-partner-map__orbit::after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #79e2ff;
+        box-shadow:
+          0 0 0 5px rgba(99, 220, 255, 0.1),
+          0 0 18px rgba(99, 220, 255, 0.8);
+      }
+
+      .dsi-partner-map__orbit::before {
+        left: 13%;
+        top: 14%;
+      }
+
+      .dsi-partner-map__orbit::after {
+        right: 10%;
+        bottom: 18%;
+      }
+
+      .dsi-partner-map__orbit--one {
+        width: 53%;
+        transform:
+          translate(-50%, -50%)
+          translateZ(15px)
+          rotateX(66deg)
+          rotateZ(8deg);
+        animation: dsiOrbitOne 18s linear infinite;
+      }
+
+      .dsi-partner-map__orbit--two {
+        width: 68%;
+        opacity: 0.72;
+        transform:
+          translate(-50%, -50%)
+          translateZ(-5px)
+          rotateX(70deg)
+          rotateZ(-18deg);
+        animation: dsiOrbitTwo 24s linear infinite reverse;
+      }
+
+      .dsi-partner-map__orbit--three {
+        width: 84%;
+        opacity: 0.48;
+        transform:
+          translate(-50%, -50%)
+          translateZ(-35px)
+          rotateX(73deg)
+          rotateZ(32deg);
+        animation: dsiOrbitThree 32s linear infinite;
+      }
+
+      .dsi-partner-map__center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 5;
+        transform:
+          translate(-50%, -50%)
+          translateZ(105px);
+        transform-style: preserve-3d;
+        animation: dsiCoreFloat 5.5s ease-in-out infinite;
+        transition:
+          transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.35s ease;
+      }
+
+      .dsi-partner-map__center::before,
+      .dsi-partner-map__center::after {
+        content: "";
+        position: absolute;
+        inset: -16px;
+        z-index: -1;
+        border: 1px solid rgba(99, 220, 255, 0.22);
+        border-radius: 50%;
+        transform: translateZ(-18px);
+      }
+
+      .dsi-partner-map__center::after {
+        inset: -34px;
+        opacity: 0.52;
+        transform: translateZ(-38px);
+      }
+
+      .dsi-partner-map__center:hover {
+        transform:
+          translate(-50%, -50%)
+          translateZ(132px)
+          scale(1.035);
+        box-shadow:
+          0 34px 82px rgba(0, 0, 0, 0.42),
+          0 0 0 20px rgba(75, 188, 255, 0.1),
+          0 0 48px rgba(19, 134, 255, 0.28);
+      }
+
+      .dsi-partner-map__core-glow {
+        position: absolute;
+        inset: 16%;
+        z-index: -1;
+        border-radius: 50%;
+        background: rgba(99, 220, 255, 0.2);
+        filter: blur(18px);
+        transform: translateZ(-24px);
+        animation: dsiCoreGlow 3.8s ease-in-out infinite;
+      }
+
+      .dsi-partner-node {
+        transform-style: preserve-3d;
+        transition:
+          transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+          border-color 0.34s ease,
+          background-color 0.34s ease,
+          box-shadow 0.34s ease;
+        will-change: transform;
+      }
+
+      .dsi-partner-node--a {
+        transform: translateZ(54px) rotateY(2deg);
+        animation: dsiNodeFloatA 6.6s ease-in-out infinite;
+      }
+
+      .dsi-partner-node--b {
+        transform: translateZ(74px) rotateY(-2deg);
+        animation: dsiNodeFloatB 7.2s ease-in-out infinite;
+      }
+
+      .dsi-partner-node--c {
+        transform: translateZ(34px) rotateY(2deg);
+        animation: dsiNodeFloatC 7.8s ease-in-out infinite;
+      }
+
+      .dsi-partner-node--d {
+        transform: translateZ(64px) rotateY(-2deg);
+        animation: dsiNodeFloatD 6.9s ease-in-out infinite;
+      }
+
+      .dsi-partner-node--a:hover {
+        transform: translateZ(86px) translateY(-6px) rotateY(2deg);
+      }
+
+      .dsi-partner-node--b:hover {
+        transform: translateZ(106px) translateY(-6px) rotateY(-2deg);
+      }
+
+      .dsi-partner-node--c:hover {
+        transform: translateZ(66px) translateY(-6px) rotateY(2deg);
+      }
+
+      .dsi-partner-node--d:hover {
+        transform: translateZ(96px) translateY(-6px) rotateY(-2deg);
+      }
+
+      .dsi-partner-map__hint {
+        position: absolute;
+        right: 22px;
+        bottom: 16px;
+        z-index: 8;
+        margin: 0;
+        color: rgba(255, 255, 255, 0.48);
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(6px);
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+        pointer-events: none;
+      }
+
+      .dsi-partner-map:hover .dsi-partner-map__hint {
+        opacity: 1;
+        transform: none;
+      }
+
+      @keyframes dsiMapBackgroundPulse {
+        0%,
+        100% {
+          opacity: 0.72;
+          scale: 0.98;
+        }
+        50% {
+          opacity: 1;
+          scale: 1.025;
+        }
+      }
+
+      @keyframes dsiMapStageFloat {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0) rotateZ(0deg);
+        }
+        50% {
+          transform: translate3d(0, -4px, 0) rotateZ(0.35deg);
+        }
+      }
+
+      @keyframes dsiMapDataFlow {
+        to {
+          stroke-dashoffset: -72;
+        }
+      }
+
+      @keyframes dsiOrbitOne {
+        from {
+          transform:
+            translate(-50%, -50%)
+            translateZ(15px)
+            rotateX(66deg)
+            rotateZ(8deg);
+        }
+        to {
+          transform:
+            translate(-50%, -50%)
+            translateZ(15px)
+            rotateX(66deg)
+            rotateZ(368deg);
+        }
+      }
+
+      @keyframes dsiOrbitTwo {
+        from {
+          transform:
+            translate(-50%, -50%)
+            translateZ(-5px)
+            rotateX(70deg)
+            rotateZ(-18deg);
+        }
+        to {
+          transform:
+            translate(-50%, -50%)
+            translateZ(-5px)
+            rotateX(70deg)
+            rotateZ(342deg);
+        }
+      }
+
+      @keyframes dsiOrbitThree {
+        from {
+          transform:
+            translate(-50%, -50%)
+            translateZ(-35px)
+            rotateX(73deg)
+            rotateZ(32deg);
+        }
+        to {
+          transform:
+            translate(-50%, -50%)
+            translateZ(-35px)
+            rotateX(73deg)
+            rotateZ(392deg);
+        }
+      }
+
+      @keyframes dsiCoreFloat {
+        0%,
+        100% {
+          transform:
+            translate(-50%, -50%)
+            translateZ(105px)
+            translateY(0);
+        }
+        50% {
+          transform:
+            translate(-50%, -50%)
+            translateZ(114px)
+            translateY(-7px);
+        }
+      }
+
+      @keyframes dsiCoreGlow {
+        0%,
+        100% {
+          opacity: 0.52;
+          transform: translateZ(-24px) scale(0.9);
+        }
+        50% {
+          opacity: 0.9;
+          transform: translateZ(-24px) scale(1.14);
+        }
+      }
+
+      @keyframes dsiNodeFloatA {
+        0%,
+        100% { transform: translateZ(54px) translateY(0) rotateY(2deg); }
+        50% { transform: translateZ(61px) translateY(-6px) rotateY(2deg); }
+      }
+
+      @keyframes dsiNodeFloatB {
+        0%,
+        100% { transform: translateZ(74px) translateY(0) rotateY(-2deg); }
+        50% { transform: translateZ(82px) translateY(-8px) rotateY(-2deg); }
+      }
+
+      @keyframes dsiNodeFloatC {
+        0%,
+        100% { transform: translateZ(34px) translateY(0) rotateY(2deg); }
+        50% { transform: translateZ(42px) translateY(-5px) rotateY(2deg); }
+      }
+
+      @keyframes dsiNodeFloatD {
+        0%,
+        100% { transform: translateZ(64px) translateY(0) rotateY(-2deg); }
+        50% { transform: translateZ(72px) translateY(-7px) rotateY(-2deg); }
+      }
+
+      @media (max-width: 1024px), (hover: none) {
+        .dsi-partner-map {
+          --map-rotate-x: 0deg !important;
+          --map-rotate-y: 0deg !important;
+          perspective: 1000px;
+        }
+
+        .dsi-partner-map__scene {
+          transform: none;
+        }
+
+        .dsi-partner-map__hint {
+          display: none;
+        }
+
+        .dsi-partner-map__orbit--three {
+          display: none;
+        }
+
+        .dsi-partner-node--a,
+        .dsi-partner-node--b,
+        .dsi-partner-node--c,
+        .dsi-partner-node--d {
+          transform: translateZ(20px);
+        }
+      }
+
+      @media (max-width: 620px) {
+        .dsi-partner-map__links,
+        .dsi-partner-map__orbit {
+          opacity: 0.35;
+        }
+
+        .dsi-partner-map__center {
+          transform:
+            translate(-50%, -50%)
+            translateZ(38px);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .dsi-partner-map__stage,
+        .dsi-partner-map__center,
+        .dsi-partner-node,
+        .dsi-partner-map__orbit,
+        .dsi-partner-map__core-glow,
+        .dsi-partner-map__links path,
+        .dsi-partner-map::before {
+          animation: none !important;
+        }
+
+        .dsi-partner-map__scene,
+        .dsi-partner-map__center,
+        .dsi-partner-node {
+          transform: none !important;
+        }
+
+        .dsi-partner-map__center {
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) !important;
+        }
+      }
+
     </style>
   </head>
   <body>
@@ -4140,7 +5010,7 @@
           <ul>
             <li><a href="#capabilities">Capabilities</a></li>
             <li><a href="#industries">Industries</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <li><a href="#projects">Support</a></li>
             <li><a href="#partner">Partner With DSI</a></li>
             <li><a href="https://www.dimensionsystems.com/about/">Company</a></li>
           </ul>
@@ -4786,14 +5656,59 @@
             </ul>
           </div>
 
-          <div class="dsi-partner-map reveal" aria-label="DSI delivery partnership model">
-            <div class="dsi-partner-map__center">
-              <div><strong>DSI Guam</strong><span>Technical integration</span></div>
+          <div
+            class="dsi-partner-map reveal"
+            aria-label="Interactive 3D model showing DSI Guam coordinating technology partners, clients, contractors, consultants, and local integration support"
+            data-dsi-3d-map
+          >
+            <div class="dsi-partner-map__scene">
+              <div class="dsi-partner-map__stage">
+                <div class="dsi-partner-map__orbit dsi-partner-map__orbit--one" aria-hidden="true"></div>
+                <div class="dsi-partner-map__orbit dsi-partner-map__orbit--two" aria-hidden="true"></div>
+                <div class="dsi-partner-map__orbit dsi-partner-map__orbit--three" aria-hidden="true"></div>
+
+                <svg
+                  class="dsi-partner-map__links"
+                  viewBox="0 0 1000 650"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path d="M500 325 C395 270 285 165 155 120"></path>
+                  <path d="M500 325 C610 260 725 170 845 135"></path>
+                  <path d="M500 325 C390 390 280 485 150 520"></path>
+                  <path d="M500 325 C610 390 735 485 850 510"></path>
+                </svg>
+
+                <div class="dsi-partner-map__center">
+                  <span class="dsi-partner-map__core-glow" aria-hidden="true"></span>
+                  <div><strong>DSI Guam</strong><span>Technical integration</span></div>
+                </div>
+
+                <div class="dsi-partner-node dsi-partner-node--a">
+                  <strong>Technology Partners</strong>
+                  <span>Platforms, products, engineering, and specialist expertise</span>
+                </div>
+
+                <div class="dsi-partner-node dsi-partner-node--b">
+                  <strong>Clients &amp; Owners</strong>
+                  <span>Operational goals, users, facilities, and long-term requirements</span>
+                </div>
+
+                <div class="dsi-partner-node dsi-partner-node--c">
+                  <strong>Contractors &amp; Consultants</strong>
+                  <span>Schedules, project coordination, site access, and technical requirements</span>
+                </div>
+
+                <div class="dsi-partner-node dsi-partner-node--d">
+                  <strong>Local Integration &amp; Support</strong>
+                  <span>Installation, integration, training, handoff, and ongoing support</span>
+                </div>
+              </div>
             </div>
-            <div class="dsi-partner-node dsi-partner-node--a"><strong>Technology Partners</strong><span>Platforms, products, engineering, and specialist expertise</span></div>
-            <div class="dsi-partner-node dsi-partner-node--b"><strong>Clients & Owners</strong><span>Operational goals, users, facilities, and long-term requirements</span></div>
-            <div class="dsi-partner-node dsi-partner-node--c"><strong>Contractors & Consultants</strong><span>Schedules, project coordination, site access, and technical requirements</span></div>
-            <div class="dsi-partner-node dsi-partner-node--d"><strong>Local Delivery</strong><span>Installation, integration, training, handoff, and ongoing support</span></div>
+
+            <p class="dsi-partner-map__hint" aria-hidden="true">
+              Move your pointer to explore
+            </p>
           </div>
         </div>
       </section>
@@ -5105,6 +6020,7 @@
                 <option>Managed IT & Technical Support</option>
                 <option>Digital Signage & Interactive Technology</option>
                 <option>Technology Sourcing & Deployment</option>
+                <option>Local Delivery Partnership</option>
                 <option>Other / Not sure yet</option>
               </select>
             </div>
@@ -5348,5 +6264,136 @@ ${data.get("message")}`);
         }
       })();
     </script>
+  
+    <script>
+      (() => {
+        const reducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        /* Add staggered delays without changing the existing HTML structure. */
+        const staggerGroups = [
+          ".dsi-credibility__grid",
+          ".dsi-capability-grid",
+          ".dsi-industry-grid",
+          ".dsi-project-grid",
+          ".dsi-process-grid",
+          ".dsi-contact",
+        ];
+
+        staggerGroups.forEach((selector) => {
+          const group = document.querySelector(selector);
+          if (!group) return;
+
+          [...group.querySelectorAll(".reveal")].forEach((item, index) => {
+            item.style.setProperty(
+              "--reveal-delay",
+              `${Math.min(index * 70, 350)}ms`,
+            );
+          });
+        });
+
+        /* Header depth after the page begins scrolling. */
+        const header = document.querySelector(".site-header");
+        const updateHeader = () => {
+          header?.classList.toggle("is-scrolled", window.scrollY > 18);
+        };
+
+        updateHeader();
+        window.addEventListener("scroll", updateHeader, { passive: true });
+
+        if (!reducedMotion) {
+          /*
+           * Very light hero parallax. It is enabled only for precise pointers,
+           * so it does not interfere with mobile scrolling or swipe navigation.
+           */
+          const finePointer = window.matchMedia("(pointer: fine)").matches;
+          const hero = document.querySelector(".solution-hero");
+          let heroFrame = 0;
+
+          if (finePointer && hero) {
+            const updateHeroDepth = (event) => {
+              const bounds = hero.getBoundingClientRect();
+              const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+              const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+
+              window.cancelAnimationFrame(heroFrame);
+              heroFrame = window.requestAnimationFrame(() => {
+                hero.style.setProperty("--hero-shift-x", `${x * -7}px`);
+                hero.style.setProperty("--hero-shift-y", `${y * -5}px`);
+              });
+            };
+
+            hero.addEventListener("pointermove", updateHeroDepth);
+            hero.addEventListener("pointerleave", () => {
+              hero.style.setProperty("--hero-shift-x", "0px");
+              hero.style.setProperty("--hero-shift-y", "0px");
+            });
+          }
+
+          /*
+           * Cursor-following highlight for capability cards.
+           * The effect changes only the card's background highlight.
+           */
+          document.querySelectorAll(".dsi-capability-card").forEach((card) => {
+            card.addEventListener("pointermove", (event) => {
+              const bounds = card.getBoundingClientRect();
+              const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+              const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+              card.style.setProperty("--spot-x", `${x}%`);
+              card.style.setProperty("--spot-y", `${y}%`);
+            });
+
+            card.addEventListener("pointerleave", () => {
+              card.style.setProperty("--spot-x", "50%");
+              card.style.setProperty("--spot-y", "50%");
+            });
+          });
+        }
+      })();
+    </script>
+
+  
+    <script>
+      (() => {
+        const map = document.querySelector("[data-dsi-3d-map]");
+        if (!map) return;
+
+        const reducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+        if (reducedMotion || !finePointer) return;
+
+        let frame = 0;
+
+        const updateTilt = (event) => {
+          const bounds = map.getBoundingClientRect();
+          const normalizedX = (event.clientX - bounds.left) / bounds.width - 0.5;
+          const normalizedY = (event.clientY - bounds.top) / bounds.height - 0.5;
+
+          const rotateY = normalizedX * 9;
+          const rotateX = normalizedY * -7;
+
+          cancelAnimationFrame(frame);
+          frame = requestAnimationFrame(() => {
+            map.style.setProperty("--map-rotate-x", `${rotateX.toFixed(2)}deg`);
+            map.style.setProperty("--map-rotate-y", `${rotateY.toFixed(2)}deg`);
+          });
+        };
+
+        const resetTilt = () => {
+          cancelAnimationFrame(frame);
+          map.style.setProperty("--map-rotate-x", "0deg");
+          map.style.setProperty("--map-rotate-y", "0deg");
+        };
+
+        map.addEventListener("pointermove", updateTilt);
+        map.addEventListener("pointerleave", resetTilt);
+        map.addEventListener("blur", resetTilt, true);
+      })();
+    </script>
+
   </body>
 </html>
