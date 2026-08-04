@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Dimension Systems provides managed IT, integrated security, system integration, business communications, digital signage, and interactive display solutions across Guam and the region."
+      content="Dimension Systems is Guam’s trusted local technology integration and delivery partner, connecting strategic technology partnerships with technical excellence and reliable local execution."
     />
-    <title>Dimension Systems Inc. | Full-Screen Solutions Homepage</title>
+    <title>Dimension Systems Inc. | Technology Integration. Local Delivery.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -2957,6 +2957,860 @@
           transition-duration: 0.001ms !important;
         }
       }
+
+
+      /* =========================================================
+         DSI HOMEPAGE REFRESH — LOCAL DELIVERY POSITIONING
+         Added to support the revised information architecture.
+         ========================================================= */
+      :root {
+        --dsi-radius-lg: 34px;
+        --dsi-radius-md: 22px;
+        --dsi-section-space: clamp(76px, 8vw, 132px);
+      }
+
+      .dsi-section {
+        padding: var(--dsi-section-space) 0;
+      }
+      .dsi-section--soft {
+        background: var(--ice);
+      }
+      .dsi-section--dark {
+        background: var(--ink);
+        color: var(--white);
+      }
+      .dsi-section-heading {
+        max-width: 900px;
+        margin-bottom: clamp(34px, 5vw, 64px);
+      }
+      .dsi-section-heading--split {
+        max-width: none;
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.55fr);
+        gap: clamp(30px, 6vw, 100px);
+        align-items: end;
+      }
+      .dsi-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 0 16px;
+        color: var(--blue);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+      .dsi-kicker::before {
+        content: "";
+        width: 32px;
+        height: 2px;
+        border-radius: 999px;
+        background: currentColor;
+      }
+      .dsi-section--dark .dsi-kicker {
+        color: var(--cyan);
+      }
+      .dsi-title {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(2.35rem, 4.25vw, 5.4rem);
+        line-height: 1;
+        letter-spacing: -0.058em;
+        text-wrap: balance;
+      }
+      .dsi-lead {
+        margin: 20px 0 0;
+        max-width: 690px;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.25vw, 1.18rem);
+      }
+      .dsi-section--dark .dsi-lead {
+        color: rgba(255,255,255,.68);
+      }
+
+      /* Hero */
+      .dsi-hero {
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 82% 10%, rgba(99, 220, 255, .18), transparent 29%),
+          linear-gradient(180deg, #fbfdff 0%, #edf7ff 100%);
+      }
+      .dsi-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: .32;
+        background-image:
+          linear-gradient(rgba(7,91,232,.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(7,91,232,.06) 1px, transparent 1px);
+        background-size: 72px 72px;
+        mask-image: linear-gradient(to bottom, black 0%, transparent 78%);
+      }
+      .dsi-hero__grid {
+        position: relative;
+        z-index: 2;
+        min-height: clamp(690px, calc(100svh - var(--header) - 42px), 940px);
+        display: grid;
+        grid-template-columns: minmax(0, .95fr) minmax(520px, 1.05fr);
+        gap: clamp(42px, 6vw, 110px);
+        align-items: center;
+        padding: clamp(68px, 8vw, 126px) 0;
+      }
+      .dsi-hero__copy {
+        max-width: 820px;
+      }
+      .dsi-hero h1 {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(3.25rem, 5.35vw, 7.2rem);
+        line-height: .94;
+        letter-spacing: -0.07em;
+        font-weight: 760;
+        text-wrap: balance;
+      }
+      .dsi-hero h1 span {
+        color: var(--blue);
+      }
+      .dsi-hero__copy > p {
+        max-width: 720px;
+        margin: 28px 0 0;
+        color: #50657d;
+        font-size: clamp(1.04rem, 1.3vw, 1.26rem);
+      }
+      .dsi-hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 31px;
+      }
+      .dsi-hero__proof {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 22px;
+        margin: 32px 0 0;
+        padding: 0;
+        list-style: none;
+        color: #344b65;
+        font-size: .84rem;
+        font-weight: 700;
+      }
+      .dsi-hero__proof li {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .dsi-hero__proof svg {
+        width: 18px;
+        height: 18px;
+        color: var(--blue);
+      }
+      .dsi-hero__media {
+        position: relative;
+        min-height: clamp(510px, 47vw, 720px);
+      }
+      .dsi-hero__image-shell {
+        position: absolute;
+        inset: 0 0 44px 7%;
+        overflow: hidden;
+        border-radius: 72px 18px 72px 18px;
+        background: #cddcea;
+        box-shadow: 0 38px 92px rgba(6, 36, 82, .22);
+      }
+      .dsi-hero__image-shell img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .dsi-hero__image-shell::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, transparent 47%, rgba(4,17,35,.5)),
+          linear-gradient(90deg, rgba(6,36,82,.18), transparent 45%);
+      }
+      .dsi-hero__badge {
+        position: absolute;
+        z-index: 3;
+        left: 0;
+        bottom: 0;
+        width: min(360px, 70%);
+        padding: 22px 24px;
+        border: 1px solid rgba(255,255,255,.82);
+        border-radius: 24px 24px 6px 24px;
+        background: rgba(255,255,255,.94);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(14px);
+      }
+      .dsi-hero__badge small {
+        display: block;
+        color: var(--blue);
+        font-size: .7rem;
+        font-weight: 800;
+        letter-spacing: .11em;
+        text-transform: uppercase;
+      }
+      .dsi-hero__badge strong {
+        display: block;
+        margin-top: 7px;
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(1.08rem, 1.7vw, 1.48rem);
+        line-height: 1.18;
+      }
+      .dsi-hero__delivery {
+        position: absolute;
+        z-index: 3;
+        right: -18px;
+        top: 46px;
+        width: min(235px, 47%);
+        padding: 18px;
+        border-radius: 20px;
+        color: #fff;
+        background: rgba(7,17,31,.87);
+        box-shadow: 0 24px 55px rgba(7,17,31,.25);
+        backdrop-filter: blur(14px);
+      }
+      .dsi-hero__delivery span {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255,255,255,.11);
+        color: rgba(255,255,255,.78);
+        font-size: .75rem;
+        font-weight: 700;
+      }
+      .dsi-hero__delivery span:last-child { border-bottom: 0; }
+      .dsi-hero__delivery i {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--cyan);
+        box-shadow: 0 0 0 5px rgba(99,220,255,.12);
+      }
+
+      /* Credibility strip */
+      .dsi-credibility {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background: #fff;
+      }
+      .dsi-credibility__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .dsi-credibility__item {
+        min-height: 152px;
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        gap: 17px;
+        align-items: center;
+        padding: 28px clamp(22px, 3vw, 44px);
+        border-right: 1px solid var(--line);
+      }
+      .dsi-credibility__item:first-child { border-left: 1px solid var(--line); }
+      .dsi-credibility__icon {
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        background: var(--sky);
+        color: var(--blue);
+      }
+      .dsi-credibility__icon svg { width: 24px; height: 24px; }
+      .dsi-credibility__item strong {
+        display: block;
+        font-family: "Manrope", sans-serif;
+        font-size: 1.03rem;
+      }
+      .dsi-credibility__item p {
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: .78rem;
+      }
+
+      /* Strategic positioning */
+      .dsi-positioning {
+        display: grid;
+        grid-template-columns: minmax(0, .82fr) minmax(540px, 1.18fr);
+        gap: clamp(46px, 7vw, 115px);
+        align-items: center;
+      }
+      .dsi-positioning__copy .dsi-lead { margin-bottom: 30px; }
+      .dsi-checklist {
+        display: grid;
+        gap: 16px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .dsi-checklist li {
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        gap: 13px;
+        align-items: start;
+      }
+      .dsi-checklist__icon {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: var(--sky);
+        color: var(--blue);
+      }
+      .dsi-checklist__icon svg { width: 18px; height: 18px; }
+      .dsi-checklist strong { display: block; font-size: .95rem; }
+      .dsi-checklist p { margin: 4px 0 0; color: var(--muted); font-size: .82rem; }
+      .dsi-partner-map {
+        position: relative;
+        min-height: 590px;
+        display: grid;
+        place-items: center;
+        padding: 56px;
+        border-radius: 52px 16px 52px 16px;
+        overflow: hidden;
+        background: linear-gradient(145deg, #0a2b5c, #07111f);
+        box-shadow: var(--shadow);
+      }
+      .dsi-partner-map::before {
+        content: "";
+        position: absolute;
+        width: 560px;
+        aspect-ratio: 1;
+        border: 1px solid rgba(99,220,255,.19);
+        border-radius: 50%;
+        box-shadow: 0 0 0 90px rgba(99,220,255,.035), 0 0 0 180px rgba(99,220,255,.02);
+      }
+      .dsi-partner-map::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: .28;
+        background-image:
+          linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+        background-size: 54px 54px;
+      }
+      .dsi-partner-map__center {
+        position: relative;
+        z-index: 3;
+        width: 210px;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        padding: 26px;
+        border: 1px solid rgba(255,255,255,.22);
+        border-radius: 50%;
+        color: #fff;
+        text-align: center;
+        background: radial-gradient(circle at 35% 25%, #1386ff, #0647b0 70%);
+        box-shadow: 0 26px 70px rgba(0,0,0,.36), 0 0 0 18px rgba(75,188,255,.08);
+      }
+      .dsi-partner-map__center strong {
+        font-family: "Manrope", sans-serif;
+        font-size: 1.62rem;
+        line-height: 1.05;
+      }
+      .dsi-partner-map__center span {
+        display: block;
+        margin-top: 8px;
+        color: rgba(255,255,255,.78);
+        font-size: .72rem;
+      }
+      .dsi-partner-node {
+        position: absolute;
+        z-index: 4;
+        width: min(210px, 36%);
+        padding: 15px 17px;
+        border: 1px solid rgba(255,255,255,.17);
+        border-radius: 16px;
+        color: #fff;
+        background: rgba(255,255,255,.09);
+        backdrop-filter: blur(13px);
+      }
+      .dsi-partner-node strong { display: block; font-size: .83rem; }
+      .dsi-partner-node span { display: block; margin-top: 4px; color: rgba(255,255,255,.6); font-size: .69rem; }
+      .dsi-partner-node--a { left: 6%; top: 11%; }
+      .dsi-partner-node--b { right: 6%; top: 14%; }
+      .dsi-partner-node--c { left: 5%; bottom: 12%; }
+      .dsi-partner-node--d { right: 5%; bottom: 10%; }
+
+      /* Core capabilities */
+      .dsi-capability-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .dsi-capability-card {
+        min-height: 320px;
+        display: flex;
+        flex-direction: column;
+        padding: clamp(24px, 3vw, 34px);
+        border: 1px solid var(--line);
+        border-radius: var(--dsi-radius-md);
+        background: #fff;
+        transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+      }
+      .dsi-capability-card:hover {
+        transform: translateY(-6px);
+        border-color: #b8d5f3;
+        box-shadow: var(--shadow-soft);
+      }
+      .dsi-capability-card__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .dsi-capability-card__icon {
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        border-radius: 17px;
+        background: var(--sky);
+        color: var(--blue);
+      }
+      .dsi-capability-card__icon svg { width: 27px; height: 27px; }
+      .dsi-capability-card__number {
+        color: #a1b0c0;
+        font-family: "Manrope", sans-serif;
+        font-size: .75rem;
+        font-weight: 800;
+      }
+      .dsi-capability-card h3 {
+        margin: 25px 0 0;
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(1.28rem, 1.7vw, 1.68rem);
+        line-height: 1.08;
+        letter-spacing: -.035em;
+      }
+      .dsi-capability-card p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: .9rem;
+      }
+      .dsi-capability-card a {
+        margin-top: auto;
+        padding-top: 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--blue);
+        font-size: .83rem;
+        font-weight: 800;
+      }
+      .dsi-capability-card a svg { width: 17px; height: 17px; }
+
+      /* Industries */
+      .dsi-industry-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .dsi-industry-item {
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 24px;
+        border: 1px solid rgba(255,255,255,.13);
+        border-radius: 18px;
+        background: rgba(255,255,255,.055);
+      }
+      .dsi-industry-item svg {
+        width: 25px;
+        height: 25px;
+        color: var(--cyan);
+      }
+      .dsi-industry-item strong {
+        display: block;
+        margin-top: 24px;
+        font-family: "Manrope", sans-serif;
+        font-size: 1rem;
+      }
+      .dsi-industry-item span {
+        display: block;
+        margin-top: 6px;
+        color: rgba(255,255,255,.56);
+        font-size: .74rem;
+      }
+
+      /* Featured projects */
+      .dsi-project-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 19px;
+      }
+      .dsi-project-card {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 28px 28px 8px 28px;
+        background: #fff;
+        box-shadow: 0 16px 42px rgba(7,31,69,.07);
+      }
+      .dsi-project-card__media {
+        position: relative;
+        aspect-ratio: 16 / 10;
+        overflow: hidden;
+        background: #dce8f1;
+      }
+      .dsi-project-card__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .55s ease;
+      }
+      .dsi-project-card:hover .dsi-project-card__media img { transform: scale(1.04); }
+      .dsi-project-card__tag {
+        position: absolute;
+        left: 18px;
+        top: 18px;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(7,17,31,.8);
+        color: #fff;
+        font-size: .66rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        backdrop-filter: blur(9px);
+      }
+      .dsi-project-card__body { padding: 26px; }
+      .dsi-project-card h3 {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        font-size: 1.35rem;
+        line-height: 1.12;
+        letter-spacing: -.03em;
+      }
+      .dsi-project-card p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: .86rem;
+      }
+      .dsi-project-card__result {
+        display: flex;
+        gap: 10px;
+        align-items: start;
+        margin-top: 19px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        color: #304963;
+        font-size: .78rem;
+        font-weight: 700;
+      }
+      .dsi-project-card__result svg {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+        color: var(--green);
+      }
+
+      /* Delivery process */
+      .dsi-process-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .dsi-process-grid::before {
+        content: "";
+        position: absolute;
+        top: 34px;
+        left: 7%;
+        right: 7%;
+        height: 1px;
+        background: #bfd1e2;
+      }
+      .dsi-process-step {
+        position: relative;
+        z-index: 2;
+        padding: 0 10px;
+      }
+      .dsi-process-step__number {
+        width: 68px;
+        height: 68px;
+        display: grid;
+        place-items: center;
+        border: 1px solid #bdd6ef;
+        border-radius: 50%;
+        background: #fff;
+        color: var(--blue);
+        font-family: "Manrope", sans-serif;
+        font-size: .82rem;
+        font-weight: 800;
+        box-shadow: 0 10px 25px rgba(7,31,69,.08);
+      }
+      .dsi-process-step h3 {
+        margin: 23px 0 0;
+        font-family: "Manrope", sans-serif;
+        font-size: 1.08rem;
+      }
+      .dsi-process-step p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: .78rem;
+      }
+
+      /* Partner with DSI */
+      .dsi-partnership {
+        position: relative;
+        min-height: 560px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(370px, .62fr);
+        gap: clamp(40px, 7vw, 110px);
+        align-items: center;
+        padding: clamp(42px, 6vw, 82px);
+        border-radius: 62px 18px 62px 18px;
+        overflow: hidden;
+        color: #fff;
+        background: linear-gradient(130deg, #07111f 0%, #0a2d61 57%, #075be8 100%);
+        box-shadow: 0 38px 90px rgba(7,31,69,.22);
+      }
+      .dsi-partnership::before {
+        content: "";
+        position: absolute;
+        width: 620px;
+        aspect-ratio: 1;
+        right: -250px;
+        top: -300px;
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 50%;
+        box-shadow: 0 0 0 90px rgba(255,255,255,.035), 0 0 0 180px rgba(255,255,255,.02);
+      }
+      .dsi-partnership__copy,
+      .dsi-partnership__panel { position: relative; z-index: 2; }
+      .dsi-partnership h2 {
+        margin: 0;
+        max-width: 850px;
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(2.7rem, 4.7vw, 5.7rem);
+        line-height: .97;
+        letter-spacing: -.063em;
+      }
+      .dsi-partnership__copy > p {
+        max-width: 660px;
+        margin: 22px 0 0;
+        color: rgba(255,255,255,.7);
+        font-size: 1.03rem;
+      }
+      .dsi-partnership__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 29px;
+      }
+      .dsi-partnership .btn--glass {
+        border-color: rgba(255,255,255,.34);
+        background: rgba(255,255,255,.08);
+        color: #fff;
+        backdrop-filter: blur(10px);
+      }
+      .dsi-partnership .btn--glass:hover {
+        background: rgba(255,255,255,.16);
+      }
+      .dsi-partnership__panel {
+        padding: 28px;
+        border: 1px solid rgba(255,255,255,.16);
+        border-radius: 25px;
+        background: rgba(255,255,255,.09);
+        backdrop-filter: blur(16px);
+      }
+      .dsi-partnership__panel strong {
+        display: block;
+        font-family: "Manrope", sans-serif;
+        font-size: 1.22rem;
+      }
+      .dsi-partnership__panel ul {
+        display: grid;
+        gap: 14px;
+        margin: 21px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .dsi-partnership__panel li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255,255,255,.75);
+        font-size: .82rem;
+      }
+      .dsi-partnership__panel svg {
+        width: 18px;
+        height: 18px;
+        color: var(--cyan);
+      }
+
+      /* Contact */
+      .dsi-contact {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(340px, .55fr);
+        gap: clamp(42px, 7vw, 100px);
+        align-items: center;
+      }
+      .dsi-contact h2 {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(2.7rem, 4.6vw, 5.8rem);
+        line-height: .98;
+        letter-spacing: -.063em;
+      }
+      .dsi-contact__copy > p {
+        max-width: 690px;
+        margin: 22px 0 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+      .dsi-contact__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+      .dsi-contact__details {
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 25px;
+        background: var(--ice);
+      }
+      .dsi-contact__row {
+        display: grid;
+        grid-template-columns: 44px minmax(0,1fr);
+        gap: 13px;
+        align-items: center;
+        padding: 17px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .dsi-contact__row:first-child { padding-top: 0; }
+      .dsi-contact__row:last-child { padding-bottom: 0; border-bottom: 0; }
+      .dsi-contact__icon {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        border-radius: 13px;
+        background: #fff;
+        color: var(--blue);
+      }
+      .dsi-contact__icon svg { width: 20px; height: 20px; }
+      .dsi-contact__row strong { display: block; font-size: .82rem; }
+      .dsi-contact__row span { display: block; margin-top: 2px; color: var(--muted); font-size: .77rem; overflow-wrap: anywhere; }
+
+      @media (max-width: 1380px) {
+        .dsi-hero__grid { grid-template-columns: minmax(0,.9fr) minmax(460px,1.1fr); }
+        .dsi-positioning { grid-template-columns: minmax(0,.8fr) minmax(500px,1.2fr); }
+      }
+      @media (max-width: 1180px) {
+        .dsi-hero__grid,
+        .dsi-positioning,
+        .dsi-partnership,
+        .dsi-contact {
+          grid-template-columns: 1fr;
+        }
+        .dsi-hero__grid { min-height: auto; }
+        .dsi-hero__copy { max-width: 920px; }
+        .dsi-hero__media { width: min(900px,100%); margin-inline: auto; }
+        .dsi-positioning__copy { max-width: 850px; }
+        .dsi-partner-map { min-height: 560px; }
+        .dsi-capability-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+        .dsi-project-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+        .dsi-project-card:last-child { grid-column: 1 / -1; width: min(620px,100%); }
+        .dsi-process-grid { grid-template-columns: repeat(3, minmax(0,1fr)); row-gap: 36px; }
+        .dsi-process-grid::before { display: none; }
+      }
+      @media (max-width: 820px) {
+        .dsi-section-heading--split { grid-template-columns: 1fr; gap: 16px; }
+        .dsi-hero__grid { padding: 58px 0 74px; }
+        .dsi-hero h1 { font-size: clamp(3rem, 13vw, 5.4rem); }
+        .dsi-hero__media { min-height: 510px; }
+        .dsi-hero__image-shell { inset: 0 0 48px 0; border-radius: 42px 12px 42px 12px; }
+        .dsi-hero__delivery { right: 10px; top: 24px; }
+        .dsi-hero__badge { left: 12px; }
+        .dsi-credibility__grid { grid-template-columns: 1fr; }
+        .dsi-credibility__item,
+        .dsi-credibility__item:first-child {
+          min-height: 120px;
+          border-left: 1px solid var(--line);
+          border-right: 1px solid var(--line);
+          border-bottom: 1px solid var(--line);
+        }
+        .dsi-credibility__item:last-child { border-bottom: 0; }
+        .dsi-partner-map { min-height: 520px; padding: 35px; border-radius: 34px 12px 34px 12px; }
+        .dsi-partner-map__center { width: 180px; }
+        .dsi-partner-node { width: min(190px, 41%); }
+        .dsi-industry-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+        .dsi-project-grid { grid-template-columns: 1fr; }
+        .dsi-project-card:last-child { grid-column: auto; width: auto; }
+        .dsi-process-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+        .dsi-partnership { min-height: auto; padding: 46px 28px; border-radius: 42px 14px 42px 14px; }
+      }
+      @media (max-width: 600px) {
+        :root { --dsi-section-space: 74px; }
+        .dsi-hero__actions,
+        .dsi-partnership__actions,
+        .dsi-contact__actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .dsi-hero__actions .btn,
+        .dsi-partnership__actions .btn,
+        .dsi-contact__actions .btn { width: 100%; }
+        .dsi-hero__proof { flex-direction: column; gap: 12px; }
+        .dsi-hero__media { min-height: 430px; }
+        .dsi-hero__delivery { display: none; }
+        .dsi-hero__badge { width: calc(100% - 24px); max-width: none; }
+        .dsi-positioning { gap: 40px; }
+        .dsi-partner-map {
+          min-height: auto;
+          display: grid;
+          gap: 10px;
+          padding: 26px 18px;
+        }
+        .dsi-partner-map::before { width: 360px; }
+        .dsi-partner-map__center {
+          position: relative;
+          order: 1;
+          width: 150px;
+          margin: 4px auto 12px;
+        }
+        .dsi-partner-node {
+          position: relative;
+          inset: auto !important;
+          width: 100%;
+        }
+        .dsi-partner-node--a { order: 2; }
+        .dsi-partner-node--b { order: 3; }
+        .dsi-partner-node--c { order: 4; }
+        .dsi-partner-node--d { order: 5; }
+        .dsi-capability-grid,
+        .dsi-industry-grid,
+        .dsi-process-grid { grid-template-columns: 1fr; }
+        .dsi-capability-card { min-height: 285px; }
+        .dsi-industry-item { min-height: 128px; }
+        .dsi-process-step { display: grid; grid-template-columns: 58px 1fr; column-gap: 16px; padding: 0; }
+        .dsi-process-step__number { width: 58px; height: 58px; grid-row: 1 / 3; }
+        .dsi-process-step h3 { margin: 4px 0 0; }
+        .dsi-process-step p { margin-top: 5px; }
+      }
+      @media (max-width: 420px) {
+        .container { width: min(100% - 24px, var(--max)); }
+        .dsi-hero h1 { font-size: clamp(2.65rem, 13vw, 4rem); }
+        .dsi-hero__media { min-height: 390px; }
+        .dsi-hero__badge { padding: 18px; }
+        .dsi-title { font-size: clamp(2.15rem, 11vw, 3.45rem); }
+        .dsi-project-card__body,
+        .dsi-capability-card,
+        .dsi-contact__details,
+        .dsi-partnership__panel { padding: 22px; }
+      }
+
     </style>
   </head>
   <body>
@@ -3212,12 +4066,9 @@
 
     <div class="announcement">
       <div class="container announcement-inner">
-        <span class="announcement-pill">Local technology partner</span>
-        <span
-          >Serving Guam since 1987 — planning, installation, integration, and
-          support.</span
-        >
-        <a href="#contact">Talk to our team</a>
+        <span class="announcement-pill">Guam-based since 1987</span>
+        <span>Technology integration, project delivery, training, and dependable local support.</span>
+        <a href="#contact">Discuss your project</a>
       </div>
     </div>
 
@@ -3235,115 +4086,18 @@
 
         <nav class="desktop-nav" aria-label="Desktop navigation">
           <ul>
-            <li class="nav-parent">
-              <button type="button">
-                Solutions <svg><use href="#i-chevron" /></svg>
-              </button>
-              <div class="mega-menu">
-                <div class="mega-grid">
-                  <a
-                    class="mega-link"
-                    href="https://www.dimensionsystems.com/support/managed-services/"
-                  >
-                    <span class="mega-icon"
-                      ><svg><use href="#i-server" /></svg></span
-                    ><span
-                      ><strong>Managed Services</strong
-                      ><span
-                        >Proactive IT management, help desk, backup, servers,
-                        and network support.</span
-                      ></span
-                    >
-                  </a>
-                  <a
-                    class="mega-link"
-                    href="https://www.dimensionsystems.com/support/integrated-security-systems/"
-                  >
-                    <span class="mega-icon"
-                      ><svg><use href="#i-camera" /></svg></span
-                    ><span
-                      ><strong>Integrated Security</strong
-                      ><span
-                        >Video security, access control, alarms, intercoms, and
-                        centralized management.</span
-                      ></span
-                    >
-                  </a>
-                  <a
-                    class="mega-link"
-                    href="https://www.dimensionsystems.com/support/system-integration/"
-                  >
-                    <span class="mega-icon"
-                      ><svg><use href="#i-network" /></svg></span
-                    ><span
-                      ><strong>System Integration</strong
-                      ><span
-                        >Connect physical and virtual systems for greater
-                        visibility and control.</span
-                      ></span
-                    >
-                  </a>
-                  <a
-                    class="mega-link"
-                    href="https://www.dimensionsystems.com/voip-business-telephony/"
-                  >
-                    <span class="mega-icon"
-                      ><svg><use href="#i-phone" /></svg></span
-                    ><span
-                      ><strong>Business Communications</strong
-                      ><span
-                        >VoIP, video conferencing, mobile apps, messaging, and
-                        collaboration.</span
-                      ></span
-                    >
-                  </a>
-                  <a
-                    class="mega-link"
-                    href="https://www.dimensionsystems.com/digital-signage/"
-                  >
-                    <span class="mega-icon"
-                      ><svg><use href="#i-display" /></svg></span
-                    ><span
-                      ><strong>Digital Signage</strong
-                      ><span
-                        >Display networks, content delivery, video walls, and
-                        visual communications.</span
-                      ></span
-                    >
-                  </a>
-                  <a
-                    class="mega-link"
-                    href="https://www.dimensionsystems.com/whiteboard-solutions/"
-                  >
-                    <span class="mega-icon"
-                      ><svg><use href="#i-board" /></svg></span
-                    ><span
-                      ><strong>Interactive Displays</strong
-                      ><span
-                        >Modern collaboration and teaching with interactive
-                        display technology.</span
-                      ></span
-                    >
-                  </a>
-                </div>
-              </div>
-            </li>
+            <li><a href="#capabilities">Capabilities</a></li>
             <li><a href="#industries">Industries</a></li>
-            <li><a href="#why-dsi">Why DSI</a></li>
-            <li><a href="#solutions">Explore</a></li>
-            <li>
-              <a href="https://www.dimensionsystems.com/about/">Company</a>
-            </li>
-            <li>
-              <a href="https://www.dimensionsystems.com/support/">Support</a>
-            </li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#partner">Partner With DSI</a></li>
+            <li><a href="https://www.dimensionsystems.com/about/">Company</a></li>
           </ul>
         </nav>
 
         <div class="header-actions">
           <a class="phone-link" href="tel:+16716462007">+1 (671) 646-2007</a>
           <button class="btn btn--primary" type="button" data-open-modal>
-            Request consultation <svg><use href="#i-arrow" /></svg>
+            Discuss Your Project <svg><use href="#i-arrow" /></svg>
           </button>
           <button
             class="nav-toggle"
@@ -3358,18 +4112,15 @@
     </header>
 
     <nav class="mobile-menu" aria-label="Mobile navigation">
-      <a href="#solutions">Solutions</a>
+      <a href="#capabilities">Core Capabilities</a>
       <a href="#industries">Industries</a>
-      <a href="#why-dsi">Why DSI</a>
+      <a href="#projects">Featured Projects</a>
+      <a href="#process">Delivery Process</a>
+      <a href="#partner">Partner With DSI</a>
       <a href="https://www.dimensionsystems.com/about/">Company</a>
-      <a href="https://www.dimensionsystems.com/support/">Support</a>
       <div class="mobile-actions">
-        <a class="btn btn--light" href="tel:+16716462007"
-          >Call +1 (671) 646-2007</a
-        >
-        <button class="btn btn--primary" type="button" data-open-modal>
-          Request consultation
-        </button>
+        <a class="btn btn--light" href="tel:+16716462007">Call +1 (671) 646-2007</a>
+        <button class="btn btn--primary" type="button" data-open-modal>Discuss Your Project</button>
       </div>
     </nav>
 
@@ -3400,74 +4151,72 @@
                   https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2560&q=90 2560w
                 "
                 sizes="100vw"
-                alt="Technology operations dashboard"
+                alt="Technology integration and local project delivery"
                 fetchpriority="high"
               />
             </div>
             <div class="solution-slide__glow" aria-hidden="true"></div>
             <div class="container solution-slide__inner">
               <div class="solution-slide__copy">
-                <p class="solution-slide__eyebrow">Managed IT Services</p>
-                <h1>Keep every system ready for business.</h1>
+                <p class="solution-slide__eyebrow">Guam’s Local Technology Partner</p>
+                <h1>Technology Integration. Local Delivery. Long-Term Support.</h1>
                 <p>
-                  Dimension Systems supports your users, devices, servers,
-                  networks, backups, and day-to-day technology—so your team can
-                  stay productive and your operation can keep moving.
+                  Dimension Systems connects strategic technology partnerships
+                  with technical excellence and reliable local execution—from
+                  planning and sourcing through installation, integration,
+                  training, and ongoing support.
                 </p>
                 <div class="solution-slide__actions">
-                  <a
-                    class="btn btn--primary"
-                    href="https://www.dimensionsystems.com/support/managed-services/"
-                    >Explore Managed Services <svg><use href="#i-arrow" /></svg
+                  <a class="btn btn--primary" href="#capabilities"
+                    >Explore Our Capabilities <svg><use href="#i-arrow" /></svg
                   ></a>
                   <button class="btn btn--glass" type="button" data-open-modal>
-                    Talk to our team
+                    Discuss Your Project
                   </button>
                 </div>
                 <div class="solution-slide__tags">
-                  <span>Proactive monitoring</span
-                  ><span>Remote and on-site support</span
-                  ><span>Backup and continuity</span>
+                  <span>Serving Guam since 1987</span
+                  ><span>Reliable local execution</span
+                  ><span>Long-term technical support</span>
                 </div>
               </div>
               <aside
                 class="solution-slide__panel"
-                aria-label="Managed IT service highlights"
+                aria-label="Local technology delivery highlights"
               >
                 <div class="solution-slide__panel-head">
                   <span
                     ><span class="solution-slide__panel-icon"
                       ><svg><use href="#i-server" /></svg></span
-                    >Service view</span
+                    >Delivery view</span
                   ><span class="solution-slide__panel-status"
-                    >Support ready</span
+                    >Guam-based support</span
                   >
                 </div>
                 <div class="solution-slide__feature">
                   <span class="solution-slide__feature-number">01</span
                   ><span
-                    ><strong>Monitor and maintain</strong>
+                    ><strong>Discover and design</strong>
                     <p>
-                      Identify issues early and keep essential systems healthy.
+                      Define requirements and shape the right technology solution.
                     </p></span
                   >
                 </div>
                 <div class="solution-slide__feature">
                   <span class="solution-slide__feature-number">02</span
                   ><span
-                    ><strong>Support your users</strong>
+                    ><strong>Source and deploy</strong>
                     <p>
-                      Provide practical assistance remotely or on site.
+                      Coordinate products, installation, and system integration.
                     </p></span
                   >
                 </div>
                 <div class="solution-slide__feature">
                   <span class="solution-slide__feature-number">03</span
                   ><span
-                    ><strong>Plan what comes next</strong>
+                    ><strong>Support long term</strong>
                     <p>
-                      Improve reliability through informed upgrades and
-                      lifecycle planning.
+                      Provide local training, service, and lifecycle support.
                     </p></span
                   >
                 </div>
@@ -3948,7 +4697,7 @@
             >
               <span class="solution-hero__tab-top"
                 ><span class="solution-hero__tab-index">01</span
-                ><span class="solution-hero__tab-name">Managed IT</span></span
+                ><span class="solution-hero__tab-name">Local Delivery</span></span
               ><span class="solution-hero__progress"></span>
             </button>
             <button
@@ -4029,767 +4778,238 @@
         </div>
       </section>
 
-      <div class="solution-strip" aria-label="DSI solution categories">
-        <div class="container solution-strip-inner">
-          <a
-            class="solution-pill"
-            href="https://www.dimensionsystems.com/support/managed-services/"
-            ><svg><use href="#i-server" /></svg>Managed Services</a
-          >
-          <a
-            class="solution-pill"
-            href="https://www.dimensionsystems.com/support/integrated-security-systems/"
-            ><svg><use href="#i-camera" /></svg>Integrated Security</a
-          >
-          <a
-            class="solution-pill"
-            href="https://www.dimensionsystems.com/support/system-integration/"
-            ><svg><use href="#i-network" /></svg>System Integration</a
-          >
-          <a
-            class="solution-pill"
-            href="https://www.dimensionsystems.com/voip-business-telephony/"
-            ><svg><use href="#i-phone" /></svg>Business Telephony</a
-          >
-          <a
-            class="solution-pill"
-            href="https://www.dimensionsystems.com/digital-signage/"
-            ><svg><use href="#i-display" /></svg>Digital Signage</a
-          >
-          <a
-            class="solution-pill"
-            href="https://www.dimensionsystems.com/whiteboard-solutions/"
-            ><svg><use href="#i-board" /></svg>Interactive Displays</a
-          >
-          <a
-            class="solution-pill"
-            href="https://www.dimensionsystems.com/tracker-devices/"
-            ><svg><use href="#i-pin" /></svg>Tracker Devices</a
-          >
+      <section class="dsi-credibility" aria-label="Dimension Systems credibility">
+        <div class="container dsi-credibility__grid">
+          <article class="dsi-credibility__item reveal">
+            <span class="dsi-credibility__icon"><svg><use href="#i-pin" /></svg></span>
+            <div><strong>Established in Guam</strong><p>Serving local organizations and projects since 1987.</p></div>
+          </article>
+          <article class="dsi-credibility__item reveal">
+            <span class="dsi-credibility__icon"><svg><use href="#i-users" /></svg></span>
+            <div><strong>Reliable Local Execution</strong><p>Coordination, installation, integration, training, and support close to the project.</p></div>
+          </article>
+          <article class="dsi-credibility__item reveal">
+            <span class="dsi-credibility__icon"><svg><use href="#i-network" /></svg></span>
+            <div><strong>Strategic Technology Partnerships</strong><p>Technology relationships supported by DSI’s local technical and delivery capability.</p></div>
+          </article>
         </div>
-      </div>
+      </section>
 
-      <section class="section section--soft" id="platform">
-        <div class="container platform-layout">
-          <div class="platform-copy reveal">
-            <p class="section-kicker">One integrated technology partner</p>
-            <h2 class="section-title">Bring your critical systems together.</h2>
-            <p class="section-copy">
-              Instead of managing separate vendors and disconnected systems,
-              work with one local team that can assess your environment, design
-              the right approach, implement it carefully, and support it after
-              deployment.
+      <section class="dsi-section" id="positioning">
+        <div class="container dsi-positioning">
+          <div class="dsi-positioning__copy reveal">
+            <p class="dsi-kicker">Strategic positioning</p>
+            <h2 class="dsi-title">The local delivery layer behind complex technology projects.</h2>
+            <p class="dsi-lead">
+              DSI supports clients, contractors, consultants, and off-island partners that need technology delivered correctly in Guam—with one local team coordinating the work from requirement to handoff.
             </p>
-
-            <div
-              class="platform-tabs"
-              role="tablist"
-              aria-label="Explore DSI solutions"
-            >
-              <button
-                class="platform-tab active"
-                type="button"
-                role="tab"
-                aria-selected="true"
-                data-platform="security"
-              >
-                <span class="platform-tab-icon"
-                  ><svg><use href="#i-camera" /></svg></span
-                ><span
-                  ><strong>Integrated Security</strong
-                  ><small>Video, access, alarms, and monitoring</small></span
-                ><svg><use href="#i-arrow" /></svg>
-              </button>
-              <button
-                class="platform-tab"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                data-platform="managed"
-              >
-                <span class="platform-tab-icon"
-                  ><svg><use href="#i-server" /></svg></span
-                ><span
-                  ><strong>Managed Services</strong
-                  ><small>Support, backup, servers, and networks</small></span
-                ><svg><use href="#i-arrow" /></svg>
-              </button>
-              <button
-                class="platform-tab"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                data-platform="integration"
-              >
-                <span class="platform-tab-icon"
-                  ><svg><use href="#i-network" /></svg></span
-                ><span
-                  ><strong>System Integration</strong
-                  ><small>Connect technologies and workflows</small></span
-                ><svg><use href="#i-arrow" /></svg>
-              </button>
-              <button
-                class="platform-tab"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                data-platform="communications"
-              >
-                <span class="platform-tab-icon"
-                  ><svg><use href="#i-phone" /></svg></span
-                ><span
-                  ><strong>Communications</strong
-                  ><small>Voice, video, messaging, and mobility</small></span
-                ><svg><use href="#i-arrow" /></svg>
-              </button>
-              <button
-                class="platform-tab"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                data-platform="display"
-              >
-                <span class="platform-tab-icon"
-                  ><svg><use href="#i-display" /></svg></span
-                ><span
-                  ><strong>Display Solutions</strong
-                  ><small>Signage, video walls, and collaboration</small></span
-                ><svg><use href="#i-arrow" /></svg>
-              </button>
-            </div>
+            <ul class="dsi-checklist">
+              <li>
+                <span class="dsi-checklist__icon"><svg><use href="#i-users" /></svg></span>
+                <div><strong>For clients and organizations</strong><p>A practical path from business need to a coordinated, supportable technology solution.</p></div>
+              </li>
+              <li>
+                <span class="dsi-checklist__icon"><svg><use href="#i-chart" /></svg></span>
+                <div><strong>For contractors and consultants</strong><p>Local site coordination, deployment support, documentation, training, and responsive communication.</p></div>
+              </li>
+              <li>
+                <span class="dsi-checklist__icon"><svg><use href="#i-network" /></svg></span>
+                <div><strong>For off-island technology partners</strong><p>A Guam-based delivery partner that can represent the solution locally and support the customer long term.</p></div>
+              </li>
+            </ul>
           </div>
 
-          <div class="platform-visual reveal">
-            <div class="platform-scene">
-              <div class="platform-scene-top">
-                <strong>DSI solution view</strong
-                ><span>Connected and supported</span>
-              </div>
-
-              <article class="platform-feature active" data-feature="security">
-                <div class="feature-device">
-                  <h3>See more. Respond faster.</h3>
-                  <p>
-                    Bring video security, access control, alarms, intercoms, and
-                    system health into a clearer operating experience.
-                  </p>
-                  <div class="feature-screen">
-                    <img
-                      src="image/cctv2.webp"
-                      alt="Security camera and surveillance system"
-                    />
-                    <div class="feature-screen-overlay"></div>
-                    <div class="feature-caption">
-                      <div>
-                        <strong>Integrated security operations</strong
-                        ><br /><small
-                          >Visibility across facilities and devices</small
-                        >
-                      </div>
-                      <span class="status-chip">Live</span>
-                    </div>
-                  </div>
-                  <div class="feature-metrics">
-                    <div class="feature-metric">
-                      <strong>Unified</strong><small>System management</small>
-                    </div>
-                    <div class="feature-metric">
-                      <strong>Remote</strong
-                      ><small>Access and visibility</small>
-                    </div>
-                    <div class="feature-metric">
-                      <strong>Scalable</strong
-                      ><small>Single or multiple sites</small>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="platform-feature" data-feature="managed">
-                <div class="feature-device">
-                  <h3>Keep technology running.</h3>
-                  <p>
-                    Proactive software updates, server care, managed networks,
-                    backup, help desk, and remote or on-site support.
-                  </p>
-                  <div class="feature-screen">
-                    <img
-                      src="image/datacenter.jpg"
-                      alt="Data center and managed IT infrastructure"
-                    />
-                    <div class="feature-screen-overlay"></div>
-                    <div class="feature-caption">
-                      <div>
-                        <strong>Managed IT environment</strong><br /><small
-                          >Monitor, maintain, and support critical
-                          systems</small
-                        >
-                      </div>
-                      <span class="status-chip">Healthy</span>
-                    </div>
-                  </div>
-                  <div class="feature-metrics">
-                    <div class="feature-metric">
-                      <strong>Assess</strong
-                      ><small>Understand the environment</small>
-                    </div>
-                    <div class="feature-metric">
-                      <strong>Manage</strong><small>Maintain performance</small>
-                    </div>
-                    <div class="feature-metric">
-                      <strong>Support</strong><small>Remote and on-site</small>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="platform-feature" data-feature="integration">
-                <div class="feature-device">
-                  <h3>Connect every moving part.</h3>
-                  <p>
-                    Optimize the interworking of physical and virtual components
-                    to improve visibility, accountability, and everyday
-                    workflows.
-                  </p>
-                  <div class="feature-screen">
-                    <img
-                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1500&q=85"
-                      alt="Integrated business systems dashboard"
-                    />
-                    <div class="feature-screen-overlay"></div>
-                    <div class="feature-caption">
-                      <div>
-                        <strong>System integration</strong><br /><small
-                          >Connected data, voice, video, and workflows</small
-                        >
-                      </div>
-                      <span class="status-chip">Synced</span>
-                    </div>
-                  </div>
-                  <div class="feature-metrics">
-                    <div class="feature-metric">
-                      <strong>Unified</strong
-                      ><small>Communications and systems</small>
-                    </div>
-                    <div class="feature-metric">
-                      <strong>Visible</strong
-                      ><small>Performance and activity</small>
-                    </div>
-                    <div class="feature-metric">
-                      <strong>Efficient</strong
-                      ><small>Technology workflows</small>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="platform-feature" data-feature="communications">
-                <div class="feature-device">
-                  <h3>Communicate from anywhere.</h3>
-                  <p>
-                    Bring voice, video conferencing, live chat, mobile apps,
-                    messaging, and customer interactions into one business
-                    communications environment.
-                  </p>
-                  <div class="feature-screen">
-                    <img
-                      src="image/3cx2.png"
-                      alt="Business team collaborating in a meeting"
-                    />
-                    <div class="feature-screen-overlay"></div>
-                    <div class="feature-caption">
-                      <div>
-                        <strong>Business communications</strong><br /><small
-                          >Office, remote, and multi-site collaboration</small
-                        >
-                      </div>
-                      <span class="status-chip">Connected</span>
-                    </div>
-                  </div>
-                  <div class="feature-metrics">
-                    <div class="feature-metric">
-                      <strong>Voice</strong><small>Business telephony</small>
-                    </div>
-                    <div class="feature-metric">
-                      <strong>Video</strong
-                      ><small>Meetings and collaboration</small>
-                    </div>
-                    <div class="feature-metric">
-                      <strong>Mobile</strong><small>Work from anywhere</small>
-                    </div>
-                  </div>
-                </div>
-              </article>
-
-              <article class="platform-feature" data-feature="display">
-                <div class="feature-device">
-                  <h3>Make every screen useful.</h3>
-                  <p>
-                    Deliver information, promotions, alerts, presentations, and
-                    collaborative content through managed signage and
-                    interactive displays.
-                  </p>
-                  <div class="feature-screen">
-                    <img
-                      src="image/digitalsignage2.png"
-                      alt="Digital retail display and technology"
-                    />
-                    <div class="feature-screen-overlay"></div>
-                    <div class="feature-caption">
-                      <div>
-                        <strong>Digital signage and displays</strong
-                        ><br /><small
-                          >Content delivery for workplaces and public
-                          spaces</small
-                        >
-                      </div>
-                      <span class="status-chip">Publishing</span>
-                    </div>
-                  </div>
-                  <div class="feature-metrics">
-                    <div class="feature-metric">
-                      <strong>Manage</strong><small>Content and devices</small>
-                    </div>
-                    <div class="feature-metric">
-                      <strong>Engage</strong><small>Customers and teams</small>
-                    </div>
-                    <div class="feature-metric">
-                      <strong>Collaborate</strong
-                      ><small>Interactive spaces</small>
-                    </div>
-                  </div>
-                </div>
-              </article>
+          <div class="dsi-partner-map reveal" aria-label="DSI delivery partnership model">
+            <div class="dsi-partner-map__center">
+              <div><strong>DSI Guam</strong><span>Technical integration + local delivery</span></div>
             </div>
+            <div class="dsi-partner-node dsi-partner-node--a"><strong>Technology Partners</strong><span>Platforms, products, engineering, and specialist expertise</span></div>
+            <div class="dsi-partner-node dsi-partner-node--b"><strong>Clients & Owners</strong><span>Operational goals, users, facilities, and long-term requirements</span></div>
+            <div class="dsi-partner-node dsi-partner-node--c"><strong>Contractors & Consultants</strong><span>Schedules, project coordination, site access, and technical requirements</span></div>
+            <div class="dsi-partner-node dsi-partner-node--d"><strong>Local Delivery</strong><span>Installation, integration, training, handoff, and ongoing support</span></div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="why-dsi">
-        <div class="container why-layout">
-          <div class="why-media reveal">
-            <img
-              src="image/support.png"
-              alt="Modern commercial building representing business technology infrastructure"
-            />
-            <div class="why-badge">
-              <strong>Local expertise, complete delivery</strong
-              ><span
-                >From the first assessment through installation, integration,
-                training, and ongoing support.</span
-              >
-            </div>
-          </div>
-          <div class="why-copy reveal">
-            <p class="section-kicker">Why organizations choose DSI</p>
-            <h2 class="section-title">
-              Technology should make operations simpler—not harder.
-            </h2>
-            <p class="section-copy">
-              DSI combines local knowledge with end-to-end technical
-              capabilities so organizations can make better technology decisions
-              and rely on one accountable partner.
-            </p>
-            <div class="why-tabs">
-              <div class="why-item open">
-                <button class="why-trigger" type="button">
-                  <span class="why-number">01</span
-                  ><strong>Assess before recommending</strong
-                  ><svg><use href="#i-plus" /></svg>
-                </button>
-                <div class="why-panel">
-                  <p>
-                    We begin by understanding your current environment,
-                    immediate requirements, and long-range objectives before
-                    defining the solution.
-                  </p>
-                </div>
-              </div>
-              <div class="why-item">
-                <button class="why-trigger" type="button">
-                  <span class="why-number">02</span
-                  ><strong>Design around real operations</strong
-                  ><svg><use href="#i-plus" /></svg>
-                </button>
-                <div class="why-panel">
-                  <p>
-                    Clients stay involved throughout the design process so the
-                    technology fits their workflow, facilities, users, and
-                    future plans.
-                  </p>
-                </div>
-              </div>
-              <div class="why-item">
-                <button class="why-trigger" type="button">
-                  <span class="why-number">03</span
-                  ><strong>Implement with less disruption</strong
-                  ><svg><use href="#i-plus" /></svg>
-                </button>
-                <div class="why-panel">
-                  <p>
-                    Our team works to minimize downtime while installing,
-                    configuring, testing, and integrating the selected systems.
-                  </p>
-                </div>
-              </div>
-              <div class="why-item">
-                <button class="why-trigger" type="button">
-                  <span class="why-number">04</span
-                  ><strong>Support after deployment</strong
-                  ><svg><use href="#i-plus" /></svg>
-                </button>
-                <div class="why-panel">
-                  <p>
-                    Technology remains important after launch. DSI provides
-                    remote, on-site, and help-desk support for clients across
-                    Guam.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--dark proof-section">
-        <div class="container proof-grid">
-          <div class="reveal">
-            <p class="section-kicker">Built for long-term partnership</p>
-            <h2 class="section-title">
-              A technology team rooted in the region.
-            </h2>
-            <p class="section-copy">
-              Dimension Systems has served Guam since 1987 and supports clients
-              through local consultation, professional implementation, and
-              continued technical service.
-            </p>
-          </div>
-          <div class="reveal">
-            <div class="proof-stats">
-              <div class="proof-stat">
-                <strong>1987</strong><span>Serving Guam since</span>
-              </div>
-             
-              <div class="proof-stat">
-                <strong>End-to-end</strong
-                ><span>Assessment, design, implementation, and support</span>
-              </div>
-            </div>
-            <div class="proof-list" style="margin-top: 28px">
-              <span
-                ><svg><use href="#i-check" /></svg> Local Guam phone and support
-                contact</span
-              >
-              <span
-                ><svg><use href="#i-check" /></svg> Remote and on-site technical
-                assistance</span
-              >
-              <span
-                ><svg><use href="#i-check" /></svg> Solutions across IT,
-                security, communications, and displays</span
-              >
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="industries">
+      <section class="dsi-section dsi-section--soft" id="capabilities">
         <div class="container">
-          <div class="section-head reveal">
+          <div class="dsi-section-heading dsi-section-heading--split reveal">
             <div>
-              <p class="section-kicker">
-                Modern technology for real environments
-              </p>
-              <h2 class="section-title">
-                Solutions for the organizations that keep Guam moving.
-              </h2>
+              <p class="dsi-kicker">Core capabilities</p>
+              <h2 class="dsi-title">Six connected capabilities. One local delivery partner.</h2>
             </div>
-            <p class="section-copy">
-              Use focused industry pages to show how DSI’s technology services
-              solve different operational, communication, security, and
-              customer-experience needs.
-            </p>
+            <p class="dsi-lead">Concise solution areas organized around how DSI plans, delivers, integrates, and supports technology in the field.</p>
           </div>
-          <div class="industry-grid">
-            <a class="industry-card reveal" href="#contact"
-              ><img
-                src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=85"
-                alt="Modern commercial office"
-              />
-              <div class="industry-copy">
-                <small>Workplaces</small>
-                <h3>Commercial Offices</h3>
-                <p>
-                  Managed IT, secure networks, communications, displays, and
-                  access systems.
-                </p>
-              </div></a
-            >
-            <a class="industry-card reveal" href="#contact"
-              ><img
-                src="image/education.jpg"
-                alt="Educational institution"
-              />
-              <div class="industry-copy">
-                <small>Learning</small>
-                <h3>Education</h3>
-                <p>
-                  Interactive displays, networks, communications, and campus
-                  security.
-                </p>
-              </div></a
-            >
-            <a class="industry-card reveal" href="#contact"
-              ><img
-                src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=85"
-                alt="Hotel lobby"
-              />
-              <div class="industry-copy">
-                <small>Guest experience</small>
-                <h3>Hospitality & Retail</h3>
-                <p>
-                  Digital signage, communications, tracking, customer systems,
-                  and security.
-                </p>
-              </div></a
-            >
-            <a class="industry-card reveal" href="#contact"
-              ><img
-                src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=85"
-                alt="Construction site"
-              />
-              <div class="industry-copy">
-                <small>Field operations</small>
-                <h3>Construction & Facilities</h3>
-                <p>
-                  Site connectivity, managed technology, tracking, surveillance,
-                  and communications.
-                </p>
-              </div></a
-            >
+
+          <div class="dsi-capability-grid">
+            <article class="dsi-capability-card reveal">
+              <div class="dsi-capability-card__top"><span class="dsi-capability-card__icon"><svg><use href="#i-network" /></svg></span><span class="dsi-capability-card__number">01</span></div>
+              <h3>Network & Infrastructure Integration</h3>
+              <p>Structured connectivity, wireless, switching, servers, and infrastructure designed to work together and support daily operations.</p>
+              <a href="https://www.dimensionsystems.com/support/system-integration/">Explore capability <svg><use href="#i-arrow" /></svg></a>
+            </article>
+            <article class="dsi-capability-card reveal">
+              <div class="dsi-capability-card__top"><span class="dsi-capability-card__icon"><svg><use href="#i-camera" /></svg></span><span class="dsi-capability-card__number">02</span></div>
+              <h3>Integrated Security Systems</h3>
+              <p>Video security, access control, monitoring, and related systems coordinated for visibility, control, and local support.</p>
+              <a href="https://www.dimensionsystems.com/support/integrated-security-systems/">Explore capability <svg><use href="#i-arrow" /></svg></a>
+            </article>
+            <article class="dsi-capability-card reveal">
+              <div class="dsi-capability-card__top"><span class="dsi-capability-card__icon"><svg><use href="#i-phone" /></svg></span><span class="dsi-capability-card__number">03</span></div>
+              <h3>Business Communications</h3>
+              <p>Voice, video, messaging, mobility, and collaboration solutions deployed with local coordination and user support.</p>
+              <a href="https://www.dimensionsystems.com/voip-business-telephony/">Explore capability <svg><use href="#i-arrow" /></svg></a>
+            </article>
+            <article class="dsi-capability-card reveal">
+              <div class="dsi-capability-card__top"><span class="dsi-capability-card__icon"><svg><use href="#i-headset" /></svg></span><span class="dsi-capability-card__number">04</span></div>
+              <h3>Managed IT & Technical Support</h3>
+              <p>Responsive assistance, proactive management, maintenance, backup, and ongoing support for critical business technology.</p>
+              <a href="https://www.dimensionsystems.com/support/managed-services/">Explore capability <svg><use href="#i-arrow" /></svg></a>
+            </article>
+            <article class="dsi-capability-card reveal">
+              <div class="dsi-capability-card__top"><span class="dsi-capability-card__icon"><svg><use href="#i-display" /></svg></span><span class="dsi-capability-card__number">05</span></div>
+              <h3>Digital Signage & Interactive Technology</h3>
+              <p>Display networks, interactive environments, video walls, and visual communication systems for public and workplace spaces.</p>
+              <a href="https://www.dimensionsystems.com/digital-signage/">Explore capability <svg><use href="#i-arrow" /></svg></a>
+            </article>
+            <article class="dsi-capability-card reveal">
+              <div class="dsi-capability-card__top"><span class="dsi-capability-card__icon"><svg><use href="#i-server" /></svg></span><span class="dsi-capability-card__number">06</span></div>
+              <h3>Technology Sourcing & Deployment</h3>
+              <p>Product selection, procurement coordination, staging, installation, configuration, and project-ready local delivery.</p>
+              <a href="https://www.dimensionsystems.com/dsi-product-portfolio/">Explore capability <svg><use href="#i-arrow" /></svg></a>
+            </article>
           </div>
         </div>
       </section>
 
-      <section class="section section--soft" id="solutions">
+      <section class="dsi-section dsi-section--dark" id="industries">
         <div class="container">
-          <div class="section-head reveal">
+          <div class="dsi-section-heading dsi-section-heading--split reveal">
             <div>
-              <p class="section-kicker">Explore our solutions</p>
-              <h2 class="section-title">
-                Build the right technology environment.
-              </h2>
+              <p class="dsi-kicker">Industries</p>
+              <h2 class="dsi-title">Technology delivery shaped around real operating environments.</h2>
             </div>
-            <div class="carousel-controls">
-              <button
-                class="carousel-button"
-                type="button"
-                data-carousel-prev
-                aria-label="Previous solutions"
-              >
-                <svg><use href="#i-arrow-left" /></svg></button
-              ><button
-                class="carousel-button"
-                type="button"
-                data-carousel-next
-                aria-label="Next solutions"
-              >
-                <svg><use href="#i-arrow-right" /></svg>
-              </button>
-            </div>
+            <p class="dsi-lead">DSI supports organizations with different users, facilities, compliance needs, schedules, and service expectations.</p>
           </div>
-          <div class="solutions-carousel">
-            <div class="solution-cards" data-carousel>
-              <article class="solution-card">
-                <div class="solution-card-icon">
-                  <svg><use href="#i-server" /></svg>
-                </div>
-                <h3>Managed Services</h3>
-                <p>
-                  Keep your technology environment running smoothly with
-                  proactive management and responsive technical support.
-                </p>
-                <ul>
-                  <li>Help desk and remote support</li>
-                  <li>Server and network management</li>
-                  <li>Backup and disaster recovery</li>
-                  <li>Security assessments and storage</li>
-                </ul>
-                <a
-                  class="btn btn--text"
-                  href="https://www.dimensionsystems.com/support/managed-services/"
-                  >Explore managed services <svg><use href="#i-arrow" /></svg
-                ></a>
-              </article>
-              <article class="solution-card">
-                <div class="solution-card-icon">
-                  <svg><use href="#i-camera" /></svg>
-                </div>
-                <h3>Integrated Security</h3>
-                <p>
-                  Improve facility visibility and response with connected
-                  physical security technologies and centralized management.
-                </p>
-                <ul>
-                  <li>Video security</li>
-                  <li>Access control</li>
-                  <li>Alarms and intercoms</li>
-                  <li>Environmental sensors</li>
-                </ul>
-                <a
-                  class="btn btn--text"
-                  href="https://www.dimensionsystems.com/support/integrated-security-systems/"
-                  >Explore security <svg><use href="#i-arrow" /></svg
-                ></a>
-              </article>
-              <article class="solution-card">
-                <div class="solution-card-icon">
-                  <svg><use href="#i-network" /></svg>
-                </div>
-                <h3>System Integration</h3>
-                <p>
-                  Connect systems, devices, communications, data, and workflows
-                  to improve visibility and operational control.
-                </p>
-                <ul>
-                  <li>Unified communications</li>
-                  <li>Security deployment</li>
-                  <li>Mobile device management</li>
-                  <li>Workforce and workflow systems</li>
-                </ul>
-                <a
-                  class="btn btn--text"
-                  href="https://www.dimensionsystems.com/support/system-integration/"
-                  >Explore integration <svg><use href="#i-arrow" /></svg
-                ></a>
-              </article>
-              <article class="solution-card">
-                <div class="solution-card-icon">
-                  <svg><use href="#i-phone" /></svg>
-                </div>
-                <h3>Business Telephony</h3>
-                <p>
-                  Support office, remote, and multi-site communication with
-                  unified voice, video, messaging, and mobile tools.
-                </p>
-                <ul>
-                  <li>VoIP phone systems</li>
-                  <li>Video conferencing</li>
-                  <li>Mobile and desktop apps</li>
-                  <li>Customer interaction tools</li>
-                </ul>
-                <a
-                  class="btn btn--text"
-                  href="https://www.dimensionsystems.com/voip-business-telephony/"
-                  >Explore communications <svg><use href="#i-arrow" /></svg
-                ></a>
-              </article>
-              <article class="solution-card">
-                <div class="solution-card-icon">
-                  <svg><use href="#i-display" /></svg>
-                </div>
-                <h3>Digital Signage</h3>
-                <p>
-                  Communicate information, promotions, alerts, and experiences
-                  through professionally managed display networks.
-                </p>
-                <ul>
-                  <li>Commercial displays</li>
-                  <li>Video walls</li>
-                  <li>Content management</li>
-                  <li>Remote device monitoring</li>
-                </ul>
-                <a
-                  class="btn btn--text"
-                  href="https://www.dimensionsystems.com/digital-signage/"
-                  >Explore digital signage <svg><use href="#i-arrow" /></svg
-                ></a>
-              </article>
-              <article class="solution-card">
-                <div class="solution-card-icon">
-                  <svg><use href="#i-board" /></svg>
-                </div>
-                <h3>Interactive Displays</h3>
-                <p>
-                  Create more engaging learning and collaboration environments
-                  with interactive whiteboard and display technology.
-                </p>
-                <ul>
-                  <li>Teaching and presentation tools</li>
-                  <li>Wireless screen sharing</li>
-                  <li>Annotation and whiteboarding</li>
-                  <li>Training and support</li>
-                </ul>
-                <a
-                  class="btn btn--text"
-                  href="https://www.dimensionsystems.com/whiteboard-solutions/"
-                  >Explore interactive displays
-                  <svg><use href="#i-arrow" /></svg
-                ></a>
-              </article>
-            </div>
+          <div class="dsi-industry-grid">
+            <article class="dsi-industry-item reveal"><svg><use href="#i-shield" /></svg><div><strong>Government</strong><span>Public agencies and mission-focused operations</span></div></article>
+            <article class="dsi-industry-item reveal"><svg><use href="#i-lock" /></svg><div><strong>Defense Contractors</strong><span>Local coordination for complex project requirements</span></div></article>
+            <article class="dsi-industry-item reveal"><svg><use href="#i-board" /></svg><div><strong>Education</strong><span>Connected classrooms and collaborative environments</span></div></article>
+            <article class="dsi-industry-item reveal"><svg><use href="#i-server" /></svg><div><strong>Banking</strong><span>Secure, reliable, customer-facing technology</span></div></article>
+            <article class="dsi-industry-item reveal"><svg><use href="#i-display" /></svg><div><strong>Hospitality</strong><span>Guest communications, displays, security, and infrastructure</span></div></article>
+            <article class="dsi-industry-item reveal"><svg><use href="#i-network" /></svg><div><strong>Construction</strong><span>Project deployment, temporary systems, and permanent technology</span></div></article>
+            <article class="dsi-industry-item reveal"><svg><use href="#i-plus" /></svg><div><strong>Healthcare</strong><span>Operational technology and connected facilities</span></div></article>
+            <article class="dsi-industry-item reveal"><svg><use href="#i-users" /></svg><div><strong>Commercial</strong><span>Scalable technology for local business operations</span></div></article>
           </div>
         </div>
       </section>
 
-      <section class="cta-section" id="contact">
-        <div class="container cta-shell reveal">
-          <div class="cta-copy">
-            <p class="section-kicker" style="color: var(--cyan)">
-              Start with a conversation
-            </p>
-            <h2>Let’s connect the technology your organization depends on.</h2>
-            <p>
-              Tell us what you are planning, replacing, fixing, or improving.
-              Our team can help you identify the right next step.
-            </p>
-            <div class="cta-actions">
-              <button class="btn btn--light" type="button" data-open-modal>
-                Request a consultation <svg><use href="#i-arrow" /></svg>
-              </button>
-              <a
-                class="btn btn--dark"
-                href="https://www.dimensionsystems.com/support/"
-                >Get technical support</a
-              >
+      <section class="dsi-section" id="projects">
+        <div class="container">
+          <div class="dsi-section-heading dsi-section-heading--split reveal">
+            <div>
+              <p class="dsi-kicker">Featured projects</p>
+              <h2 class="dsi-title">Local delivery demonstrated through completed work.</h2>
+            </div>
+            <p class="dsi-lead">These cards are structured for approved DSI project photos, verified outcomes, and client-specific details before launch.</p>
+          </div>
+
+          <!-- Replace the sample summaries below with verified DSI project names, metrics, and approved client photos. -->
+          <div class="dsi-project-grid">
+            <article class="dsi-project-card reveal">
+              <div class="dsi-project-card__media">
+                <img src="./image/dsi-project-security.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1400&amp;q=86';" alt="Integrated security project interface" loading="lazy" />
+                <span class="dsi-project-card__tag">Security integration</span>
+              </div>
+              <div class="dsi-project-card__body">
+                <h3>Multi-System Security Deployment</h3>
+                <p>Coordinated security equipment, installation, configuration, and local handoff for an operational facility.</p>
+                <div class="dsi-project-card__result"><svg><use href="#i-check" /></svg><span>Outcome area: clearer visibility, coordinated deployment, and locally available support.</span></div>
+              </div>
+            </article>
+            <article class="dsi-project-card reveal">
+              <div class="dsi-project-card__media">
+                <img src="./image/dsi-project-network.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=1400&amp;q=86';" alt="Network infrastructure installation" loading="lazy" />
+                <span class="dsi-project-card__tag">Infrastructure</span>
+              </div>
+              <div class="dsi-project-card__body">
+                <h3>Network & Communications Modernization</h3>
+                <p>Integrated connectivity and communications components through one coordinated local deployment plan.</p>
+                <div class="dsi-project-card__result"><svg><use href="#i-check" /></svg><span>Outcome area: improved connectivity, consistent configuration, and simplified support.</span></div>
+              </div>
+            </article>
+            <article class="dsi-project-card reveal">
+              <div class="dsi-project-card__media">
+                <img src="./image/dsi-project-interactive.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&amp;fit=crop&amp;w=1400&amp;q=86';" alt="Interactive display and collaboration environment" loading="lazy" />
+                <span class="dsi-project-card__tag">Interactive technology</span>
+              </div>
+              <div class="dsi-project-card__body">
+                <h3>Interactive Display Rollout</h3>
+                <p>Planned installation, device setup, user orientation, and local support for connected learning or meeting spaces.</p>
+                <div class="dsi-project-card__result"><svg><use href="#i-check" /></svg><span>Outcome area: standardized rooms, easier collaboration, and supported adoption.</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsi-section dsi-section--soft" id="process">
+        <div class="container">
+          <div class="dsi-section-heading reveal">
+            <p class="dsi-kicker">Delivery process</p>
+            <h2 class="dsi-title">Discover. Design. Source. Deploy. Support.</h2>
+            <p class="dsi-lead">A clear delivery path that keeps stakeholders aligned and makes local accountability visible at every stage.</p>
+          </div>
+          <div class="dsi-process-grid">
+            <article class="dsi-process-step reveal"><span class="dsi-process-step__number">01</span><h3>Discover</h3><p>Clarify goals, site conditions, users, constraints, schedule, and support expectations.</p></article>
+            <article class="dsi-process-step reveal"><span class="dsi-process-step__number">02</span><h3>Design</h3><p>Translate requirements into a coordinated, practical, and supportable solution approach.</p></article>
+            <article class="dsi-process-step reveal"><span class="dsi-process-step__number">03</span><h3>Source</h3><p>Coordinate products, partners, logistics, staging, and documentation for the project.</p></article>
+            <article class="dsi-process-step reveal"><span class="dsi-process-step__number">04</span><h3>Deploy</h3><p>Install, configure, integrate, test, train users, and complete the handoff locally.</p></article>
+            <article class="dsi-process-step reveal"><span class="dsi-process-step__number">05</span><h3>Support</h3><p>Provide ongoing assistance, maintenance, and a local point of accountability.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsi-section" id="partner">
+        <div class="container">
+          <div class="dsi-partnership reveal">
+            <div class="dsi-partnership__copy">
+              <p class="dsi-kicker">Partner with DSI</p>
+              <h2>Need a Guam-based technology delivery partner?</h2>
+              <p>Work with a local team that can coordinate the site, represent the solution, communicate with stakeholders, complete the deployment, and remain available after handoff.</p>
+              <div class="dsi-partnership__actions">
+                <button class="btn btn--primary" type="button" data-open-modal>Start a Partnership Conversation <svg><use href="#i-arrow" /></svg></button>
+                <a class="btn btn--glass" href="https://www.dimensionsystems.com/about/">Learn About DSI</a>
+              </div>
+            </div>
+            <aside class="dsi-partnership__panel">
+              <strong>Built for organizations that need:</strong>
+              <ul>
+                <li><svg><use href="#i-check" /></svg> Local project coordination in Guam</li>
+                <li><svg><use href="#i-check" /></svg> Technology installation and integration</li>
+                <li><svg><use href="#i-check" /></svg> User training and structured handoff</li>
+                <li><svg><use href="#i-check" /></svg> Long-term local support</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="dsi-section dsi-section--soft" id="contact">
+        <div class="container dsi-contact">
+          <div class="dsi-contact__copy reveal">
+            <p class="dsi-kicker">Contact</p>
+            <h2>Discuss Your Project.</h2>
+            <p>Tell us what you are planning, what needs improvement, or where you need a reliable local delivery partner. DSI will help identify the right next step.</p>
+            <div class="dsi-contact__actions">
+              <button class="btn btn--primary" type="button" data-open-modal>Request a Project Discussion <svg><use href="#i-arrow" /></svg></button>
+              <a class="btn btn--light" href="https://www.dimensionsystems.com/book-a-meeting/">Book a Meeting</a>
             </div>
           </div>
-          <aside class="cta-contact" aria-label="Contact Dimension Systems">
-            <h3>Contact Dimension Systems</h3>
-            <a class="cta-contact-row" href="tel:+16716462007"
-              ><span class="cta-contact-icon"
-                ><svg><use href="#i-phone" /></svg></span
-              ><span
-                ><strong>Guam office</strong
-                ><span>+1 (671) 646-2007</span></span
-              ></a
-            >
-            <a class="cta-contact-row" href="https://wa.me/16716462007"
-              ><span class="cta-contact-icon"
-                ><svg><use href="#i-whatsapp" /></svg></span
-              ><span
-                ><strong>WhatsApp</strong
-                ><span>Start a direct conversation</span></span
-              ></a
-            >
-            <a class="cta-contact-row" href="mailto:info@dimensionsystems.com"
-              ><span class="cta-contact-icon"
-                ><svg><use href="#i-mail" /></svg></span
-              ><span
-                ><strong>Email</strong
-                ><span>info@dimensionsystems.com</span></span
-              ></a
-            >
-            <a
-              class="cta-contact-row"
-              href="https://www.dimensionsystems.com/book-a-meeting/"
-              ><span class="cta-contact-icon"
-                ><svg><use href="#i-users" /></svg></span
-              ><span
-                ><strong>Book a meeting</strong
-                ><span>Choose a convenient time</span></span
-              ></a
-            >
+          <aside class="dsi-contact__details reveal" aria-label="Dimension Systems contact details">
+            <a class="dsi-contact__row" href="tel:+16716462007"><span class="dsi-contact__icon"><svg><use href="#i-phone" /></svg></span><span><strong>Call the Guam office</strong><span>+1 (671) 646-2007</span></span></a>
+            <a class="dsi-contact__row" href="mailto:info@dimensionsystems.com"><span class="dsi-contact__icon"><svg><use href="#i-mail" /></svg></span><span><strong>Email the team</strong><span>info@dimensionsystems.com</span></span></a>
+            <a class="dsi-contact__row" href="https://www.dimensionsystems.com/support/"><span class="dsi-contact__icon"><svg><use href="#i-headset" /></svg></span><span><strong>Technical support</strong><span>Access support resources and assistance</span></span></a>
           </aside>
         </div>
       </section>
@@ -4806,9 +5026,7 @@
               ></a
             >
             <p>
-              Managed IT, integrated security, system integration,
-              communications, digital signage, and interactive technology
-              solutions for organizations across Guam and the region.
+              Guam’s local technology integration and delivery partner—connecting strategic technology partnerships with technical excellence and reliable local execution.
             </p>
           </div>
           <div class="footer-col">
@@ -4842,7 +5060,7 @@
             <a href="https://www.dimensionsystems.com/about/">About</a
             ><a href="https://www.dimensionsystems.com/about/dsi-careers/"
               >Careers</a
-            ><a href="#industries">Industries</a><a href="#why-dsi">Why DSI</a>
+            ><a href="#industries">Industries</a><a href="#projects">Featured Projects</a>
           </div>
           <div class="footer-col">
             <h3>Help</h3>
@@ -4856,8 +5074,7 @@
         </div>
         <div class="footer-bottom">
           <span
-            >© 2026 Dimension Systems Inc. Concept homepage for implementation
-            review.</span
+            >© 2026 Dimension Systems Inc. All rights reserved.</span
           >
           <div class="footer-social">
             <a href="#" aria-label="Facebook"
@@ -4880,10 +5097,9 @@
       <div class="modal-dialog">
         <div class="modal-head">
           <div>
-            <h2 id="modal-title">Request a consultation</h2>
+            <h2 id="modal-title">Discuss your project</h2>
             <p>
-              Share a few details and prepare an email to the Dimension Systems
-              team.
+              Share a few project details and prepare an email to the Dimension Systems team.
             </p>
           </div>
           <button
@@ -4921,13 +5137,13 @@
             <div class="field field--full">
               <label for="solution">Solution needed</label
               ><select id="solution" name="solution">
-                <option>Managed Services</option>
-                <option>Integrated Security</option>
-                <option>System Integration</option>
-                <option>Business Telephony</option>
-                <option>Digital Signage</option>
-                <option>Interactive Displays</option>
-                <option>Tracker Devices</option>
+                <option>Network & Infrastructure Integration</option>
+                <option>Integrated Security Systems</option>
+                <option>Business Communications</option>
+                <option>Managed IT & Technical Support</option>
+                <option>Digital Signage & Interactive Technology</option>
+                <option>Technology Sourcing & Deployment</option>
+                <option>Local Delivery Partnership</option>
                 <option>Other / Not sure yet</option>
               </select>
             </div>
@@ -4950,7 +5166,7 @@
             <button class="btn btn--light modal-cancel" type="button">
               Cancel</button
             ><button class="btn btn--primary" type="submit">
-              Prepare email <svg><use href="#i-arrow" /></svg>
+              Prepare Project Email <svg><use href="#i-arrow" /></svg>
             </button>
           </div>
         </form>
@@ -4961,53 +5177,53 @@
       (() => {
         const toggle = document.querySelector(".nav-toggle");
         const mobileMenu = document.querySelector(".mobile-menu");
-        const iconUse = toggle.querySelector("use");
+        const iconUse = toggle?.querySelector("use");
 
         const closeMobile = () => {
+          if (!toggle || !mobileMenu || !iconUse) return;
           mobileMenu.classList.remove("open");
           toggle.setAttribute("aria-expanded", "false");
           toggle.setAttribute("aria-label", "Open navigation");
           iconUse.setAttribute("href", "#i-menu");
         };
 
-        toggle.addEventListener("click", () => {
-          const isOpen = mobileMenu.classList.toggle("open");
-          toggle.setAttribute("aria-expanded", String(isOpen));
-          toggle.setAttribute(
-            "aria-label",
-            isOpen ? "Close navigation" : "Open navigation",
-          );
-          iconUse.setAttribute("href", isOpen ? "#i-x" : "#i-menu");
-        });
-        mobileMenu
-          .querySelectorAll("a,button")
-          .forEach((item) => item.addEventListener("click", closeMobile));
+        if (toggle && mobileMenu && iconUse) {
+          toggle.addEventListener("click", () => {
+            const isOpen = mobileMenu.classList.toggle("open");
+            toggle.setAttribute("aria-expanded", String(isOpen));
+            toggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+            iconUse.setAttribute("href", isOpen ? "#i-x" : "#i-menu");
+          });
+          mobileMenu.querySelectorAll("a,button").forEach((item) => item.addEventListener("click", closeMobile));
+        }
 
         const modal = document.getElementById("consultation-modal");
-        const modalClose = modal.querySelector(".modal-close");
-        const modalCancel = modal.querySelector(".modal-cancel");
-        const firstInput = modal.querySelector("input");
+        const modalClose = modal?.querySelector(".modal-close");
+        const modalCancel = modal?.querySelector(".modal-cancel");
+        const firstInput = modal?.querySelector("input");
         let lastFocused = null;
 
         const openModal = () => {
+          if (!modal) return;
           lastFocused = document.activeElement;
           modal.classList.add("open");
           document.body.classList.add("modal-open");
-          setTimeout(() => firstInput.focus(), 50);
+          window.setTimeout(() => firstInput?.focus(), 50);
         };
         const closeModal = () => {
+          if (!modal) return;
           modal.classList.remove("open");
           document.body.classList.remove("modal-open");
-          if (lastFocused) lastFocused.focus();
+          lastFocused?.focus?.();
         };
-        document
-          .querySelectorAll("[data-open-modal]")
-          .forEach((button) => button.addEventListener("click", openModal));
-        modalClose.addEventListener("click", closeModal);
-        modalCancel.addEventListener("click", closeModal);
-        modal.addEventListener("click", (event) => {
+
+        document.querySelectorAll("[data-open-modal]").forEach((button) => button.addEventListener("click", openModal));
+        modalClose?.addEventListener("click", closeModal);
+        modalCancel?.addEventListener("click", closeModal);
+        modal?.addEventListener("click", (event) => {
           if (event.target === modal) closeModal();
         });
+
         document.addEventListener("keydown", (event) => {
           if (event.key === "Escape") {
             closeModal();
@@ -5015,201 +5231,160 @@
           }
         });
 
-        document
-          .getElementById("consultation-form")
-          .addEventListener("submit", (event) => {
-            event.preventDefault();
-            const data = new FormData(event.currentTarget);
-            const subject = encodeURIComponent(
-              `Website consultation request: ${data.get("solution")}`,
-            );
-            const body = encodeURIComponent(
-              `Name: ${data.get("name")}
+        const form = document.getElementById("consultation-form");
+        form?.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const data = new FormData(event.currentTarget);
+          const subject = encodeURIComponent(`Website project discussion: ${data.get("solution")}`);
+          const body = encodeURIComponent(`Name: ${data.get("name")}
 Company / Organization: ${data.get("company") || "Not provided"}
 Email: ${data.get("email")}
 Phone: ${data.get("phone") || "Not provided"}
-Solution: ${data.get("solution")}
+Project area: ${data.get("solution")}
 
 Project / Request:
-${data.get("message")}`,
-            );
-            window.location.href = `mailto:info@dimensionsystems.com?subject=${subject}&body=${body}`;
-          });
+${data.get("message")}`);
+          window.location.href = `mailto:info@dimensionsystems.com?subject=${subject}&body=${body}`;
+        });
 
+
+
+        /* Preserve the original full-screen hero carousel interaction. */
         const solutionHero = document.querySelector(".solution-hero");
-        const solutionSlides = [
-          ...document.querySelectorAll("[data-solution-slide]"),
-        ];
-        const solutionTabs = [
-          ...document.querySelectorAll("[data-slider-tab]"),
-        ];
+        const solutionSlides = [...document.querySelectorAll("[data-solution-slide]")];
+        const solutionTabs = [...document.querySelectorAll("[data-slider-tab]")];
         const solutionPrev = document.querySelector("[data-slider-prev]");
         const solutionNext = document.querySelector("[data-slider-next]");
         const solutionPause = document.querySelector("[data-slider-pause]");
         const solutionCount = document.querySelector("[data-slide-current]");
-        const reducedMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)",
-        ).matches;
-        const slideDuration = 8000;
-        let solutionIndex = 0;
-        let solutionTimer = null;
-        let solutionPaused = reducedMotion;
-        let touchStartX = 0;
 
-        const restartProgress = (tab) => {
-          const progress = tab.querySelector(".solution-hero__progress");
-          if (!progress) return;
-          const clone = progress.cloneNode(true);
-          progress.replaceWith(clone);
-        };
+        if (solutionHero && solutionSlides.length && solutionTabs.length) {
+          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          const slideDuration = Number.parseInt(
+            getComputedStyle(solutionHero).getPropertyValue("--slide-duration"),
+            10,
+          ) || 8000;
+          let solutionIndex = 0;
+          let solutionTimer = null;
+          let solutionPaused = reducedMotion;
+          let touchStartX = 0;
 
-        const showSolution = (nextIndex, userInitiated = false) => {
-          solutionIndex =
-            (nextIndex + solutionSlides.length) % solutionSlides.length;
-          solutionSlides.forEach((slide, index) => {
-            const active = index === solutionIndex;
-            slide.classList.toggle("is-active", active);
-            slide.setAttribute("aria-hidden", String(!active));
-            if (active) slide.removeAttribute("inert");
-            else slide.setAttribute("inert", "");
-          });
-          solutionTabs.forEach((tab, index) => {
-            const active = index === solutionIndex;
-            tab.classList.toggle("is-active", active);
-            tab.setAttribute("aria-selected", String(active));
-            if (active) {
-              restartProgress(tab);
-              tab.scrollIntoView({
-                behavior: reducedMotion ? "auto" : "smooth",
-                block: "nearest",
-                inline: "nearest",
-              });
+          const restartProgress = (tab) => {
+            const progress = tab.querySelector(".solution-hero__progress");
+            if (!progress) return;
+            const clone = progress.cloneNode(true);
+            progress.replaceWith(clone);
+          };
+
+          const startSolutionTimer = () => {
+            window.clearInterval(solutionTimer);
+            if (solutionPaused || reducedMotion) return;
+            solutionTimer = window.setInterval(() => {
+              showSolution(solutionIndex + 1);
+            }, slideDuration);
+          };
+
+          const showSolution = (nextIndex, userInitiated = false) => {
+            solutionIndex = (nextIndex + solutionSlides.length) % solutionSlides.length;
+
+            solutionSlides.forEach((slide, index) => {
+              const active = index === solutionIndex;
+              slide.classList.toggle("is-active", active);
+              slide.setAttribute("aria-hidden", String(!active));
+              if (active) slide.removeAttribute("inert");
+              else slide.setAttribute("inert", "");
+            });
+
+            solutionTabs.forEach((tab, index) => {
+              const active = index === solutionIndex;
+              tab.classList.toggle("is-active", active);
+              tab.setAttribute("aria-selected", String(active));
+              if (active) {
+                restartProgress(tab);
+                tab.scrollIntoView({
+                  behavior: reducedMotion ? "auto" : "smooth",
+                  block: "nearest",
+                  inline: "nearest",
+                });
+              }
+            });
+
+            if (solutionCount) {
+              solutionCount.textContent = String(solutionIndex + 1).padStart(2, "0");
             }
+            if (userInitiated) startSolutionTimer();
+          };
+
+          const updatePauseButton = () => {
+            solutionHero.classList.toggle("is-paused", solutionPaused);
+            if (!solutionPause) return;
+            solutionPause.setAttribute("aria-pressed", String(solutionPaused));
+            solutionPause.setAttribute(
+              "aria-label",
+              solutionPaused
+                ? "Resume automatic slide rotation"
+                : "Pause automatic slide rotation",
+            );
+            solutionPause.innerHTML = solutionPaused
+              ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'
+              : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+          };
+
+          solutionTabs.forEach((tab, index) => {
+            tab.addEventListener("click", () => showSolution(index, true));
           });
-          solutionCount.textContent = String(solutionIndex + 1).padStart(
-            2,
-            "0",
+          solutionPrev?.addEventListener("click", () => showSolution(solutionIndex - 1, true));
+          solutionNext?.addEventListener("click", () => showSolution(solutionIndex + 1, true));
+          solutionPause?.addEventListener("click", () => {
+            solutionPaused = !solutionPaused;
+            updatePauseButton();
+            startSolutionTimer();
+          });
+          solutionHero.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft") showSolution(solutionIndex - 1, true);
+            if (event.key === "ArrowRight") showSolution(solutionIndex + 1, true);
+          });
+          solutionHero.addEventListener(
+            "touchstart",
+            (event) => {
+              touchStartX = event.changedTouches[0].clientX;
+            },
+            { passive: true },
           );
-          if (userInitiated) startSolutionTimer();
-        };
-
-        const startSolutionTimer = () => {
-          clearInterval(solutionTimer);
-          if (solutionPaused || reducedMotion) return;
-          solutionTimer = setInterval(
-            () => showSolution(solutionIndex + 1),
-            slideDuration,
+          solutionHero.addEventListener(
+            "touchend",
+            (event) => {
+              const delta = event.changedTouches[0].clientX - touchStartX;
+              if (Math.abs(delta) > 55) {
+                showSolution(solutionIndex + (delta < 0 ? 1 : -1), true);
+              }
+            },
+            { passive: true },
           );
-        };
+          document.addEventListener("visibilitychange", () => {
+            if (document.hidden) window.clearInterval(solutionTimer);
+            else startSolutionTimer();
+          });
 
-        const updatePauseButton = () => {
-          solutionHero.classList.toggle("is-paused", solutionPaused);
-          solutionPause.setAttribute("aria-pressed", String(solutionPaused));
-          solutionPause.setAttribute(
-            "aria-label",
-            solutionPaused
-              ? "Resume automatic slide rotation"
-              : "Pause automatic slide rotation",
-          );
-          solutionPause.innerHTML = solutionPaused
-            ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'
-            : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-        };
-
-        solutionTabs.forEach((tab, index) =>
-          tab.addEventListener("click", () => showSolution(index, true)),
-        );
-        solutionPrev.addEventListener("click", () =>
-          showSolution(solutionIndex - 1, true),
-        );
-        solutionNext.addEventListener("click", () =>
-          showSolution(solutionIndex + 1, true),
-        );
-        solutionPause.addEventListener("click", () => {
-          solutionPaused = !solutionPaused;
           updatePauseButton();
+          showSolution(0);
           startSolutionTimer();
-        });
-        solutionHero.addEventListener("keydown", (event) => {
-          if (event.key === "ArrowLeft") showSolution(solutionIndex - 1, true);
-          if (event.key === "ArrowRight") showSolution(solutionIndex + 1, true);
-        });
-        solutionHero.addEventListener(
-          "touchstart",
-          (event) => {
-            touchStartX = event.changedTouches[0].clientX;
-          },
-          { passive: true },
-        );
-        solutionHero.addEventListener(
-          "touchend",
-          (event) => {
-            const delta = event.changedTouches[0].clientX - touchStartX;
-            if (Math.abs(delta) > 55)
-              showSolution(solutionIndex + (delta < 0 ? 1 : -1), true);
-          },
-          { passive: true },
-        );
-        document.addEventListener("visibilitychange", () => {
-          if (document.hidden) clearInterval(solutionTimer);
-          else startSolutionTimer();
-        });
-        updatePauseButton();
-        startSolutionTimer();
+        }
 
-        const platformTabs = document.querySelectorAll(".platform-tab");
-        const platformFeatures = document.querySelectorAll(".platform-feature");
-        platformTabs.forEach((tab) => {
-          tab.addEventListener("click", () => {
-            platformTabs.forEach((item) => {
-              item.classList.remove("active");
-              item.setAttribute("aria-selected", "false");
-            });
-            platformFeatures.forEach((item) => item.classList.remove("active"));
-            tab.classList.add("active");
-            tab.setAttribute("aria-selected", "true");
-            document
-              .querySelector(`[data-feature="${tab.dataset.platform}"]`)
-              .classList.add("active");
-          });
-        });
-
-        document.querySelectorAll(".why-trigger").forEach((trigger) => {
-          trigger.addEventListener("click", () => {
-            const item = trigger.closest(".why-item");
-            document.querySelectorAll(".why-item").forEach((other) => {
-              if (other !== item) other.classList.remove("open");
-            });
-            item.classList.toggle("open");
-          });
-        });
-
-        const carousel = document.querySelector("[data-carousel]");
-        document
-          .querySelector("[data-carousel-prev]")
-          .addEventListener("click", () =>
-            carousel.scrollBy({ left: -460, behavior: "smooth" }),
-          );
-        document
-          .querySelector("[data-carousel-next]")
-          .addEventListener("click", () =>
-            carousel.scrollBy({ left: 460, behavior: "smooth" }),
-          );
-
-        const observer = new IntersectionObserver(
-          (entries) => {
+        const revealItems = document.querySelectorAll(".reveal");
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
                 observer.unobserve(entry.target);
               }
             });
-          },
-          { threshold: 0.12 },
-        );
-        document
-          .querySelectorAll(".reveal")
-          .forEach((el) => observer.observe(el));
+          }, { threshold: 0.1, rootMargin: "0px 0px -30px" });
+          revealItems.forEach((item) => observer.observe(item));
+        } else {
+          revealItems.forEach((item) => item.classList.add("visible"));
+        }
       })();
     </script>
   </body>
