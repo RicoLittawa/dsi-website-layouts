@@ -3811,6 +3811,58 @@
         .dsi-partnership__panel { padding: 22px; }
       }
 
+    
+      /* Hero arrows: centered vertically on the left and right sides.
+         The former bottom solution navigation has been removed. */
+      .solution-hero__controls {
+        position: absolute;
+        z-index: 9;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        pointer-events: none;
+        transform: none;
+      }
+
+      .solution-hero__controls .solution-hero__arrow {
+        position: absolute;
+        top: 50%;
+        bottom: auto;
+        pointer-events: auto;
+        transform: translateY(-50%);
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.24);
+      }
+
+      .solution-hero__controls .solution-hero__arrow--prev {
+        left: clamp(14px, 2.4vw, 46px);
+        right: auto;
+      }
+
+      .solution-hero__controls .solution-hero__arrow--next {
+        right: clamp(14px, 2.4vw, 46px);
+        left: auto;
+      }
+
+      .solution-hero__controls .solution-hero__arrow--prev svg {
+        transform: rotate(180deg);
+      }
+
+      @media (max-width: 720px) {
+        .solution-hero__controls .solution-hero__arrow {
+          width: 44px;
+          height: 44px;
+        }
+
+        .solution-hero__controls .solution-hero__arrow--prev {
+          left: 10px;
+        }
+
+        .solution-hero__controls .solution-hero__arrow--next {
+          right: 10px;
+        }
+      }
+
     </style>
   </head>
   <body>
@@ -4174,11 +4226,7 @@
                     Discuss Your Project
                   </button>
                 </div>
-                <div class="solution-slide__tags">
-                  <span>Serving Guam since 1987</span
-                  ><span>Reliable local execution</span
-                  ><span>Long-term technical support</span>
-                </div>
+             
               </div>
               <aside
                 class="solution-slide__panel"
@@ -4188,7 +4236,7 @@
                   <span
                     ><span class="solution-slide__panel-icon"
                       ><svg><use href="#i-server" /></svg></span
-                    >Delivery view</span
+                    >Local Support</span
                   ><span class="solution-slide__panel-status"
                     >Guam-based support</span
                   >
@@ -4673,105 +4721,24 @@
             </svg>
           </button>
         </div>
-
-        <div class="container solution-hero__controls">
+        <div
+          class="solution-hero__controls"
+          aria-label="Hero slider controls"
+        >
           <button
             class="solution-hero__arrow solution-hero__arrow--prev"
             type="button"
             data-slider-prev
-            aria-label="Previous solution"
+            aria-label="Previous slide"
           >
             <svg><use href="#i-arrow" /></svg>
           </button>
-          <div
-            class="solution-hero__rail"
-            role="tablist"
-            aria-label="Choose a DSI solution slide"
-          >
-            <button
-              class="solution-hero__tab is-active"
-              type="button"
-              role="tab"
-              aria-selected="true"
-              data-slider-tab
-            >
-              <span class="solution-hero__tab-top"
-                ><span class="solution-hero__tab-index">01</span
-                ><span class="solution-hero__tab-name">Local Delivery</span></span
-              ><span class="solution-hero__progress"></span>
-            </button>
-            <button
-              class="solution-hero__tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-slider-tab
-            >
-              <span class="solution-hero__tab-top"
-                ><span class="solution-hero__tab-index">02</span
-                ><span class="solution-hero__tab-name">Security</span></span
-              ><span class="solution-hero__progress"></span>
-            </button>
-            <button
-              class="solution-hero__tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-slider-tab
-            >
-              <span class="solution-hero__tab-top"
-                ><span class="solution-hero__tab-index">03</span
-                ><span class="solution-hero__tab-name">Integration</span></span
-              ><span class="solution-hero__progress"></span>
-            </button>
-            <button
-              class="solution-hero__tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-slider-tab
-            >
-              <span class="solution-hero__tab-top"
-                ><span class="solution-hero__tab-index">04</span
-                ><span class="solution-hero__tab-name"
-                  >Communications</span
-                ></span
-              ><span class="solution-hero__progress"></span>
-            </button>
-            <button
-              class="solution-hero__tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-slider-tab
-            >
-              <span class="solution-hero__tab-top"
-                ><span class="solution-hero__tab-index">05</span
-                ><span class="solution-hero__tab-name"
-                  >Digital Signage</span
-                ></span
-              ><span class="solution-hero__progress"></span>
-            </button>
-            <button
-              class="solution-hero__tab"
-              type="button"
-              role="tab"
-              aria-selected="false"
-              data-slider-tab
-            >
-              <span class="solution-hero__tab-top"
-                ><span class="solution-hero__tab-index">06</span
-                ><span class="solution-hero__tab-name"
-                  >Interactive Displays</span
-                ></span
-              ><span class="solution-hero__progress"></span>
-            </button>
-          </div>
+
           <button
-            class="solution-hero__arrow"
+            class="solution-hero__arrow solution-hero__arrow--next"
             type="button"
             data-slider-next
-            aria-label="Next solution"
+            aria-label="Next slide"
           >
             <svg><use href="#i-arrow" /></svg>
           </button>
@@ -4799,7 +4766,7 @@
         <div class="container dsi-positioning">
           <div class="dsi-positioning__copy reveal">
             <p class="dsi-kicker">Strategic positioning</p>
-            <h2 class="dsi-title">The local delivery layer behind complex technology projects.</h2>
+            <h2 class="dsi-title">Local expertise behind complex technology projects.</h2>
             <p class="dsi-lead">
               DSI supports clients, contractors, consultants, and off-island partners that need technology delivered correctly in Guam—with one local team coordinating the work from requirement to handoff.
             </p>
@@ -4821,7 +4788,7 @@
 
           <div class="dsi-partner-map reveal" aria-label="DSI delivery partnership model">
             <div class="dsi-partner-map__center">
-              <div><strong>DSI Guam</strong><span>Technical integration + local delivery</span></div>
+              <div><strong>DSI Guam</strong><span>Technical integration</span></div>
             </div>
             <div class="dsi-partner-node dsi-partner-node--a"><strong>Technology Partners</strong><span>Platforms, products, engineering, and specialist expertise</span></div>
             <div class="dsi-partner-node dsi-partner-node--b"><strong>Clients & Owners</strong><span>Operational goals, users, facilities, and long-term requirements</span></div>
@@ -4918,7 +4885,7 @@
           <div class="dsi-project-grid">
             <article class="dsi-project-card reveal">
               <div class="dsi-project-card__media">
-                <img src="./image/dsi-project-security.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1400&amp;q=86';" alt="Integrated security project interface" loading="lazy" />
+                <img src="image/cctv2.webp" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1400&amp;q=86';" alt="Integrated security project interface" loading="lazy" />
                 <span class="dsi-project-card__tag">Security integration</span>
               </div>
               <div class="dsi-project-card__body">
@@ -4929,7 +4896,7 @@
             </article>
             <article class="dsi-project-card reveal">
               <div class="dsi-project-card__media">
-                <img src="./image/dsi-project-network.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=1400&amp;q=86';" alt="Network infrastructure installation" loading="lazy" />
+                <img src="image/security.png" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=1400&amp;q=86';" alt="Network infrastructure installation" loading="lazy" />
                 <span class="dsi-project-card__tag">Infrastructure</span>
               </div>
               <div class="dsi-project-card__body">
@@ -4940,7 +4907,7 @@
             </article>
             <article class="dsi-project-card reveal">
               <div class="dsi-project-card__media">
-                <img src="./image/dsi-project-interactive.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&amp;fit=crop&amp;w=1400&amp;q=86';" alt="Interactive display and collaboration environment" loading="lazy" />
+                <img src="image/education.jpg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&amp;fit=crop&amp;w=1400&amp;q=86';" alt="Interactive display and collaboration environment" loading="lazy" />
                 <span class="dsi-project-card__tag">Interactive technology</span>
               </div>
               <div class="dsi-project-card__body">
@@ -5019,12 +4986,7 @@
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a class="brand" href="#top"
-              ><span class="brand-symbol"></span
-              ><span class="brand-name"
-                >Dimension Systems Inc.<small>Technology solutions</small></span
-              ></a
-            >
+          
             <p>
               Guam’s local technology integration and delivery partner—connecting strategic technology partnerships with technical excellence and reliable local execution.
             </p>
@@ -5143,7 +5105,6 @@
                 <option>Managed IT & Technical Support</option>
                 <option>Digital Signage & Interactive Technology</option>
                 <option>Technology Sourcing & Deployment</option>
-                <option>Local Delivery Partnership</option>
                 <option>Other / Not sure yet</option>
               </select>
             </div>
@@ -5258,7 +5219,7 @@ ${data.get("message")}`);
         const solutionPause = document.querySelector("[data-slider-pause]");
         const solutionCount = document.querySelector("[data-slide-current]");
 
-        if (solutionHero && solutionSlides.length && solutionTabs.length) {
+        if (solutionHero && solutionSlides.length) {
           const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
           const slideDuration = Number.parseInt(
             getComputedStyle(solutionHero).getPropertyValue("--slide-duration"),
