@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Dimension Systems provides managed IT, system integration, security, communications, digital signage, and interactive technology solutions across Guam and the region."
+      content="Dimension Systems provides managed IT, system integration, security, communications, digital signage, and interactive technology across Guam and the region."
     />
-    <title>Dimension Systems Inc. | Technology Solutions for Guam</title>
+    <title>Dimension Systems Inc. | Connected Technology for Guam</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,6 +26,7 @@
         --dsi-muted: #5f6f86;
         --dsi-white: #ffffff;
         --dsi-gold: #f4b62d;
+        --dsi-accent: #ff9e01;
         --dsi-shadow: 0 24px 70px rgba(7, 35, 76, 0.12);
         --dsi-shadow-soft: 0 14px 40px rgba(7, 35, 76, 0.09);
         --dsi-radius: 28px;
@@ -163,6 +164,8 @@
       }
       .btn:focus-visible,
       .icon-button:focus-visible,
+      .nav-search-toggle:focus-visible,
+      .nav-search-submit:focus-visible,
       .nav-toggle:focus-visible,
       input:focus-visible,
       select:focus-visible,
@@ -302,6 +305,97 @@
         align-items: center;
         gap: 10px;
       }
+      .desktop-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .nav-search {
+        position: relative;
+      }
+      .nav-search-toggle {
+        display: inline-flex;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--dsi-line);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--dsi-ink);
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .nav-search-toggle:hover,
+      .nav-search.is-open .nav-search-toggle {
+        border-color: rgba(13, 124, 255, 0.35);
+        color: var(--dsi-blue);
+        box-shadow: 0 8px 20px rgba(7, 24, 51, 0.08);
+      }
+      .nav-search-toggle svg {
+        width: 20px;
+        height: 20px;
+      }
+      .nav-search-form {
+        position: absolute;
+        top: calc(100% + 12px);
+        right: 0;
+        display: flex;
+        width: min(380px, calc(100vw - 32px));
+        gap: 8px;
+        padding: 10px;
+        border: 1px solid var(--dsi-line);
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: var(--dsi-shadow-soft);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: 0.2s ease;
+      }
+      .nav-search.is-open .nav-search-form {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .nav-search-form input,
+      .mobile-search-form input {
+        min-width: 0;
+        flex: 1;
+        height: 44px;
+        border: 1px solid var(--dsi-line);
+        border-radius: 11px;
+        background: #f8fbff;
+        color: var(--dsi-ink);
+        padding: 0 14px;
+        font: inherit;
+      }
+      .nav-search-form input::placeholder,
+      .mobile-search-form input::placeholder {
+        color: #718096;
+      }
+      .nav-search-submit {
+        display: inline-flex;
+        min-width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        border: 0;
+        border-radius: 11px;
+        background: var(--dsi-accent);
+        color: var(--dsi-ink);
+        font-weight: 800;
+      }
+      .nav-search-submit:hover {
+        filter: brightness(0.97);
+      }
+      .nav-search-submit svg {
+        width: 18px;
+        height: 18px;
+      }
       .header-phone {
         display: inline-flex;
         align-items: center;
@@ -315,7 +409,7 @@
         height: 17px;
         color: var(--dsi-blue);
       }
-      .header-actions .btn {
+      .desktop-actions .btn {
         min-height: 44px;
         padding-inline: 17px;
         border-radius: 12px;
@@ -369,9 +463,19 @@
       }
       .mobile-nav-actions {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 10px;
         margin-top: 18px;
+      }
+      .mobile-search-form {
+        display: flex;
+        gap: 8px;
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid #eef3fa;
+      }
+      .mobile-search-form .nav-search-submit {
+        padding: 0 15px;
       }
 
       /* Hero */
@@ -1490,8 +1594,7 @@
       /* Responsive */
       @media (max-width: 1180px) {
         .desktop-nav,
-        .header-phone,
-        .header-actions .btn--outline {
+        .desktop-actions {
           display: none;
         }
         .header-actions {
@@ -1542,9 +1645,6 @@
         }
         .brand-copy {
           font-size: 0.66rem;
-        }
-        .header-actions .btn--primary {
-          display: none;
         }
         .hero {
           min-height: auto;
@@ -1770,7 +1870,7 @@
         .nav-dropdown > button {
           font-size: 0.94rem;
         }
-        .header-actions .btn {
+        .desktop-actions .btn {
           min-height: 46px;
           padding-inline: 19px;
         }
@@ -2058,13 +2158,13 @@
         .nav-dropdown > button {
           font-size: 1.08rem;
         }
-        .header-actions {
+        .desktop-actions {
           gap: 14px;
         }
         .header-phone {
           font-size: 1rem;
         }
-        .header-actions .btn {
+        .desktop-actions .btn {
           min-height: 52px;
           padding-inline: 24px;
           font-size: 0.9rem;
@@ -2515,8 +2615,11 @@
       }
       .featured-slide__media {
         position: relative;
+        display: grid;
+        place-items: center;
         min-height: 610px;
         overflow: hidden;
+        padding: 0;
         background: #dce9f6;
       }
       .featured-slide__media::after {
@@ -2534,10 +2637,12 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 7s ease;
+        object-position: center;
+        border-radius: 0;
+        transition: opacity 0.45s ease;
       }
       .featured-slide.is-active .featured-slide__media img {
-        transform: scale(1.035);
+        transform: none;
       }
       .featured-slide__label {
         position: absolute;
@@ -2796,6 +2901,10 @@
         }
         .featured-slide__media {
           min-height: 300px;
+          padding: 0;
+        }
+        .featured-slide__media img {
+          border-radius: 0;
         }
         .featured-slide__label {
           left: 18px;
@@ -3019,6 +3128,805 @@
           height: 23px !important;
         }
       }
+      /* Full-screen solution slider hero */
+      .solution-hero {
+        position: relative;
+        height: calc(100svh - var(--dsi-header));
+        min-height: 790px;
+        overflow: hidden;
+        isolation: isolate;
+        background: #061426;
+        color: #fff;
+      }
+      .solution-hero__viewport,
+      .solution-slide {
+        position: absolute;
+        inset: 0;
+      }
+      .solution-slide {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.025);
+        transition:
+          opacity 0.75s ease,
+          visibility 0.75s ease,
+          transform 1.15s cubic-bezier(0.2, 0.7, 0.2, 1);
+        pointer-events: none;
+      }
+      .solution-slide.is-active {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        pointer-events: auto;
+        z-index: 2;
+      }
+      .solution-slide__media,
+      .solution-slide__media::before,
+      .solution-slide__media::after {
+        position: absolute;
+        inset: 0;
+      }
+      .solution-slide__media {
+        overflow: hidden;
+      }
+      .solution-slide__media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: var(--focus, center);
+        transform: scale(1.035);
+        transition: transform 9s linear;
+        filter: saturate(1.02) contrast(1.02) brightness(1.06);
+      }
+      .solution-slide.is-active .solution-slide__media img {
+        transform: scale(1);
+      }
+      .solution-slide__media::before {
+        content: "";
+        z-index: 1;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(3, 13, 28, 0.78) 0%,
+            rgba(3, 13, 28, 0.58) 31%,
+            rgba(3, 13, 28, 0.2) 62%,
+            rgba(3, 13, 28, 0.06) 100%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(3, 13, 28, 0.1) 0%,
+            rgba(3, 13, 28, 0.04) 42%,
+            rgba(3, 13, 28, 0.6) 100%
+          );
+      }
+      .solution-slide__media::after {
+        content: "";
+        z-index: 1;
+        opacity: 0.3;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+        background-size: 84px 84px;
+        mask-image: linear-gradient(90deg, black 0%, transparent 74%);
+      }
+      .solution-slide__glow {
+        position: absolute;
+        z-index: 2;
+        top: 10%;
+        right: 7%;
+        width: min(42vw, 760px);
+        aspect-ratio: 1;
+        border: 1px solid rgba(111, 216, 255, 0.24);
+        border-radius: 50%;
+        box-shadow:
+          inset 0 0 110px rgba(15, 117, 255, 0.11),
+          0 0 100px rgba(15, 117, 255, 0.08);
+        opacity: 0.85;
+        pointer-events: none;
+      }
+      .solution-slide__glow::before,
+      .solution-slide__glow::after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(111, 216, 255, 0.18);
+        border-radius: 50%;
+      }
+      .solution-slide__glow::before {
+        inset: 12%;
+      }
+      .solution-slide__glow::after {
+        inset: 25%;
+      }
+      .solution-slide__inner {
+        position: relative;
+        z-index: 4;
+        height: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.55fr);
+        gap: clamp(55px, 7vw, 150px);
+        align-items: center;
+        padding-top: clamp(72px, 8vh, 130px);
+        padding-bottom: clamp(190px, 17vh, 245px);
+      }
+      .solution-slide__copy {
+        max-width: 990px;
+        opacity: 0;
+        transform: translateY(34px);
+        transition:
+          opacity 0.55s ease 0.2s,
+          transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s;
+      }
+      .solution-slide.is-active .solution-slide__copy {
+        opacity: 1;
+        transform: none;
+      }
+      .solution-slide__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 25px;
+        color: #86ddff;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .solution-slide__eyebrow::before {
+        content: "";
+        width: 44px;
+        height: 2px;
+        background: linear-gradient(90deg, #42b8ff, #8ce6ff);
+      }
+      .solution-slide h1 {
+        max-width: 1030px;
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        font-size: clamp(4.15rem, 5.55vw, 8rem);
+        font-weight: 720;
+        line-height: 0.93;
+        letter-spacing: -0.07em;
+        text-wrap: balance;
+      }
+      .solution-slide__copy > p {
+        max-width: 720px;
+        margin: 30px 0 0;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: clamp(1.05rem, 1.25vw, 1.32rem);
+        line-height: 1.62;
+      }
+      .solution-slide__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 34px;
+      }
+      .solution-slide__actions .btn--primary {
+        background: #fff;
+        color: #07111f;
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
+      }
+      .solution-slide__actions .btn--primary:hover {
+        background: #e9f7ff;
+      }
+      .solution-slide__actions .btn--glass {
+        border-color: rgba(255, 255, 255, 0.38);
+        background: rgba(7, 22, 42, 0.33);
+        color: #fff;
+        backdrop-filter: blur(12px);
+      }
+      .solution-slide__actions .btn--glass:hover {
+        background: rgba(255, 255, 255, 0.13);
+      }
+      .solution-slide__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-top: 35px;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+      .solution-slide__tags span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .solution-slide__tags span::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #5ed9ff;
+        box-shadow: 0 0 0 5px rgba(94, 217, 255, 0.11);
+      }
+      .solution-slide__panel {
+        position: relative;
+        align-self: center;
+        width: min(440px, 100%);
+        justify-self: end;
+        padding: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.23);
+        border-radius: 36px 36px 8px 36px;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.18),
+          rgba(255, 255, 255, 0.07)
+        );
+        box-shadow: 0 35px 75px rgba(0, 0, 0, 0.23);
+        backdrop-filter: blur(20px);
+        opacity: 0;
+        transform: translateX(36px);
+        transition:
+          opacity 0.6s ease 0.36s,
+          transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) 0.36s;
+      }
+      .solution-slide.is-active .solution-slide__panel {
+        opacity: 1;
+        transform: none;
+      }
+      .solution-slide__panel-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.19);
+      }
+      .solution-slide__panel-head > span:first-child {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        min-width: 0;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .solution-slide__panel-icon {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        flex: 0 0 44px;
+        margin: 0;
+        border-radius: 14px 14px 4px 14px;
+        background: rgba(112, 216, 255, 0.16);
+        color: #9ce7ff;
+        font-size: 0;
+        line-height: 0;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+      .solution-slide__panel-icon svg {
+        width: 22px;
+        height: 22px;
+      }
+      .solution-slide__panel-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: #98f1cf;
+        font-size: 0.7rem;
+        font-weight: 800;
+      }
+      .solution-slide__panel-status::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #45dda8;
+        box-shadow: 0 0 0 5px rgba(69, 221, 168, 0.12);
+      }
+      .solution-slide__feature {
+        display: grid;
+        grid-template-columns: 39px 1fr;
+        gap: 14px;
+        align-items: start;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+      }
+      .solution-slide__feature:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+      .solution-slide__feature-number {
+        color: #78dfff;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 800;
+      }
+      .solution-slide__feature strong {
+        display: block;
+        font-size: 0.94rem;
+      }
+      .solution-slide__feature p {
+        margin: 5px 0 0;
+        color: rgba(255, 255, 255, 0.61);
+        font-size: 0.76rem;
+        line-height: 1.45;
+      }
+      .solution-hero__controls {
+        position: absolute;
+        z-index: 9;
+        left: 50%;
+        bottom: 38px;
+        transform: translateX(-50%);
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr) 52px;
+        gap: 18px;
+        align-items: center;
+      }
+      .solution-hero__arrow,
+      .solution-hero__pause {
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 50%;
+        background: rgba(4, 17, 35, 0.43);
+        color: #fff;
+        backdrop-filter: blur(14px);
+        transition: 0.2s ease;
+      }
+      .solution-hero__arrow:hover,
+      .solution-hero__pause:hover {
+        background: #fff;
+        color: #07111f;
+      }
+      .solution-hero__arrow svg,
+      .solution-hero__pause svg {
+        width: 20px;
+        height: 20px;
+      }
+      .solution-hero__arrow--prev svg {
+        transform: rotate(180deg);
+      }
+      .solution-hero__rail {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 22px;
+        min-width: 0;
+      }
+      .solution-hero__tab {
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.5);
+        text-align: left;
+        transition: color 0.2s ease;
+      }
+      .solution-hero__tab:hover,
+      .solution-hero__tab.is-active {
+        color: #fff;
+      }
+      .solution-hero__tab-top {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        min-width: 0;
+        font-size: 0.71rem;
+        font-weight: 800;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+      .solution-hero__tab-index {
+        color: #6edfff;
+      }
+      .solution-hero__tab-name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .solution-hero__progress {
+        position: relative;
+        height: 3px;
+        margin-top: 12px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.22);
+      }
+      .solution-hero__progress::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, #38b8ff, #a0ebff);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+      .solution-hero__tab.is-active .solution-hero__progress::after {
+        animation: solutionProgress var(--slide-duration, 8000ms) linear
+          forwards;
+      }
+      .solution-hero.is-paused
+        .solution-hero__tab.is-active
+        .solution-hero__progress::after {
+        animation-play-state: paused;
+      }
+      @keyframes solutionProgress {
+        to {
+          transform: scaleX(1);
+        }
+      }
+      .solution-hero__utility {
+        position: absolute;
+        z-index: 10;
+        right: max(36px, calc((100vw - var(--dsi-max)) / 2));
+        top: 35px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .solution-hero__count strong {
+        color: #fff;
+        font-size: 1rem;
+      }
+      .solution-hero__count span {
+        color: rgba(255, 255, 255, 0.42);
+      }
+
+      @media (min-width: 1181px) {
+        .mobile-menu {
+          display: none !important;
+        }
+      }
+      @media (min-width: 2200px) {
+        .solution-slide__inner {
+          grid-template-columns: minmax(0, 1.25fr) minmax(420px, 0.48fr);
+        }
+        .solution-slide__panel {
+          width: 480px;
+          padding: 32px;
+        }
+        .solution-hero__rail {
+          gap: 30px;
+        }
+        .solution-hero__controls {
+          bottom: 48px;
+        }
+      }
+      @media (max-width: 1280px) {
+        .solution-slide__inner {
+          grid-template-columns: minmax(0, 1fr) 350px;
+          gap: 40px;
+        }
+        .solution-slide h1 {
+          font-size: clamp(3.7rem, 6.3vw, 6rem);
+        }
+        .solution-hero__rail {
+          gap: 13px;
+        }
+        .solution-hero__tab-name {
+          font-size: 0.63rem;
+        }
+        .solution-slide__panel {
+          padding: 22px;
+        }
+      }
+      @media (max-width: 1024px) {
+        .solution-hero {
+          height: auto;
+          min-height: calc(100svh - var(--dsi-header));
+        }
+        .solution-slide__inner {
+          grid-template-columns: 1fr;
+          align-content: center;
+          padding-bottom: 185px;
+        }
+        .solution-slide__copy {
+          max-width: 850px;
+        }
+        .solution-slide__panel {
+          display: none;
+        }
+        .solution-slide__media::before {
+          background:
+            linear-gradient(
+              90deg,
+              rgba(3, 13, 28, 0.8) 0%,
+              rgba(3, 13, 28, 0.6) 58%,
+              rgba(3, 13, 28, 0.24) 100%
+            ),
+            linear-gradient(
+              180deg,
+              rgba(3, 13, 28, 0.1) 0%,
+              rgba(3, 13, 28, 0.12) 48%,
+              rgba(3, 13, 28, 0.68) 100%
+            );
+        }
+        .solution-hero__rail {
+          grid-template-columns: repeat(7, minmax(110px, 1fr));
+          overflow-x: auto;
+          scrollbar-width: none;
+        }
+        .solution-hero__rail::-webkit-scrollbar {
+          display: none;
+        }
+        .solution-hero__utility {
+          right: 36px;
+        }
+      }
+      @media (max-width: 720px) {
+        .solution-hero {
+          min-height: 760px;
+          height: calc(100svh - var(--dsi-header));
+        }
+        .solution-slide__inner {
+          padding-top: 58px;
+          padding-bottom: 176px;
+        }
+        .solution-slide h1 {
+          font-size: clamp(3.2rem, 14vw, 4.8rem);
+        }
+        .solution-slide__copy > p {
+          margin-top: 23px;
+          font-size: 1rem;
+        }
+        .solution-slide__actions {
+          margin-top: 26px;
+        }
+        .solution-slide__actions .btn {
+          width: 100%;
+        }
+        .solution-slide__tags {
+          display: none;
+        }
+        .solution-slide__glow {
+          width: 90vw;
+          right: -35%;
+          top: 15%;
+        }
+        .solution-hero__controls {
+          width: calc(100% - 32px);
+          grid-template-columns: 46px minmax(0, 1fr) 46px;
+          gap: 10px;
+          bottom: 25px;
+        }
+        .solution-hero__arrow {
+          width: 46px;
+          height: 46px;
+        }
+        .solution-hero__rail {
+          gap: 9px;
+          grid-template-columns: repeat(7, minmax(105px, 1fr));
+        }
+        .solution-hero__tab-top {
+          font-size: 0.62rem;
+        }
+        .solution-hero__utility {
+          top: 22px;
+          right: 18px;
+        }
+        .solution-hero__pause {
+          width: 42px;
+          height: 42px;
+        }
+      }
+      @media (max-width: 430px) {
+        .solution-slide__eyebrow {
+          font-size: 0.66rem;
+        }
+        .solution-slide h1 {
+          font-size: clamp(2.9rem, 13.5vw, 4rem);
+        }
+        .solution-slide__copy > p {
+          max-width: 92%;
+        }
+        .solution-hero__count {
+          display: none;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .solution-slide,
+        .solution-slide__media img,
+        .solution-slide__copy,
+        .solution-slide__panel {
+          transition: none !important;
+        }
+        .solution-hero__tab.is-active .solution-hero__progress::after {
+          animation: none;
+          transform: scaleX(1);
+        }
+      }
+
+      .solution-hero__arrow:focus-visible,
+      .solution-hero__pause:focus-visible,
+      .solution-hero__tab:focus-visible {
+        outline: 3px solid rgba(134, 221, 255, 0.55);
+        outline-offset: 4px;
+      }
+
+      /* Warm accent: used sparingly to guide exploration and interaction. */
+      .solution-slide__eyebrow,
+      .solution-hero__tab-index {
+        color: var(--dsi-accent);
+      }
+      .solution-slide__eyebrow::before,
+      .solution-hero__progress::after {
+        background: linear-gradient(90deg, var(--dsi-accent), #ffd36f);
+      }
+      .solution-slide__actions .btn--primary {
+        background: var(--dsi-accent);
+        color: #171007;
+        box-shadow: 0 18px 42px rgba(255, 158, 1, 0.25);
+      }
+      .solution-slide__actions .btn--primary:hover {
+        background: #ffb533;
+      }
+      .solution-slide__tags span::before {
+        background: var(--dsi-accent);
+        box-shadow: 0 0 0 5px rgba(255, 158, 1, 0.14);
+      }
+      .solution-title-accent {
+        color: var(--dsi-accent);
+      }
+      .section-title span,
+      .featured-slide__content h3 span,
+      .page-title-accent {
+        color: var(--dsi-accent);
+      }
+      .section-kicker::before {
+        background: var(--dsi-accent);
+      }
+      .solution-icon {
+        border: 1px solid rgba(255, 158, 1, 0.34);
+        background: #fff5e5;
+        color: #a65e00;
+      }
+      .solution-card:hover {
+        border-color: rgba(255, 158, 1, 0.58);
+      }
+      .featured-slide__label {
+        border-color: rgba(255, 255, 255, 0.45);
+        background: var(--dsi-accent);
+        color: #171007;
+      }
+      .featured-slider__dot.is-active {
+        background: var(--dsi-accent);
+      }
+
+      /* Simplified controls and cross-device hero sizing. */
+      .solution-hero {
+        height: clamp(660px, calc(100svh - var(--dsi-header)), 980px);
+        min-height: 0;
+      }
+      .solution-slide__inner {
+        padding-top: clamp(56px, 7vh, 100px);
+        padding-bottom: 120px;
+      }
+      .solution-hero__controls {
+        width: auto;
+        display: flex;
+        grid-template-columns: none;
+        gap: 12px;
+        bottom: 28px;
+      }
+      .solution-hero__arrow {
+        flex: 0 0 52px;
+      }
+
+      @media (max-width: 1024px) {
+        .solution-hero {
+          height: clamp(660px, calc(100svh - var(--dsi-header)), 900px);
+          min-height: 0;
+        }
+        .solution-slide__inner {
+          grid-template-columns: 1fr;
+          align-content: center;
+          padding-top: 58px;
+          padding-bottom: 116px;
+        }
+        .solution-slide__copy {
+          width: min(780px, 100%);
+        }
+        .solution-slide h1 {
+          font-size: clamp(3.15rem, 8vw, 5.6rem);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .solution-hero {
+          height: clamp(680px, calc(100svh - var(--dsi-header)), 860px);
+          min-height: 0;
+        }
+        .solution-slide__inner {
+          padding-top: 44px;
+          padding-bottom: 108px;
+        }
+        .solution-slide h1 {
+          font-size: clamp(2.8rem, 13vw, 4.3rem);
+          line-height: 0.96;
+          letter-spacing: -0.055em;
+        }
+        .solution-slide__copy > p {
+          max-width: 100%;
+          margin-top: 18px;
+          font-size: 0.98rem;
+          line-height: 1.5;
+        }
+        .solution-slide__actions {
+          gap: 10px;
+          margin-top: 22px;
+        }
+        .solution-slide__actions .btn {
+          min-height: 48px;
+          padding-inline: 17px;
+        }
+        .solution-hero__controls {
+          width: auto;
+          gap: 10px;
+          bottom: 18px;
+        }
+        .solution-hero__arrow {
+          width: 46px;
+          height: 46px;
+          flex-basis: 46px;
+        }
+        .solution-hero__utility {
+          top: 14px;
+          right: 16px;
+        }
+      }
+
+      @media (max-width: 390px) {
+        .solution-hero {
+          height: clamp(700px, calc(100svh - var(--dsi-header)), 840px);
+        }
+        .solution-slide__inner {
+          padding-top: 38px;
+          padding-bottom: 104px;
+        }
+        .solution-slide h1 {
+          font-size: clamp(2.45rem, 12.8vw, 3.35rem);
+        }
+        .solution-slide__copy > p {
+          font-size: 0.92rem;
+          line-height: 1.45;
+        }
+        .solution-slide__actions .btn {
+          font-size: 0.86rem;
+        }
+      }
+
+      @media (max-width: 900px) and (max-height: 620px) and (orientation: landscape) {
+        .solution-hero {
+          height: max(500px, calc(100svh - var(--dsi-header)));
+          min-height: 0;
+        }
+        .solution-slide__inner {
+          padding-top: 26px;
+          padding-bottom: 78px;
+        }
+        .solution-slide h1 {
+          max-width: 720px;
+          font-size: clamp(2.45rem, 6vw, 3.7rem);
+        }
+        .solution-slide__copy > p {
+          max-width: 680px;
+          margin-top: 12px;
+          font-size: 0.9rem;
+          line-height: 1.38;
+        }
+        .solution-slide__actions {
+          margin-top: 14px;
+        }
+        .solution-slide__actions .btn {
+          width: auto;
+          min-height: 42px;
+        }
+        .solution-hero__controls {
+          bottom: 12px;
+        }
+        .solution-hero__utility {
+          top: 10px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -3077,6 +3985,16 @@
           stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
+        />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <path
+          d="m21 21-4.35-4.35M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         />
       </symbol>
       <symbol id="i-phone" viewBox="0 0 24 24">
@@ -3449,7 +4367,7 @@
           <ul>
             <li class="nav-dropdown">
               <button type="button" aria-haspopup="true">
-                Solutions
+                What We Do
                 <svg width="14" height="14"><use href="#i-down" /></svg>
               </button>
               <div class="nav-dropdown-menu">
@@ -3479,16 +4397,12 @@
               </div>
             </li>
             <li><a href="#industries">Industries</a></li>
-            <li><a href="#featured">Featured Solution</a></li>
             <li><a href="https://www.dimensionsystems.com/about/">About</a></li>
-            <li>
-              <a href="https://www.dimensionsystems.com/support/">Support</a>
-            </li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
 
-        <div class="header-actions">
+        <div class="desktop-actions">
           <a class="header-phone" href="tel:+16716462007"
             ><svg><use href="#i-phone" /></svg> (671) 646-2007</a
           >
@@ -3502,8 +4416,45 @@
             type="button"
             data-open-modal="consultation"
           >
-            Request a quote
+            Capability Statement
           </button>
+          <div class="nav-search">
+            <button
+              class="nav-search-toggle"
+              type="button"
+              aria-label="Open search"
+              aria-expanded="false"
+              aria-controls="desktop-search-form"
+            >
+              <svg aria-hidden="true"><use href="#i-search" /></svg>
+            </button>
+            <form
+              class="nav-search-form"
+              id="desktop-search-form"
+              role="search"
+              action="https://www.dimensionsystems.com/"
+              method="get"
+            >
+              <input
+                type="search"
+                name="s"
+                aria-label="Search Dimension Systems"
+                placeholder="Search our website"
+                autocomplete="off"
+                required
+              />
+              <button
+                class="nav-search-submit"
+                type="submit"
+                aria-label="Search"
+              >
+                <svg aria-hidden="true"><use href="#i-search" /></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="header-actions">
           <button
             class="nav-toggle"
             type="button"
@@ -3517,7 +4468,7 @@
       </div>
 
       <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation">
-        <a href="#solutions">Solutions</a>
+        <a href="#solutions">What We Do</a>
         <div class="mobile-sub">
           <a href="https://www.dimensionsystems.com/support/managed-services/"
             >Managed Services</a
@@ -3541,112 +4492,420 @@
           >
         </div>
         <a href="#industries">Industries</a>
-        <a href="#featured">Featured Solution</a>
         <a href="https://www.dimensionsystems.com/about/">About</a>
-        <a href="https://www.dimensionsystems.com/support/">Support</a>
         <a href="#contact">Contact</a>
         <div class="mobile-nav-actions">
           <a class="btn btn--outline" href="tel:+16716462007">Call DSI</a>
+          <a
+            class="btn btn--outline"
+            href="https://www.dimensionsystems.com/support/"
+            >Get Support</a
+          >
           <button
             class="btn btn--primary"
             type="button"
             data-open-modal="consultation"
           >
-            Request Consultation
+            Capability Statement
           </button>
         </div>
+        <form
+          class="mobile-search-form"
+          role="search"
+          action="https://www.dimensionsystems.com/"
+          method="get"
+        >
+          <input
+            type="search"
+            name="s"
+            aria-label="Search Dimension Systems"
+            placeholder="Search our website"
+            autocomplete="off"
+            required
+          />
+          <button class="nav-search-submit" type="submit">
+            <svg aria-hidden="true"><use href="#i-search" /></svg>
+            Search
+          </button>
+        </form>
       </nav>
     </header>
 
     <main id="main-content">
-      <section class="hero" id="top">
-        <div class="hero-media" aria-hidden="true">
-          <img
-            src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2400&q=90"
-            srcset="
-              https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=86 1400w,
-              https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2000&q=88 2000w,
-              https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2800&q=90 2800w
-            "
-            sizes="100vw"
-            alt=""
-            fetchpriority="high"
-            decoding="async"
-          />
+      <section
+        class="solution-hero"
+        id="top"
+        aria-roledescription="carousel"
+        aria-label="Dimension Systems technology showcase"
+        style="--slide-duration: 12000ms"
+      >
+        <div
+          class="solution-hero__viewport"
+          data-solution-slider
+          aria-live="off"
+        >
+          <article
+            class="solution-slide"
+            data-solution-slide
+            aria-hidden="true"
+            inert
+            style="--focus: center 50%"
+          >
+            <div class="solution-slide__media">
+              <img
+                src="image/bg 2.png"
+                sizes="100vw"
+                loading="lazy"
+                alt="Close-up view of advanced technology components"
+              />
+            </div>
+            <div class="solution-slide__glow" aria-hidden="true"></div>
+            <div class="container solution-slide__inner">
+              <div class="solution-slide__copy">
+                <h1>
+                  Creating Solutions<br /><span class="solution-title-accent"
+                    >with Technology.</span
+                  >
+                </h1>
+                <p>
+                  We are a leading IT company specializing in seamlessly
+                  integrating cutting-edge technology solutions to optimize and
+                  future-proof your business operations.
+                </p>
+                <div class="solution-slide__actions">
+                  <a class="btn btn--primary" href="#solutions"
+                    >Explore What We Do <svg><use href="#i-arrow" /></svg
+                  ></a>
+                  <button class="btn btn--glass" type="button" data-open-modal>
+                    Future-Proof Your Business
+                  </button>
+                </div>
+                <div class="solution-slide__tags">
+                  <span>Cutting-edge technology</span
+                  ><span>Seamless integration</span
+                  ><span>Future-ready operations</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="solution-slide is-active"
+            data-solution-slide
+            aria-hidden="false"
+            style="--focus: center 48%"
+          >
+            <div class="solution-slide__media">
+              <img
+                src="image/bg 1.jpg"
+                alt="Technology integration and local project delivery"
+                fetchpriority="high"
+              />
+            </div>
+            <div class="solution-slide__glow" aria-hidden="true"></div>
+            <div class="container solution-slide__inner">
+              <div class="solution-slide__copy">
+                <h1>
+                  Discover technology that
+                  <span class="solution-title-accent"
+                    >moves your organization forward.</span
+                  >
+                </h1>
+                <p>
+                  Explore connected technology for safer facilities, stronger
+                  communication, and more engaging experiences—planned,
+                  delivered, and supported by a team here in Guam.
+                </p>
+                <div class="solution-slide__actions">
+                  <a class="btn btn--primary" href="#solutions"
+                    >Start Exploring <svg><use href="#i-arrow" /></svg
+                  ></a>
+                  <button class="btn btn--glass" type="button" data-open-modal>
+                    Talk With a Local Expert
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="solution-slide"
+            data-solution-slide
+            aria-hidden="true"
+            inert
+            style="--focus: center 55%"
+          >
+            <div class="solution-slide__media">
+              <img
+                src="image/cctv.jpg"
+                loading="lazy"
+                alt="Integrated video security monitoring"
+              />
+            </div>
+            <div class="solution-slide__glow" aria-hidden="true"></div>
+            <div class="container solution-slide__inner">
+              <div class="solution-slide__copy">
+                <h1>
+                  See, secure, and
+                  <span class="solution-title-accent"
+                    >manage every critical space.</span
+                  >
+                </h1>
+                <p>
+                  Bring video surveillance, access control, license plate
+                  recognition, alarms, intercoms, and monitoring together in a
+                  security solution designed around your facility.
+                </p>
+                <div class="solution-slide__actions">
+                  <a
+                    class="btn btn--primary"
+                    href="https://www.dimensionsystems.com/support/integrated-security-systems/"
+                    >Explore Security Solutions
+                    <svg><use href="#i-arrow" /></svg
+                  ></a>
+                  <button class="btn btn--glass" type="button" data-open-modal>
+                    Request a consultation
+                  </button>
+                </div>
+                <div class="solution-slide__tags">
+                  <span>Video surveillance</span><span>Access control</span
+                  ><span>Centralized visibility</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="solution-slide"
+            data-solution-slide
+            aria-hidden="true"
+            inert
+            style="--focus: center 52%"
+          >
+            <div class="solution-slide__media">
+              <img
+                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=2560&q=90"
+                loading="lazy"
+                alt="Network and data center infrastructure"
+              />
+            </div>
+            <div class="solution-slide__glow" aria-hidden="true"></div>
+            <div class="container solution-slide__inner">
+              <div class="solution-slide__copy">
+                <h1>
+                  Power your
+                  <span class="solution-title-accent"
+                    >connected operation.</span
+                  >
+                </h1>
+                <p>
+                  Connect infrastructure, networks, servers, devices,
+                  applications, and workflows through a coordinated
+                  implementation delivered by one experienced technology
+                  partner.
+                </p>
+                <div class="solution-slide__actions">
+                  <a
+                    class="btn btn--primary"
+                    href="https://www.dimensionsystems.com/support/system-integration/"
+                    >Explore System Integration
+                    <svg><use href="#i-arrow" /></svg
+                  ></a>
+                  <button class="btn btn--glass" type="button" data-open-modal>
+                    Discuss your project
+                  </button>
+                </div>
+                <div class="solution-slide__tags">
+                  <span>Network infrastructure</span
+                  ><span>Structured implementation</span
+                  ><span>Connected workflows</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="solution-slide"
+            data-solution-slide
+            aria-hidden="true"
+            inert
+            style="--focus: center 42%"
+          >
+            <div class="solution-slide__media">
+              <img
+                src="image/3cx.png"
+                loading="lazy"
+                alt="Team using business communication technology"
+              />
+            </div>
+            <div class="solution-slide__glow" aria-hidden="true"></div>
+            <div class="container solution-slide__inner">
+              <div class="solution-slide__copy">
+                <h1>
+                  Keep teams
+                  <span class="solution-title-accent"
+                    >and customers connected.</span
+                  >
+                </h1>
+                <p>
+                  Support calls, meetings, messaging, mobility, and
+                  collaboration with modern business telephony and communication
+                  tools designed for how your organization works.
+                </p>
+                <div class="solution-slide__actions">
+                  <a
+                    class="btn btn--primary"
+                    href="https://www.dimensionsystems.com/voip-business-telephony/"
+                    >Explore VOIP Telephony <svg><use href="#i-arrow" /></svg
+                  ></a>
+                  <button class="btn btn--glass" type="button" data-open-modal>
+                    Plan your upgrade
+                  </button>
+                </div>
+                <div class="solution-slide__tags">
+                  <span>Voice and messaging</span
+                  ><span>Video collaboration</span
+                  ><span>Mobile connectivity</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="solution-slide"
+            data-solution-slide
+            aria-hidden="true"
+            inert
+            style="--focus: center 48%"
+          >
+            <div class="solution-slide__media">
+              <img
+                src="image/digitalsignage.png"
+                loading="lazy"
+                alt="Digital display technology in a modern business"
+              />
+            </div>
+            <div class="solution-slide__glow" aria-hidden="true"></div>
+            <div class="container solution-slide__inner">
+              <div class="solution-slide__copy">
+                <h1>
+                  Turn every screen
+                  <span class="solution-title-accent"
+                    >into a clearer experience.</span
+                  >
+                </h1>
+                <p>
+                  Share promotions, announcements, dashboards, menus,
+                  directories, and important information through professionally
+                  planned digital signage and video display systems.
+                </p>
+                <div class="solution-slide__actions">
+                  <a
+                    class="btn btn--primary"
+                    href="https://www.dimensionsystems.com/digital-signage/"
+                    >Explore Digital Signage <svg><use href="#i-arrow" /></svg
+                  ></a>
+                  <button class="btn btn--glass" type="button" data-open-modal>
+                    Discuss a display project
+                  </button>
+                </div>
+                <div class="solution-slide__tags">
+                  <span>Content management</span><span>Video walls</span
+                  ><span>Commercial displays</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="solution-slide"
+            data-solution-slide
+            aria-hidden="true"
+            inert
+            style="--focus: center 42%"
+          >
+            <div class="solution-slide__media">
+              <img
+                src="image/interactive.png"
+                loading="lazy"
+                alt="Modern collaborative meeting room"
+              />
+            </div>
+            <div class="solution-slide__glow" aria-hidden="true"></div>
+            <div class="container solution-slide__inner">
+              <div class="solution-slide__copy">
+                <h1>
+                  Make every meeting
+                  <span class="solution-title-accent"
+                    >and lesson more engaging.</span
+                  >
+                </h1>
+                <p>
+                  Transform classrooms, training rooms, meeting spaces, and
+                  hybrid collaboration with interactive displays that help
+                  people present, annotate, share, and participate.
+                </p>
+                <div class="solution-slide__actions">
+                  <a
+                    class="btn btn--primary"
+                    href="https://www.dimensionsystems.com/whiteboard-solutions/"
+                    >Explore Interactive Displays
+                    <svg><use href="#i-arrow" /></svg
+                  ></a>
+                  <button class="btn btn--glass" type="button" data-open-modal>
+                    Plan your space
+                  </button>
+                </div>
+                <div class="solution-slide__tags">
+                  <span>Interactive whiteboards</span
+                  ><span>Wireless sharing</span
+                  ><span>Hybrid collaboration</span>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
-        <div class="hero-overlay" aria-hidden="true"></div>
 
-        <div class="container hero-inner">
-          <div class="hero-copy reveal">
-            <p class="hero-kicker">
-              Technology solutions that move you forward
-            </p>
-            <h1>Power Your Business. <span>Secure Your Future.</span></h1>
-            <p class="hero-lede">
-              Dimension Systems delivers managed IT, integrated security,
-              business communications, digital signage, and connected technology
-              solutions for organizations across Guam and the region.
-            </p>
-            <div class="hero-actions">
-              <button
-                class="btn btn--primary"
-                type="button"
-                data-open-modal="consultation"
-              >
-                Request a quote <svg><use href="#i-arrow" /></svg>
-              </button>
-              <a class="btn btn--hero-outline" href="#solutions"
-                >Explore Our Solutions <svg><use href="#i-arrow" /></svg
-              ></a>
-            </div>
-            <div class="hero-trust">
-              <svg><use href="#i-shield" /></svg> Local technology expertise
-              since 1987
-            </div>
-          </div>
+        <div class="solution-hero__utility">
+          <span class="solution-hero__count"
+            ><strong data-slide-current>01</strong> <span>/ 07</span></span
+          >
+          <button
+            class="solution-hero__pause"
+            type="button"
+            data-slider-pause
+            aria-label="Pause automatic slide rotation"
+            aria-pressed="false"
+          >
+            <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M8 5v14M16 5v14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="solution-hero__controls" aria-label="Hero slider controls">
+          <button
+            class="solution-hero__arrow solution-hero__arrow--prev"
+            type="button"
+            data-slider-prev
+            aria-label="Previous slide"
+          >
+            <svg><use href="#i-arrow" /></svg>
+          </button>
 
-          <div class="quick-actions reveal" aria-label="Quick actions">
-            <a
-              class="quick-action"
-              href="https://www.dimensionsystems.com/support/"
-            >
-              <span class="quick-action-icon"
-                ><svg><use href="#i-headset" /></svg
-              ></span>
-              <span
-                ><small>Need immediate help?</small
-                ><strong>Get Technical Support</strong></span
-              >
-              <svg><use href="#i-chevron" /></svg>
-            </a>
-            <button
-              class="quick-action"
-              type="button"
-              data-open-modal="consultation"
-            >
-              <span class="quick-action-icon"
-                ><svg><use href="#i-calendar" /></svg
-              ></span>
-              <span
-                ><small>Have a project in mind?</small
-                ><strong>Plan Your Solution</strong></span
-              >
-              <svg><use href="#i-chevron" /></svg>
-            </button>
-            <a
-              class="quick-action"
-              href="https://www.dimensionsystems.com/book-a-meeting/"
-            >
-              <span class="quick-action-icon"
-                ><svg><use href="#i-users" /></svg
-              ></span>
-              <span
-                ><small>Talk with our team</small
-                ><strong>Book a Meeting</strong></span
-              >
-              <svg><use href="#i-chevron" /></svg>
-            </a>
-          </div>
+          <button
+            class="solution-hero__arrow solution-hero__arrow--next"
+            type="button"
+            data-slider-next
+            aria-label="Next slide"
+          >
+            <svg><use href="#i-arrow" /></svg>
+          </button>
         </div>
       </section>
 
@@ -3654,15 +4913,15 @@
         <div class="container">
           <div class="solutions-head reveal">
             <div>
-              <p class="section-kicker">Our solutions</p>
+              <p class="section-kicker">What we do</p>
               <h2 class="section-title">
-                Connected technology built around <span>your operation.</span>
+                Six solutions. <span>One connected technology partner.</span>
               </h2>
             </div>
             <p class="section-copy">
-              From assessment and design to installation and ongoing support,
-              DSI helps organizations deploy practical technology that improves
-              security, communication, visibility, and performance.
+              Choose the capability that matches your next priority. DSI brings
+              planning, installation, integration, training, and local support
+              together under one accountable team.
             </p>
           </div>
 
@@ -3766,15 +5025,15 @@
         <div class="container">
           <div class="featured-solutions__head reveal">
             <div>
-              <p class="section-kicker">Featured solutions</p>
+              <p class="section-kicker">See it in action</p>
               <h2 class="section-title">
-                Technology that helps teams
-                <span>communicate, protect, and engage.</span>
+                Explore the experiences behind
+                <span>better-connected teams.</span>
               </h2>
             </div>
             <p class="section-copy">
-              Explore several of DSI’s most requested solutions. Use the arrows
-              or slide indicators to view each featured service.
+              Take a closer look at four technologies shaping clearer
+              communication, more collaborative spaces, and safer facilities.
             </p>
           </div>
 
@@ -3782,7 +5041,7 @@
             class="featured-slider reveal"
             data-featured-slider
             aria-roledescription="carousel"
-            aria-label="Featured technology solutions"
+            aria-label="Technology in action"
           >
             <div class="featured-slider__viewport">
               <div class="featured-slider__track">
@@ -3854,16 +5113,16 @@
                 <article class="featured-slide" aria-hidden="true">
                   <div class="featured-slide__media">
                     <img
-                      src="image/3cx3.png"
+                      src="image/alahas.webp"
                       alt="Business team collaborating during a video meeting"
                       loading="lazy"
                     />
                     <span class="featured-slide__label"
-                      >02 · Business Communications</span
+                      >02 · Unified Communications</span
                     >
                   </div>
                   <div class="featured-slide__content">
-                    <p class="section-kicker">Business communications</p>
+                    <p class="section-kicker">Unified communications</p>
                     <h3>
                       Keep every team member
                       <span>connected from anywhere.</span>
@@ -3911,7 +5170,7 @@
                     <a
                       class="btn btn--primary"
                       href="https://www.dimensionsystems.com/voip-business-telephony/"
-                      >Explore Business Telephony
+                      >Explore VOIP Business Telephony
                       <svg><use href="#i-arrow" /></svg
                     ></a>
                   </div>
@@ -3920,7 +5179,7 @@
                 <article class="featured-slide" aria-hidden="true">
                   <div class="featured-slide__media">
                     <img
-                      src="image/interactive.png"
+                      src="image/interactive 2.png"
                       alt="Collaborative learning and presentation environment"
                       loading="lazy"
                     />
@@ -3986,7 +5245,7 @@
                 <article class="featured-slide" aria-hidden="true">
                   <div class="featured-slide__media">
                     <img
-                      src="image/cctv2.webp"
+                      src="image/cctv3.webp"
                       alt="Security camera protecting a modern facility"
                       loading="lazy"
                     />
@@ -4055,14 +5314,14 @@
               <button
                 class="featured-slider__arrow featured-slider__arrow--prev"
                 type="button"
-                aria-label="Previous featured solution"
+                aria-label="Previous technology story"
               >
                 <svg><use href="#i-chevron" /></svg>
               </button>
               <div
                 class="featured-slider__dots"
                 role="tablist"
-                aria-label="Select a featured solution"
+                aria-label="Select a technology story"
               >
                 <button
                   class="featured-slider__dot is-active"
@@ -4096,7 +5355,7 @@
               <button
                 class="featured-slider__arrow featured-slider__arrow--next"
                 type="button"
-                aria-label="Next featured solution"
+                aria-label="Next technology story"
               >
                 <svg><use href="#i-chevron" /></svg>
               </button>
@@ -4113,7 +5372,7 @@
           <div class="reveal" style="text-align: center">
             <p class="section-kicker">Our approach</p>
             <h2 class="section-title" style="margin-inline: auto">
-              A clearer path from idea to <span>working solution.</span>
+              A clearer path from idea to <span>real-world results.</span>
             </h2>
             <p class="section-copy" style="margin-inline: auto">
               DSI starts with your environment and objectives, then builds a
@@ -4134,7 +5393,7 @@
               <div class="approach-number">02</div>
               <h3>Design</h3>
               <p>
-                Develop a solution plan with the right products, architecture,
+                Develop a practical plan with the right products, architecture,
                 and implementation path.
               </p>
             </article>
@@ -4255,7 +5514,9 @@
         <div class="container trust-inner">
           <div class="reveal">
             <p class="section-kicker">Local experts. Practical support.</p>
-            <h2>Serving Guam since 1987.</h2>
+            <h2>
+              Serving Guam <span class="page-title-accent">since 1987.</span>
+            </h2>
             <p>
               Dimension Systems helps organizations plan, install, integrate,
               and support the technology behind their daily operations.
@@ -4303,7 +5564,7 @@
                 </svg>
               </span>
               <div class="trust-point-content">
-                <strong class="trust-point-title">Integrated Solutions</strong>
+                <strong class="trust-point-title">Connected Technology</strong>
                 <span class="trust-point-description"
                   >IT, communications, security, signage, and
                   collaboration</span
@@ -4333,7 +5594,8 @@
           <div class="reveal">
             <p class="section-kicker">Contact Dimension Systems</p>
             <h2 class="section-title">
-              Let’s build the right solution for <span>your organization.</span>
+              Let’s build the right technology for
+              <span>your organization.</span>
             </h2>
             <p class="section-copy">
               Tell us about your project, product requirement, or technology
@@ -4425,7 +5687,7 @@
               <div class="field field--full">
                 <label for="contact-interest">How can we help?</label
                 ><select id="contact-interest" name="interest" required>
-                  <option value="">Select a solution</option>
+                  <option value="">Choose an area</option>
                   <option>Managed Services</option>
                   <option>System Integration</option>
                   <option>Integrated Security Systems</option>
@@ -4464,7 +5726,10 @@
       <section class="cta">
         <div class="container cta-inner">
           <div class="reveal">
-            <h2>Ready to strengthen your technology foundation?</h2>
+            <h2>
+              Ready to strengthen your
+              <span class="page-title-accent">technology foundation?</span>
+            </h2>
             <p>
               Whether you need support, a new security system, communications,
               digital signage, or an integrated technology solution, DSI is
@@ -4492,7 +5757,9 @@
         <div class="container newsletter-inner">
           <div>
             <strong>Stay updated</strong
-            ><span>Receive DSI news, solutions, and technology insights.</span>
+            ><span
+              >Receive DSI news, project ideas, and technology insights.</span
+            >
           </div>
           <form class="newsletter-form" id="newsletter-form">
             <label
@@ -4553,7 +5820,7 @@
             </div>
           </div>
           <div class="footer-column">
-            <h3>Solutions</h3>
+            <h3>Capabilities</h3>
             <ul>
               <li>
                 <a
@@ -4711,9 +5978,9 @@
               />
             </div>
             <div class="field field--full">
-              <label for="modal-interest">Solution needed</label
+              <label for="modal-interest">Area of interest</label
               ><select id="modal-interest" name="interest" required>
-                <option value="">Select a solution</option>
+                <option value="">Choose an area</option>
                 <option>Managed Services</option>
                 <option>System Integration</option>
                 <option>Integrated Security Systems</option>
@@ -4748,6 +6015,9 @@
         const body = document.body;
         const navToggle = document.querySelector(".nav-toggle");
         const mobileNav = document.querySelector(".mobile-nav");
+        const navSearch = document.querySelector(".nav-search");
+        const navSearchToggle = document.querySelector(".nav-search-toggle");
+        const navSearchInput = document.querySelector(".nav-search-form input");
         const modal = document.getElementById("contact-modal");
         const modalTitle = document.getElementById("modal-title");
         const modalIntro = document.getElementById("modal-intro");
@@ -4762,7 +6032,41 @@
           navToggle.innerHTML = '<svg><use href="#i-menu"/></svg>';
         };
 
+        const closeNavSearch = () => {
+          navSearch.classList.remove("is-open");
+          navSearchToggle.setAttribute("aria-expanded", "false");
+          navSearchToggle.setAttribute("aria-label", "Open search");
+        };
+
+        navSearchToggle.addEventListener("click", () => {
+          const open = navSearch.classList.toggle("is-open");
+          navSearchToggle.setAttribute("aria-expanded", String(open));
+          navSearchToggle.setAttribute(
+            "aria-label",
+            open ? "Close search" : "Open search",
+          );
+          if (open) {
+            closeMobileNav();
+            window.setTimeout(() => navSearchInput.focus(), 50);
+          }
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!navSearch.contains(event.target)) closeNavSearch();
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (
+            event.key === "Escape" &&
+            navSearch.classList.contains("is-open")
+          ) {
+            closeNavSearch();
+            navSearchToggle.focus();
+          }
+        });
+
         navToggle.addEventListener("click", () => {
+          closeNavSearch();
           const open = mobileNav.classList.toggle("is-open");
           navToggle.setAttribute("aria-expanded", String(open));
           navToggle.setAttribute(
@@ -4874,6 +6178,147 @@
         const reduceMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)",
         ).matches;
+
+        /* Preserve the original full-screen hero carousel interaction. */
+        const solutionHero = document.querySelector(".solution-hero");
+        const solutionSlides = [
+          ...document.querySelectorAll("[data-solution-slide]"),
+        ];
+        const solutionTabs = [
+          ...document.querySelectorAll("[data-slider-tab]"),
+        ];
+        const solutionPrev = document.querySelector("[data-slider-prev]");
+        const solutionNext = document.querySelector("[data-slider-next]");
+        const solutionPause = document.querySelector("[data-slider-pause]");
+        const solutionCount = document.querySelector("[data-slide-current]");
+
+        if (solutionHero && solutionSlides.length) {
+          const reducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+          ).matches;
+          const slideDuration =
+            Number.parseInt(
+              getComputedStyle(solutionHero).getPropertyValue(
+                "--slide-duration",
+              ),
+              10,
+            ) || 12000;
+          let solutionIndex = 0;
+          let solutionTimer = null;
+          let solutionPaused = reducedMotion;
+          let touchStartX = 0;
+
+          const restartProgress = (tab) => {
+            const progress = tab.querySelector(".solution-hero__progress");
+            if (!progress) return;
+            const clone = progress.cloneNode(true);
+            progress.replaceWith(clone);
+          };
+
+          const startSolutionTimer = () => {
+            window.clearInterval(solutionTimer);
+            if (solutionPaused || reducedMotion) return;
+            solutionTimer = window.setInterval(() => {
+              showSolution(solutionIndex + 1);
+            }, slideDuration);
+          };
+
+          const showSolution = (nextIndex, userInitiated = false) => {
+            solutionIndex =
+              (nextIndex + solutionSlides.length) % solutionSlides.length;
+
+            solutionSlides.forEach((slide, index) => {
+              const active = index === solutionIndex;
+              slide.classList.toggle("is-active", active);
+              slide.setAttribute("aria-hidden", String(!active));
+              if (active) slide.removeAttribute("inert");
+              else slide.setAttribute("inert", "");
+            });
+
+            solutionTabs.forEach((tab, index) => {
+              const active = index === solutionIndex;
+              tab.classList.toggle("is-active", active);
+              tab.setAttribute("aria-selected", String(active));
+              if (active) {
+                restartProgress(tab);
+                tab.scrollIntoView({
+                  behavior: reducedMotion ? "auto" : "smooth",
+                  block: "nearest",
+                  inline: "nearest",
+                });
+              }
+            });
+
+            if (solutionCount) {
+              solutionCount.textContent = String(solutionIndex + 1).padStart(
+                2,
+                "0",
+              );
+            }
+            if (userInitiated) startSolutionTimer();
+          };
+
+          const updatePauseButton = () => {
+            solutionHero.classList.toggle("is-paused", solutionPaused);
+            if (!solutionPause) return;
+            solutionPause.setAttribute("aria-pressed", String(solutionPaused));
+            solutionPause.setAttribute(
+              "aria-label",
+              solutionPaused
+                ? "Resume automatic slide rotation"
+                : "Pause automatic slide rotation",
+            );
+            solutionPause.innerHTML = solutionPaused
+              ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'
+              : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+          };
+
+          solutionTabs.forEach((tab, index) => {
+            tab.addEventListener("click", () => showSolution(index, true));
+          });
+          solutionPrev?.addEventListener("click", () =>
+            showSolution(solutionIndex - 1, true),
+          );
+          solutionNext?.addEventListener("click", () =>
+            showSolution(solutionIndex + 1, true),
+          );
+          solutionPause?.addEventListener("click", () => {
+            solutionPaused = !solutionPaused;
+            updatePauseButton();
+            startSolutionTimer();
+          });
+          solutionHero.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowLeft")
+              showSolution(solutionIndex - 1, true);
+            if (event.key === "ArrowRight")
+              showSolution(solutionIndex + 1, true);
+          });
+          solutionHero.addEventListener(
+            "touchstart",
+            (event) => {
+              touchStartX = event.changedTouches[0].clientX;
+            },
+            { passive: true },
+          );
+          solutionHero.addEventListener(
+            "touchend",
+            (event) => {
+              const delta = event.changedTouches[0].clientX - touchStartX;
+              if (Math.abs(delta) > 55) {
+                showSolution(solutionIndex + (delta < 0 ? 1 : -1), true);
+              }
+            },
+            { passive: true },
+          );
+          document.addEventListener("visibilitychange", () => {
+            if (document.hidden) window.clearInterval(solutionTimer);
+            else startSolutionTimer();
+          });
+
+          updatePauseButton();
+          showSolution(0);
+          startSolutionTimer();
+        }
 
         const featuredSlider = document.querySelector("[data-featured-slider]");
         if (featuredSlider) {
