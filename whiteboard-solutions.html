@@ -1,0 +1,2532 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="DSI interactive whiteboard solutions: Promethean ActivPanel displays, learning software, free training, and local support for classrooms and meeting rooms in Guam."
+    />
+    <title>Interactive Whiteboards | Dimension Systems Inc.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/dsi-site.css" />
+    <style>
+      /* =========================================================
+         INTERACTIVE WHITEBOARDS — page-only components
+         Hero layout, headings, dark cards, CTA and footer come from
+         css/dsi-site.css. Values below use the shared tokens only.
+         ========================================================= */
+
+      /* Hero: no photo background, panel illustration in place of card */
+      .page-hero--plain {
+        background:
+          radial-gradient(
+            circle at 78% 42%,
+            rgba(13, 124, 255, 0.28),
+            transparent 34%
+          ),
+          var(--dsi-gradient-dark);
+      }
+      .page-hero--plain .page-hero__inner {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      }
+      .wb-stage {
+        position: relative;
+        display: grid;
+        min-width: 0;
+        min-height: 520px;
+        place-items: center;
+        perspective: 1400px;
+      }
+      .wb-stage .page-hero__glow {
+        width: min(118%, 46vw, 820px);
+      }
+      .wb-device {
+        position: relative;
+        z-index: 2;
+        width: min(100%, 600px);
+        transform: rotateY(var(--dev-ry, -7deg)) rotateX(var(--dev-rx, 2deg));
+        transition: transform 0.2s ease;
+      }
+      .wb-device__bezel {
+        position: relative;
+        padding: 12px 12px 26px;
+        border: 1px solid rgba(134, 221, 255, 0.24);
+        border-radius: 22px 10px 22px 10px;
+        background: var(--dsi-dark);
+        box-shadow:
+          -24px 38px 70px rgba(0, 0, 0, 0.36),
+          0 0 60px rgba(13, 124, 255, 0.14);
+      }
+      .wb-device__bezel::after {
+        content: "";
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--dsi-on-dark-accent);
+        box-shadow: 0 0 10px var(--dsi-on-dark-accent);
+        transform: translateX(-50%);
+      }
+      .wb-device__screen {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        border-radius: 12px 6px 12px 6px;
+        background: var(--dsi-gradient-primary);
+      }
+      .wb-device__screen img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .wb-device__ink {
+        position: absolute;
+        inset: 0 0 auto;
+        display: grid;
+        gap: 4px;
+        padding: 18px 22px 44px;
+        color: #fff;
+        background: linear-gradient(rgba(4, 21, 47, 0.88), transparent);
+      }
+      .wb-device__ink small {
+        color: var(--dsi-on-dark-accent);
+        font-size: var(--fs-xs);
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .wb-device__ink strong {
+        font-size: var(--fs-h3);
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+      }
+      .wb-float {
+        position: absolute;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px 12px 12px;
+        border: 1px solid rgba(134, 221, 255, 0.24);
+        border-radius: 18px 8px 18px 8px;
+        color: #fff;
+        background: rgba(4, 21, 47, 0.86);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(12px);
+      }
+      .wb-float strong,
+      .wb-float small {
+        display: block;
+      }
+      .wb-float strong {
+        font-size: var(--fs-sm);
+      }
+      .wb-float small {
+        color: var(--dsi-on-dark-muted);
+        font-size: var(--fs-xs);
+      }
+      .wb-float--top {
+        top: 8%;
+        right: -2%;
+      }
+      .wb-float--bottom {
+        bottom: 14%;
+        left: -2%;
+      }
+
+      /* Capability strip */
+      .wb-strip {
+        border-bottom: 1px solid var(--dsi-line);
+        background: var(--dsi-soft);
+      }
+      .wb-strip__grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        padding: 24px 0;
+      }
+      .wb-strip__grid article {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 6px 22px;
+        border-right: 1px solid var(--dsi-line);
+      }
+      .wb-strip__grid article:first-child {
+        padding-left: 0;
+      }
+      .wb-strip__grid article:last-child {
+        border-right: 0;
+      }
+      .wb-strip strong,
+      .wb-strip small {
+        display: block;
+      }
+      .wb-strip strong {
+        font-size: var(--fs-base);
+        line-height: 1.3;
+      }
+      .wb-strip small {
+        margin-top: 2px;
+        color: var(--dsi-muted);
+        font-size: var(--fs-sm);
+      }
+
+      /* Shared light card */
+      .wb-card {
+        display: grid;
+        align-content: start;
+        gap: 12px;
+        padding: 26px;
+        border: 1px solid var(--dsi-line);
+        border-radius: 34px 15px 34px 15px;
+        background: #fff;
+        box-shadow: 0 10px 28px rgba(7, 35, 76, 0.05);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .wb-card:hover {
+        border-color: #a8c8f9;
+        box-shadow: var(--dsi-shadow-soft);
+        transform: translateY(-5px);
+      }
+      .wb-card h3 {
+        margin: 6px 0 0;
+        font-size: var(--fs-title-sm);
+        line-height: 1.25;
+      }
+      .wb-card p {
+        margin: 0;
+        color: var(--dsi-muted);
+        font-size: var(--fs-sm);
+      }
+      .wb-card--accent {
+        border: 0;
+        color: #fff;
+        background: var(--dsi-gradient-primary);
+        box-shadow: 0 22px 50px rgba(7, 92, 246, 0.24);
+      }
+      .wb-card--accent h3 {
+        color: #fff;
+      }
+      .wb-card--accent p {
+        color: rgba(255, 255, 255, 0.84);
+      }
+
+      /* Features */
+      .wb-feature-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .wb-more {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0;
+        margin-top: 28px;
+        border-top: 1px solid var(--dsi-line);
+      }
+      .wb-more article {
+        display: grid;
+        align-content: start;
+        gap: 10px;
+        padding: 22px 20px 0 0;
+      }
+      .wb-more strong {
+        font-size: var(--fs-base);
+        line-height: 1.3;
+      }
+      .wb-more p {
+        margin: 0;
+        color: var(--dsi-muted);
+        font-size: var(--fs-sm);
+      }
+
+      /* Dark sections (shared gradient + faint grid) */
+      .capability-section {
+        position: relative;
+        overflow: hidden;
+        background: var(--dsi-gradient-dark);
+      }
+      .capability-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.1;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+        background-size: 76px 76px;
+        mask-image: linear-gradient(90deg, #000, transparent 70%);
+        pointer-events: none;
+      }
+      .capability-section .container {
+        position: relative;
+      }
+      .capability-section .solution-card p {
+        margin-bottom: 0;
+      }
+
+      /* Education / Corporate: photo + points */
+      .wb-split {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        align-items: center;
+        gap: clamp(40px, 6vw, 96px);
+      }
+      .wb-split--reverse .wb-photo {
+        order: 2;
+      }
+      .wb-split .section-head {
+        margin-bottom: 0;
+      }
+      .wb-photo {
+        position: relative;
+        overflow: hidden;
+        margin: 0;
+        border-radius: 46px 18px 46px 18px;
+        background: var(--dsi-gradient-dark);
+        box-shadow: var(--dsi-shadow);
+      }
+      .wb-photo img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+      .wb-photo figcaption {
+        position: absolute;
+        inset: auto 0 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 40px 22px 20px;
+        color: #fff;
+        background: linear-gradient(transparent, rgba(4, 21, 47, 0.9));
+        font-size: var(--fs-sm);
+        font-weight: 800;
+      }
+      .wb-points {
+        display: grid;
+        margin-top: 28px;
+        border-top: 1px solid var(--dsi-line);
+      }
+      .wb-points article {
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr);
+        align-items: center;
+        gap: 14px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--dsi-line);
+      }
+      .wb-points strong,
+      .wb-points small {
+        display: block;
+      }
+      .wb-points strong {
+        font-size: var(--fs-base);
+      }
+      .wb-points small {
+        margin-top: 2px;
+        color: var(--dsi-muted);
+        font-size: var(--fs-sm);
+      }
+
+      /* Training: dark shell with glow rings */
+      .wb-training {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        align-items: center;
+        gap: clamp(32px, 5vw, 72px);
+        padding: clamp(32px, 5vw, 72px);
+        border-radius: 46px 18px 46px 18px;
+        background: var(--dsi-gradient-dark);
+        box-shadow: var(--dsi-shadow);
+      }
+      .wb-training::before,
+      .wb-training::after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(134, 221, 255, 0.16);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .wb-training::before {
+        right: -180px;
+        bottom: -220px;
+        width: 520px;
+        height: 520px;
+        box-shadow: 0 0 110px rgba(13, 124, 255, 0.28);
+      }
+      .wb-training::after {
+        right: -80px;
+        bottom: -120px;
+        width: 320px;
+        height: 320px;
+      }
+      .wb-training > * {
+        position: relative;
+        z-index: 1;
+      }
+      .wb-training .section-head {
+        margin-bottom: 0;
+      }
+      .wb-training__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+      .wb-sessions {
+        padding: clamp(22px, 2.6vw, 32px);
+        border: 1px solid var(--dsi-on-dark-line);
+        border-radius: 34px 15px 34px 15px;
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(14px);
+      }
+      .wb-sessions__head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--dsi-on-dark-line);
+      }
+      .wb-sessions__head small,
+      .wb-sessions__head strong {
+        display: block;
+      }
+      .wb-sessions__head small {
+        color: var(--dsi-on-dark-accent);
+        font-size: var(--fs-xs);
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .wb-sessions__head strong {
+        color: #fff;
+        font-size: var(--fs-title-sm);
+      }
+      .wb-sessions ul {
+        display: grid;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .wb-sessions li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--dsi-on-dark-line);
+        color: #fff;
+        font-size: var(--fs-sm);
+        font-weight: 700;
+      }
+      .wb-sessions li:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+      .wb-sessions li i {
+        color: var(--dsi-on-dark-accent);
+      }
+
+      /* Specifications: model tabs + panel + comparison table */
+      .wb-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+      .wb-tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 48px;
+        padding: 0 18px 0 6px;
+        border: 1px solid var(--dsi-line);
+        border-radius: 999px;
+        color: var(--dsi-ink);
+        background: #fff;
+        font: inherit;
+        font-size: var(--fs-sm);
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .wb-tab .icon-circle {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
+      }
+      .wb-tab:hover {
+        border-color: #a8c8f9;
+      }
+      .wb-tab[aria-selected="true"] {
+        border-color: var(--dsi-blue);
+        box-shadow: 0 10px 24px rgba(7, 92, 246, 0.14);
+      }
+      .wb-tab[aria-selected="true"] .icon-circle {
+        color: #fff;
+        background: var(--dsi-gradient-primary);
+      }
+      .wb-spec {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        align-items: center;
+        gap: clamp(28px, 4vw, 56px);
+        padding: clamp(26px, 3.4vw, 48px);
+        border: 1px solid var(--dsi-line);
+        border-radius: 46px 18px 46px 18px;
+        background: #fff;
+        box-shadow: var(--dsi-shadow-soft);
+      }
+      .wb-spec[hidden] {
+        display: none;
+      }
+      .wb-spec.is-active {
+        animation: specIn 0.35s ease;
+      }
+      @keyframes specIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .wb-spec__name {
+        color: var(--dsi-blue);
+        font-size: var(--fs-xs);
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .wb-spec h3 {
+        margin: 10px 0 12px;
+        font-size: var(--fs-h3);
+        line-height: 1.08;
+        letter-spacing: -0.045em;
+      }
+      .wb-spec p {
+        margin: 0;
+        color: var(--dsi-muted);
+      }
+      .wb-spec__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+      }
+      .wb-spec__tags span {
+        padding: 6px 12px;
+        border-radius: 999px;
+        color: var(--dsi-blue);
+        background: var(--dsi-sky);
+        font-size: var(--fs-xs);
+        font-weight: 700;
+      }
+      .wb-spec__facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .wb-spec__fact {
+        padding: 20px;
+        border-radius: 24px 10px 24px 10px;
+        background: var(--dsi-soft);
+      }
+      .wb-spec__fact strong,
+      .wb-spec__fact span {
+        display: block;
+      }
+      .wb-spec__fact strong {
+        color: var(--dsi-blue);
+        font-size: var(--fs-h3);
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+      }
+      .wb-spec__fact span {
+        margin-top: 6px;
+        color: var(--dsi-muted);
+        font-size: var(--fs-sm);
+      }
+      .wb-details {
+        margin-top: 16px;
+        padding: 0 clamp(22px, 2.4vw, 32px);
+        border: 1px solid var(--dsi-line);
+        border-radius: 34px 15px 34px 15px;
+        background: #fff;
+      }
+      .wb-details summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 20px 0;
+        font-size: var(--fs-base);
+        font-weight: 800;
+        list-style: none;
+        cursor: pointer;
+      }
+      .wb-details summary::-webkit-details-marker {
+        display: none;
+      }
+      .wb-details summary::after {
+        content: "+";
+        display: grid;
+        flex: 0 0 32px;
+        width: 32px;
+        height: 32px;
+        place-items: center;
+        border-radius: 50%;
+        color: var(--dsi-blue);
+        background: var(--dsi-sky);
+        font-size: var(--fs-title-sm);
+        transition: transform 0.2s ease;
+      }
+      .wb-details[open] summary::after {
+        transform: rotate(45deg);
+      }
+      .wb-table-wrap {
+        overflow-x: auto;
+        padding-bottom: 22px;
+      }
+      .wb-table {
+        width: 100%;
+        min-width: 680px;
+        border-collapse: collapse;
+        font-size: var(--fs-sm);
+      }
+      .wb-table th,
+      .wb-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--dsi-line);
+        text-align: left;
+        vertical-align: top;
+      }
+      .wb-table th {
+        color: var(--dsi-ink);
+        background: var(--dsi-soft);
+        font-weight: 800;
+      }
+      .wb-table td:first-child {
+        color: var(--dsi-ink);
+        font-weight: 700;
+      }
+      .wb-table td {
+        color: var(--dsi-muted);
+      }
+      .wb-table .group td {
+        padding-top: 18px;
+        color: var(--dsi-blue);
+        font-size: var(--fs-xs);
+        font-weight: 800;
+        letter-spacing: 0.12em;
+      }
+      .wb-table-note {
+        margin: 14px 0 0;
+        color: var(--dsi-muted);
+        font-size: var(--fs-xs);
+      }
+
+      /* Software */
+      .wb-software {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .wb-software .wb-card {
+        padding: clamp(26px, 3vw, 40px);
+      }
+      .wb-checks {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 18px;
+        margin-top: 8px;
+        padding-top: 18px;
+        border-top: 1px solid var(--dsi-line);
+      }
+      .wb-checks span {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: var(--fs-sm);
+        font-weight: 600;
+        line-height: 1.45;
+      }
+      .wb-checks i {
+        margin-top: 4px;
+        color: var(--dsi-blue);
+        font-size: var(--fs-xs);
+      }
+
+      /* Resource library */
+      .wb-downloads {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .wb-download-panel {
+        padding: clamp(22px, 2.4vw, 32px);
+        border: 1px solid var(--dsi-line);
+        border-radius: 34px 15px 34px 15px;
+        background: #fff;
+        box-shadow: 0 10px 28px rgba(7, 35, 76, 0.05);
+      }
+      .wb-download-panel h3 {
+        margin: 0 0 10px;
+        font-size: var(--fs-title-sm);
+      }
+      .wb-download {
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr) 16px;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 0;
+        border-top: 1px solid var(--dsi-line);
+        color: var(--dsi-ink);
+        font-size: var(--fs-base);
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .wb-download > i {
+        color: #a8bad1;
+        font-size: var(--fs-sm);
+        transition: color 0.2s ease;
+      }
+      .wb-download:hover,
+      .wb-download:hover > i {
+        color: var(--dsi-blue);
+      }
+      .wb-help {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        margin-top: 16px;
+        padding: 24px clamp(22px, 2.4vw, 32px);
+        border-radius: 34px 15px 34px 15px;
+        background: var(--dsi-sky);
+      }
+      .wb-help > div {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .wb-help strong {
+        display: block;
+        font-size: var(--fs-base);
+      }
+      .wb-help p {
+        margin: 2px 0 0;
+        color: var(--dsi-muted);
+        font-size: var(--fs-sm);
+      }
+      .wb-help .btn {
+        flex: 0 0 auto;
+      }
+      .wb-help .icon-circle {
+        background: #fff;
+      }
+
+      /* Responsive (shared breakpoints) */
+      @media (max-width: 1180px) {
+        .page-hero--plain .page-hero__inner {
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        }
+        .wb-stage {
+          min-height: 440px;
+        }
+        .wb-strip__grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 14px 0;
+        }
+        .wb-strip__grid article:nth-child(2n) {
+          border-right: 0;
+        }
+        .wb-strip__grid article:nth-child(2n + 1) {
+          padding-left: 0;
+        }
+        .wb-feature-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .wb-more {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .wb-split,
+        .wb-training,
+        .wb-spec {
+          grid-template-columns: 1fr;
+        }
+        .wb-split--reverse .wb-photo {
+          order: 0;
+        }
+        .wb-photo img {
+          aspect-ratio: 16 / 9;
+        }
+        .wb-software,
+        .wb-downloads {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .page-hero--plain .page-hero__inner {
+          display: flex;
+        }
+        /* panel hidden; rings stay as a background accent */
+        .wb-stage {
+          position: absolute;
+          inset: 0;
+          min-height: 0;
+          pointer-events: none;
+        }
+        .wb-device,
+        .wb-float {
+          display: none;
+        }
+        .wb-stage .page-hero__glow {
+          left: auto;
+          right: -22%;
+          width: 75vw;
+          transform: translateY(-50%);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .wb-strip__grid {
+          gap: 16px 12px;
+          padding: 20px 0;
+        }
+        .wb-strip__grid article {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 0;
+          border: 0;
+        }
+        .wb-strip strong {
+          font-size: var(--fs-sm);
+        }
+        .wb-strip small {
+          font-size: var(--fs-xs);
+        }
+
+        /* features: accent card + compact list */
+        .wb-feature-grid {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .wb-feature-grid .wb-card {
+          grid-template-columns: 44px minmax(0, 1fr);
+          column-gap: 14px;
+          row-gap: 4px;
+          padding: 16px 0;
+          border: 0;
+          border-bottom: 1px solid var(--dsi-line);
+          border-radius: 0;
+          background: transparent;
+          box-shadow: none;
+        }
+        .wb-feature-grid .wb-card .icon-circle {
+          grid-row: span 2;
+        }
+        .wb-feature-grid .wb-card h3 {
+          margin: 2px 0 0;
+          font-size: var(--fs-base);
+        }
+        .wb-feature-grid .wb-card:hover {
+          box-shadow: none;
+          transform: none;
+        }
+        .wb-feature-grid .wb-card--accent {
+          margin-bottom: 8px;
+          padding: 18px;
+          border-radius: 24px 10px 24px 10px;
+          background: var(--dsi-gradient-primary);
+        }
+        .wb-more {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0 14px;
+          margin-top: 20px;
+        }
+        .wb-more article {
+          padding: 16px 0 0;
+        }
+        .wb-more article:last-child {
+          grid-column: 1 / -1;
+        }
+
+        /* dark workflow cards */
+        .capability-section .solutions-grid {
+          gap: 10px;
+        }
+        .capability-section .solution-card {
+          padding: 16px 18px;
+          border-radius: 24px 10px 24px 10px;
+        }
+        .capability-section .solution-card__heading {
+          margin-bottom: 8px;
+        }
+
+        .wb-photo {
+          border-radius: 30px 12px 30px 12px;
+        }
+        .wb-photo img {
+          aspect-ratio: 2 / 1;
+        }
+        .wb-training {
+          padding: 28px 20px;
+          border-radius: 30px 12px 30px 12px;
+        }
+        .wb-training__actions .btn {
+          justify-content: center;
+          width: 100%;
+        }
+
+        /* model tabs scroll sideways in one row */
+        .wb-tabs {
+          flex-wrap: nowrap;
+          margin-right: calc(var(--dsi-gutter) / -2);
+          overflow-x: auto;
+          scrollbar-width: none;
+        }
+        .wb-tabs::-webkit-scrollbar {
+          display: none;
+        }
+        .wb-tab {
+          flex: 0 0 auto;
+        }
+        .wb-spec {
+          padding: 24px 20px;
+          border-radius: 30px 12px 30px 12px;
+        }
+        .wb-spec__fact {
+          padding: 14px;
+        }
+        .wb-details,
+        .wb-download-panel {
+          border-radius: 30px 12px 30px 12px;
+        }
+        .wb-details summary {
+          font-size: var(--fs-sm);
+        }
+
+        .wb-software .wb-card {
+          padding: 22px 20px;
+          border-radius: 30px 12px 30px 12px;
+        }
+        .wb-checks {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .wb-help {
+          flex-direction: column;
+          align-items: stretch;
+          border-radius: 30px 12px 30px 12px;
+        }
+        .wb-help > div {
+          align-items: flex-start;
+        }
+        .wb-help .btn {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header" aria-label="Main navigation">
+      <div class="container header-inner">
+        <a
+          class="brand"
+          href="index.html"
+          aria-label="Dimension Systems Inc. home"
+        >
+          <img
+            src="./image/dsi-logo-3600.png"
+            alt="Dimension Systems Inc."
+            class="brand-logo"
+            loading="eager"
+            decoding="async"
+          />
+        </a>
+
+        <nav class="desktop-nav" aria-label="Desktop navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+
+            <li class="nav-dropdown is-current">
+              <button type="button" aria-haspopup="true">
+                What We Do
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </button>
+              <div class="nav-dropdown-menu">
+                <a href="managed-services.html">Managed Services</a>
+                <a href="system-integration.html">System Integration</a>
+                <a href="integrated-security-systems.html"
+                  >Integrated Security Systems</a
+                >
+                <a href="voip-business-telephony.html"
+                  >VoIP Business Telephony</a
+                >
+                <a href="digital-signage.html">Digital Signage</a>
+                <a aria-current="page" href="whiteboard-solutions.html"
+                  >Interactive Whiteboards</a
+                >
+              </div>
+            </li>
+            <li>
+              <a href="industries.html">Industries</a>
+            </li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="desktop-actions">
+          <a class="header-phone" href="tel:+16716462007"
+            ><i class="fa-solid fa-phone" aria-hidden="true"></i> (671)
+            646-2007</a
+          >
+          <a class="btn btn--outline" href="support.html">Get Support</a>
+          <button
+            class="btn btn--primary"
+            type="button"
+            data-open-modal="consultation"
+          >
+            Capability Statement
+          </button>
+          <div class="nav-search">
+            <button
+              class="nav-search-toggle"
+              type="button"
+              aria-label="Open search"
+              aria-expanded="false"
+              aria-controls="desktop-search-form"
+            >
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            </button>
+            <form
+              class="nav-search-form"
+              id="desktop-search-form"
+              role="search"
+              action="https://www.dimensionsystems.com/"
+              method="get"
+            >
+              <input
+                type="search"
+                name="s"
+                aria-label="Search Dimension Systems"
+                placeholder="Search our website"
+                autocomplete="off"
+                required
+              />
+              <button
+                class="nav-search-submit"
+                type="submit"
+                aria-label="Search"
+              >
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+
+        <a href="index.html#solutions">What We Do</a>
+        <div class="mobile-sub">
+          <a href="managed-services.html">Managed Services</a>
+          <a href="system-integration.html">System Integration</a>
+          <a href="integrated-security-systems.html">Integrated Security</a>
+          <a href="voip-business-telephony.html"> VoIP Telephony</a>
+          <a href="digital-signage.html"> Digital Signage</a>
+          <a aria-current="page" href="whiteboard-solutions.html"
+            >Interactive Whiteboards</a
+          >
+        </div>
+        <a href="industries.html">Industries</a>
+        <a href="about.html">About</a>
+        <a href="index.html#contact">Contact</a>
+        <div class="mobile-nav-actions">
+          <a class="btn btn--outline" href="tel:+16716462007">Call DSI</a>
+          <a class="btn btn--outline" href="support.html">Get Support</a>
+          <button
+            class="btn btn--primary"
+            type="button"
+            data-open-modal="consultation"
+          >
+            Capability Statement
+          </button>
+        </div>
+        <form
+          class="mobile-search-form"
+          role="search"
+          action="https://www.dimensionsystems.com/"
+          method="get"
+        >
+          <input
+            type="search"
+            name="s"
+            aria-label="Search Dimension Systems"
+            placeholder="Search our website"
+            autocomplete="off"
+            required
+          />
+          <button class="nav-search-submit" type="submit">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            Search
+          </button>
+        </form>
+      </nav>
+    </header>
+    <main id="main-content">
+      <section class="page-hero page-hero--plain section--dark" id="top">
+        <div class="page-hero__media" aria-hidden="true"></div>
+        <div class="container page-hero__inner">
+          <div class="page-hero__copy">
+            <h1>Teaching and collaboration made easy.</h1>
+            <p class="page-hero__lead">
+              Bring lessons, meetings, and big ideas to life with Promethean
+              interactive displays. Present, write, share, and work together on
+              one responsive canvas.
+            </p>
+            <div class="page-hero__actions">
+              <a class="btn btn--primary" href="#capabilities"
+                >Explore the capabilities
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
+              ></a>
+              <a class="btn btn--glass" href="index.html#contact"
+                >Schedule a demo
+                <i class="fa-solid fa-calendar-check" aria-hidden="true"></i
+              ></a>
+            </div>
+            <div class="page-hero__tags" aria-label="Whiteboard strengths">
+              <span>Natural touch</span>
+              <span>4K panels</span>
+              <span>Local training &amp; support</span>
+            </div>
+          </div>
+          <div class="wb-stage" data-wb-stage>
+            <div class="page-hero__glow" aria-hidden="true"></div>
+            <div class="wb-device">
+              <div class="wb-device__bezel">
+                <div class="wb-device__screen">
+                  <img
+                    src="https://www.dimensionsystems.com/wp-content/uploads/2023/09/Promethean-Education.webp"
+                    alt="Teacher and students collaborating with a Promethean interactive display"
+                    fetchpriority="high"
+                    decoding="async"
+                  />
+                  <div class="wb-device__ink">
+                    <small>Interactive whiteboard</small>
+                    <strong>Make every idea visible.</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="wb-float wb-float--top">
+              <span class="icon-circle icon-circle--dark" aria-hidden="true"
+                ><i class="fa-solid fa-pen-nib"></i
+              ></span>
+              <div>
+                <strong>Write. Draw. Explore.</strong
+                ><small>Natural, responsive touch</small>
+              </div>
+            </div>
+            <div class="wb-float wb-float--bottom">
+              <span class="icon-circle icon-circle--dark" aria-hidden="true"
+                ><i class="fa-solid fa-people-group"></i
+              ></span>
+              <div>
+                <strong>Built for collaboration</strong
+                ><small>Classrooms &amp; meeting rooms</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="wb-strip" aria-label="Solution highlights">
+        <div class="container wb-strip__grid">
+          <article>
+            <span class="icon-circle" aria-hidden="true"
+              ><i class="fa-solid fa-display"></i
+            ></span>
+            <div>
+              <strong>4K clarity</strong><small>Vivid, detailed displays</small>
+            </div>
+          </article>
+          <article>
+            <span class="icon-circle" aria-hidden="true"
+              ><i class="fa-solid fa-hand-pointer"></i
+            ></span>
+            <div>
+              <strong>Multi-touch input</strong
+              ><small>Interactive collaboration</small>
+            </div>
+          </article>
+          <article>
+            <span class="icon-circle" aria-hidden="true"
+              ><i class="fa-solid fa-share-nodes"></i
+            ></span>
+            <div>
+              <strong>Wireless sharing</strong
+              ><small>Connect multiple devices</small>
+            </div>
+          </article>
+          <article>
+            <span class="icon-circle" aria-hidden="true"
+              ><i class="fa-solid fa-screwdriver-wrench"></i
+            ></span>
+            <div>
+              <strong>Local expertise</strong
+              ><small>Training and support</small>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="capabilities">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">Features &amp; capabilities</p>
+            <h2 class="section-title">A smarter way to share what matters.</h2>
+            <p class="section-copy">
+              Built around hands-on interaction, Promethean tools help people
+              teach, present, annotate, and collaborate with fewer
+              interruptions.
+            </p>
+          </div>
+          <div class="wb-feature-grid">
+            <article class="wb-card wb-card--accent">
+              <span class="icon-circle icon-circle--dark" aria-hidden="true"
+                ><i class="fa-solid fa-compass"></i
+              ></span>
+              <h3>Promethean Menu</h3>
+              <p>
+                Keep the tools you need close at hand with convenient access to
+                panel features and controls.
+              </p>
+            </article>
+            <article class="wb-card">
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-pen-nib"></i
+              ></span>
+              <h3>Natural handwriting</h3>
+              <p>
+                Use a pen or your fingertips with Vellum touch technology for
+                fluid, precise input.
+              </p>
+            </article>
+            <article class="wb-card">
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-infinity"></i
+              ></span>
+              <h3>Infinite canvas</h3>
+              <p>
+                Sketch, annotate, and expand your working space as ideas take
+                shape.
+              </p>
+            </article>
+            <article class="wb-card">
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-laptop-file"></i
+              ></span>
+              <h3>Wireless screen share</h3>
+              <p>
+                Share content from connected devices and display up to four
+                screens together.
+              </p>
+            </article>
+          </div>
+          <div class="wb-more">
+            <article>
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-layer-group"></i></span
+              ><strong>Ready-to-use apps</strong>
+              <p>Open built-in teaching and collaboration tools in a tap.</p>
+            </article>
+            <article>
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-cloud"></i></span
+              ><strong>Cloud access</strong>
+              <p>Retrieve files from Google Drive or OneDrive.</p>
+            </article>
+            <article>
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-display"></i></span
+              ><strong>4K display options</strong>
+              <p>Choose immersive, detailed screens for different rooms.</p>
+            </article>
+            <article>
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-highlighter"></i></span
+              ><strong>On-screen annotation</strong>
+              <p>Mark up content, presentations, and shared material.</p>
+            </article>
+            <article>
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-plug"></i></span
+              ><strong>Plug and play</strong>
+              <p>Connect laptops to work directly from the panel.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section section--dark capability-section"
+        id="how-it-works"
+      >
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">An intuitive workflow</p>
+            <h2 class="section-title">
+              Ideas move freely, from first sketch to final share.
+            </h2>
+            <p class="section-copy">
+              Bring content and participants into one space—then turn every
+              interaction into a more engaging lesson or meeting.
+            </p>
+          </div>
+          <div class="solutions-grid">
+            <article class="solution-card">
+              <div class="solution-card__heading">
+                <span class="icon-circle icon-circle--dark" aria-hidden="true"
+                  ><i class="fa-solid fa-pen-ruler"></i
+                ></span>
+                <h3>Create naturally</h3>
+              </div>
+              <p>
+                Use digital ink, whiteboarding, and instant annotation to make
+                thinking visible.
+              </p>
+            </article>
+            <article class="solution-card">
+              <div class="solution-card__heading">
+                <span class="icon-circle icon-circle--dark" aria-hidden="true"
+                  ><i class="fa-solid fa-laptop"></i
+                ></span>
+                <h3>Connect your content</h3>
+              </div>
+              <p>
+                Bring in a laptop, access cloud files, or open ready-to-use
+                teaching apps.
+              </p>
+            </article>
+            <article class="solution-card">
+              <div class="solution-card__heading">
+                <span class="icon-circle icon-circle--dark" aria-hidden="true"
+                  ><i class="fa-solid fa-people-group"></i
+                ></span>
+                <h3>Collaborate together</h3>
+              </div>
+              <p>
+                Share screens, compare ideas, and keep everyone involved in the
+                conversation.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="education">
+        <div class="container wb-split">
+          <figure class="wb-photo">
+            <img
+              src="https://www.dimensionsystems.com/wp-content/uploads/2023/09/Promethean-Education.webp"
+              alt="Promethean panel in a classroom with students participating"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <span class="icon-circle icon-circle--dark" aria-hidden="true"
+                ><i class="fa-solid fa-graduation-cap"></i
+              ></span>
+              Made for interactive learning
+            </figcaption>
+          </figure>
+          <div>
+            <div class="section-head">
+              <p class="section-kicker">Promethean for education</p>
+              <h2 class="section-title">Make every lesson more engaging.</h2>
+              <p class="section-copy">
+                Support dynamic teaching and student participation with
+                intuitive displays and teaching tools that fit naturally into
+                the classroom.
+              </p>
+            </div>
+            <div class="wb-points">
+              <article>
+                <span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-hand-pointer"></i
+                ></span>
+                <div>
+                  <strong>Interactive learning</strong
+                  ><small
+                    >Engage students with responsive whiteboarding and hands-on
+                    activities.</small
+                  >
+                </div>
+              </article>
+              <article>
+                <span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-chalkboard-user"></i
+                ></span>
+                <div>
+                  <strong>Teaching tools</strong
+                  ><small
+                    >Work with familiar learning platforms, including Google
+                    Classroom and Microsoft Teams.</small
+                  >
+                </div>
+              </article>
+              <article>
+                <span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-person-chalkboard"></i
+                ></span>
+                <div>
+                  <strong>Freedom to teach</strong
+                  ><small
+                    >Use the intuitive remote to move around the classroom while
+                    presenting.</small
+                  >
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft" id="corporate">
+        <div class="container wb-split wb-split--reverse">
+          <figure class="wb-photo">
+            <img
+              src="https://www.dimensionsystems.com/wp-content/uploads/2023/09/Promethean-Corporate.webp"
+              alt="Interactive whiteboard used in a business presentation and meeting"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              <span class="icon-circle icon-circle--dark" aria-hidden="true"
+                ><i class="fa-solid fa-briefcase"></i
+              ></span>
+              Designed for connected teams
+            </figcaption>
+          </figure>
+          <div>
+            <div class="section-head">
+              <p class="section-kicker">Promethean for corporate</p>
+              <h2 class="section-title">
+                Meet, think, and create as one team.
+              </h2>
+              <p class="section-copy">
+                Turn presentations into working sessions. Interactive panels
+                help participants share content, edit ideas, and collaborate
+                more effectively.
+              </p>
+            </div>
+            <div class="wb-points">
+              <article>
+                <span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-lightbulb"></i
+                ></span>
+                <div>
+                  <strong>Better brainstorming</strong
+                  ><small
+                    >Explore ideas visually and turn meeting discussions into
+                    actionable work.</small
+                  >
+                </div>
+              </article>
+              <article>
+                <span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-people-arrows-left-right"></i
+                ></span>
+                <div>
+                  <strong>Live teamwork</strong
+                  ><small
+                    >Review, edit, and create documents or presentations
+                    together.</small
+                  >
+                </div>
+              </article>
+              <article>
+                <span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-video"></i
+                ></span>
+                <div>
+                  <strong>Wider collaboration</strong
+                  ><small
+                    >Include external participants and share information across
+                    the room or beyond.</small
+                  >
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="training">
+        <div class="container">
+          <div class="wb-training section--dark">
+            <div>
+              <div class="section-head">
+                <p class="section-kicker">Free Promethean training</p>
+                <h2 class="section-title">
+                  Great technology works better with the right training.
+                </h2>
+                <p class="section-copy">
+                  DSI offers free Promethean training courses to help educators
+                  and teams build the confidence to use their interactive panels
+                  to the fullest.
+                </p>
+              </div>
+              <div class="wb-training__actions">
+                <a class="btn btn--primary" href="index.html#contact"
+                  >Book a demonstration
+                  <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
+                ></a>
+                <a
+                  class="btn btn--outline"
+                  href="https://www.dimensionsystems.com/whiteboard-solutions/#training"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >View past trainings
+                  <i
+                    class="fa-solid fa-arrow-up-right-from-square"
+                    aria-hidden="true"
+                  ></i
+                ></a>
+              </div>
+            </div>
+            <div class="wb-sessions">
+              <div class="wb-sessions__head">
+                <span class="icon-circle icon-circle--dark" aria-hidden="true"
+                  ><i class="fa-solid fa-chalkboard-user"></i
+                ></span>
+                <div>
+                  <small>Training in our community</small
+                  ><strong>Promethean training sessions</strong>
+                </div>
+              </div>
+              <ul>
+                <li>
+                  <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                  Adacao Elementary School
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                  Astumbo Middle School
+                </li>
+                <li>
+                  <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                  Daniel L. Perez Elementary School
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft" id="specifications">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">Product specifications</p>
+            <h2 class="section-title">The right panel for the way you work.</h2>
+            <p class="section-copy">
+              Explore the main differences between ActivPanel 10 Standard,
+              ActivPanel 10 Premium, and ActivPanel LX. Exact configurations
+              vary by model and screen size.
+            </p>
+          </div>
+          <div
+            class="wb-tabs"
+            role="tablist"
+            aria-label="Interactive display product models"
+          >
+            <button
+              type="button"
+              class="wb-tab"
+              id="wb-tab-0"
+              role="tab"
+              aria-controls="wb-spec-0"
+              aria-selected="true"
+              tabindex="0"
+            >
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-chalkboard"></i></span
+              >ActivPanel 10 Standard
+            </button>
+            <button
+              type="button"
+              class="wb-tab"
+              id="wb-tab-1"
+              role="tab"
+              aria-controls="wb-spec-1"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-star"></i></span
+              >ActivPanel 10 Premium
+            </button>
+            <button
+              type="button"
+              class="wb-tab"
+              id="wb-tab-2"
+              role="tab"
+              aria-controls="wb-spec-2"
+              aria-selected="false"
+              tabindex="-1"
+            >
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-plug"></i></span
+              >ActivPanel LX
+            </button>
+          </div>
+          <div
+            id="wb-spec-0"
+            role="tabpanel"
+            class="wb-spec is-active"
+            aria-labelledby="wb-tab-0"
+          >
+            <div>
+              <span class="wb-spec__name">Promethean · Standard</span>
+              <h3>ActivPanel 10 Standard</h3>
+              <p>
+                A clear, responsive collaboration experience with a familiar set
+                of essential classroom and meeting-room features.
+              </p>
+              <div class="wb-spec__tags">
+                <span>Interactive whiteboarding</span><span>Vellum touch</span
+                ><span>16:9 format</span><span>Anti-glare glass</span>
+              </div>
+            </div>
+            <div class="wb-spec__facts">
+              <div class="wb-spec__fact">
+                <strong>65–86″</strong><span>Available screen sizes</span>
+              </div>
+              <div class="wb-spec__fact">
+                <strong>4K</strong><span>Display resolution</span>
+              </div>
+              <div class="wb-spec__fact">
+                <strong>40</strong><span>Continuous touchpoints</span>
+              </div>
+              <div class="wb-spec__fact">
+                <strong>3 ms</strong><span>Touch response time</span>
+              </div>
+            </div>
+          </div>
+          <div
+            id="wb-spec-1"
+            role="tabpanel"
+            class="wb-spec"
+            aria-labelledby="wb-tab-1"
+            hidden
+          >
+            <div>
+              <span class="wb-spec__name">Promethean · Premium</span>
+              <h3>ActivPanel 10 Premium</h3>
+              <p>
+                Additional touch capacity, QLED display technology, and
+                integrated collaboration audio features for more demanding
+                rooms.
+              </p>
+              <div class="wb-spec__tags">
+                <span>Interactive whiteboarding</span><span>Vellum touch</span
+                ><span>16:9 format</span><span>Anti-glare glass</span>
+              </div>
+            </div>
+            <div class="wb-spec__facts">
+              <div class="wb-spec__fact">
+                <strong>55–86″</strong><span>Available screen sizes</span>
+              </div>
+              <div class="wb-spec__fact">
+                <strong>4K QLED</strong><span>Display resolution</span>
+              </div>
+              <div class="wb-spec__fact">
+                <strong>50</strong><span>Continuous touchpoints</span>
+              </div>
+              <div class="wb-spec__fact">
+                <strong>3 ms</strong><span>Touch response time</span>
+              </div>
+            </div>
+          </div>
+          <div
+            id="wb-spec-2"
+            role="tabpanel"
+            class="wb-spec"
+            aria-labelledby="wb-tab-2"
+            hidden
+          >
+            <div>
+              <span class="wb-spec__name">Promethean · LX</span>
+              <h3>ActivPanel LX</h3>
+              <p>
+                A flexible plug-and-play interactive display for education and
+                business, with broad connection options.
+              </p>
+              <div class="wb-spec__tags">
+                <span>Interactive whiteboarding</span><span>Vellum touch</span
+                ><span>16:9 format</span><span>Anti-glare glass</span>
+              </div>
+            </div>
+            <div class="wb-spec__facts">
+              <div class="wb-spec__fact">
+                <strong>65–86″</strong><span>Available screen sizes</span>
+              </div>
+              <div class="wb-spec__fact">
+                <strong>4K</strong><span>Display resolution</span>
+              </div>
+              <div class="wb-spec__fact">
+                <strong>20</strong><span>Continuous touchpoints</span>
+              </div>
+              <div class="wb-spec__fact">
+                <strong>10 ms</strong><span>Touch response time</span>
+              </div>
+            </div>
+          </div>
+          <details class="wb-details">
+            <summary>View the detailed model comparison</summary>
+            <div class="wb-table-wrap">
+              <table class="wb-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Feature</th>
+                    <th scope="col">10 Standard</th>
+                    <th scope="col">10 Premium</th>
+                    <th scope="col">LX</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="group">
+                    <td colspan="4">DISPLAY</td>
+                  </tr>
+                  <tr>
+                    <td>Available sizes</td>
+                    <td>65″ / 75″ / 86″</td>
+                    <td>55″ / 65″ / 75″ / 86″</td>
+                    <td>65″ / 75″ / 86″</td>
+                  </tr>
+                  <tr>
+                    <td>Resolution</td>
+                    <td>4K</td>
+                    <td>4K</td>
+                    <td>4K (3840 × 2160 @ 60 Hz)</td>
+                  </tr>
+                  <tr>
+                    <td>Panel type</td>
+                    <td>TFT LCD / Direct LED</td>
+                    <td>TFT LCD / QLED</td>
+                    <td>TFT LCD / Direct LED</td>
+                  </tr>
+                  <tr>
+                    <td>Blue light reduction</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                  </tr>
+                  <tr>
+                    <td>Aspect ratio</td>
+                    <td>16:9</td>
+                    <td>16:9</td>
+                    <td>16:9</td>
+                  </tr>
+                  <tr>
+                    <td>Viewing angle</td>
+                    <td>178°</td>
+                    <td>178°</td>
+                    <td>178°</td>
+                  </tr>
+                  <tr>
+                    <td>Panel response time</td>
+                    <td>8 ms</td>
+                    <td>8 ms</td>
+                    <td>8 ms</td>
+                  </tr>
+                  <tr>
+                    <td>Refresh rate</td>
+                    <td>60 Hz</td>
+                    <td>60 Hz</td>
+                    <td>60 Hz</td>
+                  </tr>
+                  <tr>
+                    <td>LED lifespan</td>
+                    <td>50,000 hours</td>
+                    <td>50,000 hours</td>
+                    <td>50,000 hours</td>
+                  </tr>
+                  <tr>
+                    <td>Ambient light sensor</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                  </tr>
+                  <tr>
+                    <td>Glass type</td>
+                    <td>Heat-tempered, anti-glare</td>
+                    <td>Heat-tempered, anti-glare</td>
+                    <td>Heat-tempered, anti-glare</td>
+                  </tr>
+                  <tr class="group">
+                    <td colspan="4">INTERACTIVITY</td>
+                  </tr>
+                  <tr>
+                    <td>Vellum touch technology</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                  </tr>
+                  <tr>
+                    <td>Continuous touch points</td>
+                    <td>40</td>
+                    <td>50</td>
+                    <td>20</td>
+                  </tr>
+                  <tr>
+                    <td>Touch resolution</td>
+                    <td>32768 × 32768 px</td>
+                    <td>32768 × 32768 px</td>
+                    <td>32768 × 32768 px</td>
+                  </tr>
+                  <tr>
+                    <td>Touch response time</td>
+                    <td>3 ms</td>
+                    <td>3 ms</td>
+                    <td>10 ms</td>
+                  </tr>
+                  <tr>
+                    <td>Touch accuracy</td>
+                    <td>&lt;1 mm</td>
+                    <td>&lt;1 mm</td>
+                    <td>1 mm</td>
+                  </tr>
+                  <tr>
+                    <td>Scan rate</td>
+                    <td>500 Hz</td>
+                    <td>500 Hz</td>
+                    <td>200 Hz</td>
+                  </tr>
+                  <tr>
+                    <td>Unique pen IDs</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <td>Palm erase and rejection</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                  </tr>
+                  <tr>
+                    <td>Pens included</td>
+                    <td>2 passive pens</td>
+                    <td>2 passive pens + 1 active pen</td>
+                    <td>2 battery-less pens</td>
+                  </tr>
+                  <tr class="group">
+                    <td colspan="4">COMPUTING & AUDIO</td>
+                  </tr>
+                  <tr>
+                    <td>Operating system</td>
+                    <td>No OS — Secure by Design</td>
+                    <td>No OS — Secure by Design</td>
+                    <td>No OS</td>
+                  </tr>
+                  <tr>
+                    <td>OPS slot</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <td>Front-facing speakers</td>
+                    <td>2 × 20 W</td>
+                    <td>Integrated soundbar: 2 × 25 W + 20 W subwoofer*</td>
+                    <td>2 × 10 W</td>
+                  </tr>
+                  <tr>
+                    <td>Integrated microphone</td>
+                    <td>No</td>
+                    <td>8-mic array</td>
+                    <td>Not listed</td>
+                  </tr>
+                  <tr class="group">
+                    <td colspan="4">CONNECTIVITY</td>
+                  </tr>
+                  <tr>
+                    <td>HDMI inputs</td>
+                    <td>2 × 2.1 (rear)</td>
+                    <td>2 × 2.1 (rear)</td>
+                    <td>1 × 2.0 (front), 2 × 2.0 (rear)</td>
+                  </tr>
+                  <tr>
+                    <td>HDMI output</td>
+                    <td>1 × 2.0</td>
+                    <td>1 × 2.0</td>
+                    <td>Not listed</td>
+                  </tr>
+                  <tr>
+                    <td>LAN In / Out</td>
+                    <td>Gigabit / Gigabit</td>
+                    <td>Gigabit / Gigabit</td>
+                    <td>Gigabit / Gigabit</td>
+                  </tr>
+                  <tr>
+                    <td>Wake-on-LAN</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                  </tr>
+                  <tr>
+                    <td>USB-C power delivery</td>
+                    <td>Rear 100 W</td>
+                    <td>Rear 100 W; front 65 W</td>
+                    <td>Front 15 W</td>
+                  </tr>
+                  <tr>
+                    <td>Audio out</td>
+                    <td>3.5 mm</td>
+                    <td>3.5 mm</td>
+                    <td>3.5 mm</td>
+                  </tr>
+                  <tr>
+                    <td>RS-232</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="wb-table-note">
+                * The 20 W subwoofer is not included with the 55″ ActivPanel 10
+                Premium. Values shown are adapted from DSI's published product
+                comparison; consult model datasheets for full specifications.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="software">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">Learning software</p>
+            <h2 class="section-title">Tools that keep the learning going.</h2>
+            <p class="section-copy">
+              ActivInspire and ClassFlow both offer interactive lesson tools,
+              with different options for connected learning, content sharing,
+              and classroom management.
+            </p>
+          </div>
+          <div class="wb-software">
+            <article class="wb-card">
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-chalkboard-user"></i
+              ></span>
+              <h3>ActivInspire</h3>
+              <p>
+                Build and deliver interactive lessons with a familiar,
+                offline-capable teaching workspace.
+              </p>
+              <div class="wb-checks">
+                <span
+                  ><i class="fa-solid fa-check" aria-hidden="true"></i> Works
+                  offline</span
+                ><span
+                  ><i class="fa-solid fa-check" aria-hidden="true"></i>
+                  Annotation and digital whiteboard</span
+                ><span
+                  ><i class="fa-solid fa-check" aria-hidden="true"></i> Instant
+                  polling and assessments</span
+                ><span
+                  ><i class="fa-solid fa-check" aria-hidden="true"></i> Math
+                  tools and handwriting recognition</span
+                >
+              </div>
+            </article>
+            <article class="wb-card">
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-cloud-arrow-up"></i
+              ></span>
+              <h3>ClassFlow</h3>
+              <p>
+                Extend lesson interaction with connected classroom activities
+                and cloud-based resources.
+              </p>
+              <div class="wb-checks">
+                <span
+                  ><i class="fa-solid fa-check" aria-hidden="true"></i> Online
+                  and desktop options</span
+                ><span
+                  ><i class="fa-solid fa-check" aria-hidden="true"></i>
+                  Student-device content sharing</span
+                ><span
+                  ><i class="fa-solid fa-check" aria-hidden="true"></i> Cloud
+                  file integrations</span
+                ><span
+                  ><i class="fa-solid fa-check" aria-hidden="true"></i>
+                  Assignments and student notebooks</span
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--soft" id="downloads">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">Resource library</p>
+            <h2 class="section-title">
+              Everything you need to explore further.
+            </h2>
+            <p class="section-copy">
+              Find product literature, model specifications, and technical
+              resources from DSI's Promethean collection.
+            </p>
+          </div>
+          <div class="wb-downloads">
+            <div class="wb-download-panel">
+              <h3>Product brochures</h3>
+              <a
+                class="wb-download"
+                href="https://www.dimensionsystems.com/activpanel-lx-for-education/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-file-lines"></i></span
+                ><span>ActivPanel LX for Education</span
+                ><i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i
+              ></a>
+              <a
+                class="wb-download"
+                href="https://www.dimensionsystems.com/activpanel-lx-for-corporate/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-file-lines"></i></span
+                ><span>ActivPanel LX for Corporate</span
+                ><i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i
+              ></a>
+              <a
+                class="wb-download"
+                href="https://www.dimensionsystems.com/activpanel-lx-child-care-centers/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-file-lines"></i></span
+                ><span>ActivPanel LX for Child Care Centers</span
+                ><i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i
+              ></a>
+              <a
+                class="wb-download"
+                href="https://www.dimensionsystems.com/activpanel-9/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-file-lines"></i></span
+                ><span>ActivPanel 9</span
+                ><i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i
+              ></a>
+              <a
+                class="wb-download"
+                href="https://www.dimensionsystems.com/activpanel-9-premium/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-file-lines"></i></span
+                ><span>ActivPanel 9 Premium</span
+                ><i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i
+              ></a>
+            </div>
+            <div class="wb-download-panel">
+              <h3>Specification sheets</h3>
+              <a
+                class="wb-download"
+                href="https://www.dimensionsystems.com/activpanel10-datasheet/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-file-lines"></i></span
+                ><span>ActivPanel 10 Datasheet</span
+                ><i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i
+              ></a>
+              <a
+                class="wb-download"
+                href="https://www.dimensionsystems.com/activpanel-10-premium-datasheet/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-file-lines"></i></span
+                ><span>ActivPanel 10 Premium Datasheet</span
+                ><i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i
+              ></a>
+              <a
+                class="wb-download"
+                href="https://www.dimensionsystems.com/activpanel-lx-specification-sheet/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-file-lines"></i></span
+                ><span>ActivPanel LX Specification Sheet</span
+                ><i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i
+              ></a>
+              <a
+                class="wb-download"
+                href="https://www.dimensionsystems.com/promethean-mobile-stand/"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon-circle" aria-hidden="true"
+                  ><i class="fa-solid fa-file-lines"></i></span
+                ><span>Adjustable Mobile Stand</span
+                ><i
+                  class="fa-solid fa-arrow-up-right-from-square"
+                  aria-hidden="true"
+                ></i
+              ></a>
+            </div>
+          </div>
+          <div class="wb-help">
+            <div>
+              <span class="icon-circle" aria-hidden="true"
+                ><i class="fa-solid fa-life-ring"></i
+              ></span>
+              <span
+                ><strong>Need setup help or a product walkthrough?</strong>
+                <p>
+                  Access DSI's Promethean resources for guides, connectivity
+                  topics, and troubleshooting.
+                </p></span
+              >
+            </div>
+            <a
+              class="btn btn--outline"
+              href="https://www.dimensionsystems.com/promethean-support/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Promethean support
+              <i
+                class="fa-solid fa-arrow-up-right-from-square"
+                aria-hidden="true"
+              ></i
+            ></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta section--dark" id="contact">
+        <div class="container cta-inner">
+          <div>
+            <p class="section-kicker">Bring your ideas to life</p>
+            <h2>Ready to transform how your team collaborates?</h2>
+            <p>
+              Tell us about your classroom, meeting space, or training
+              environment. DSI can help you explore the best interactive
+              whiteboard setup.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <a
+              class="btn btn--primary"
+              href="mailto:info@dimensionsystems.com?subject=Interactive%20Whiteboard%20Consultation"
+              >Email DSI
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i
+            ></a>
+            <a class="btn btn--outline" href="tel:+16716462007"
+              >Call (671) 646-2007</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <div class="newsletter">
+        <div class="container newsletter-inner">
+          <div>
+            <strong>Stay updated</strong
+            ><span
+              >Receive DSI news, project ideas, and technology insights.</span
+            >
+          </div>
+          <form class="newsletter-form" id="newsletter-form">
+            <label
+              class="sr-only"
+              for="newsletter-email"
+              style="
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+              "
+              >Email address</label
+            ><input
+              id="newsletter-email"
+              type="email"
+              placeholder="Enter your email address"
+              required
+            /><button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <p>
+              Technology solutions, installation, and support for organizations
+              across Guam and the region. Serving Guam since 1987.
+            </p>
+            <div class="footer-social">
+              <a
+                class="icon-button"
+                href="https://www.facebook.com/DimensionSystemsInc/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+                ><i class="fa-brands fa-facebook-f" aria-hidden="true"></i
+              ></a>
+              <a
+                class="icon-button"
+                href="https://gu.linkedin.com/company/dimensionsystems"
+                target="_blank"
+                rel="noopener"
+                aria-label="LinkedIn"
+                ><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i
+              ></a>
+              <a
+                class="icon-button"
+                href="https://www.instagram.com/dimensionsystems/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                ><i class="fa-brands fa-instagram" aria-hidden="true"></i
+              ></a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h3>Capabilities</h3>
+            <ul>
+              <li>
+                <a href="managed-services.html">Managed Services</a>
+              </li>
+              <li>
+                <a href="system-integration.html">System Integration</a>
+              </li>
+              <li>
+                <a href="integrated-security-systems.html"
+                  >Integrated Security</a
+                >
+              </li>
+              <li>
+                <a href="voip-business-telephony.html"
+                  >VoIP Business Telephony</a
+                >
+              </li>
+              <li>
+                <a href="digital-signage.html">Digital Signage</a>
+              </li>
+              <li>
+                <a aria-current="page" href="whiteboard-solutions.html"
+                  >Interactive Whiteboards</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Company</h3>
+            <ul>
+              <li>
+                <a href="about.html">About DSI</a>
+              </li>
+              <li><a href="industries.html">Industries</a></li>
+              <li>
+                <a href="https://www.dimensionsystems.com/about/dsi-careers/"
+                  >Careers</a
+                >
+              </li>
+              <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Support</h3>
+            <ul>
+              <li>
+                <a href="support.html">Technical Support</a>
+              </li>
+              <li>
+                <a href="https://www.dimensionsystems.com/book-a-meeting/"
+                  >Book a Meeting</a
+                >
+              </li>
+              <li><a href="tel:+16716462007">Guam: +1 (671) 646-2007</a></li>
+              <li><a href="tel:+16704835454">Saipan: +1 (670) 483-5454</a></li>
+              <li><a href="mailto:info@dimensionsystems.com">Email DSI</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Offices</h3>
+            <ul>
+              <li>
+                <strong style="color: #fff">Guam</strong><br />643 Chalan San
+                Antonio<br />KG Plaza, Suite 107<br />Tamuning, Guam 96913
+              </li>
+              <li style="margin-top: 18px">
+                <strong style="color: #fff">Philippines</strong><br />11F One
+                Corporate Center<br />Julia Vargas Avenue<br />Ortigas Center,
+                Pasig City 1603<br />+63 2 8844-0888
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Dimension Systems Inc. All rights reserved.</span
+          ><!-- Privacy Policy / Terms of Use links hidden until those pages exist -->
+        </div>
+      </div>
+    </footer>
+
+    <a
+      class="whatsapp-fab"
+      href="https://wa.me/16716889575"
+      target="_blank"
+      rel="noopener"
+      aria-label="Chat with Dimension Systems on WhatsApp"
+      ><i class="fa-brands fa-whatsapp" aria-hidden="true"></i
+    ></a>
+    <script>
+      (() => {
+        const navToggle = document.querySelector(".nav-toggle");
+        const mobileNav = document.querySelector(".mobile-nav");
+        const navSearch = document.querySelector(".nav-search");
+        const navSearchToggle = document.querySelector(".nav-search-toggle");
+        const navSearchInput = document.querySelector(".nav-search-form input");
+
+        const closeMobileNav = () => {
+          if (!navToggle || !mobileNav) return;
+          mobileNav.classList.remove("is-open");
+          navToggle.setAttribute("aria-expanded", "false");
+          navToggle.setAttribute("aria-label", "Open menu");
+          navToggle.innerHTML =
+            '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+        };
+
+        const closeSearch = () => {
+          if (!navSearch || !navSearchToggle) return;
+          navSearch.classList.remove("is-open");
+          navSearchToggle.setAttribute("aria-expanded", "false");
+          navSearchToggle.setAttribute("aria-label", "Open search");
+        };
+
+        navToggle?.addEventListener("click", () => {
+          closeSearch();
+          const open = mobileNav.classList.toggle("is-open");
+          navToggle.setAttribute("aria-expanded", String(open));
+          navToggle.setAttribute(
+            "aria-label",
+            open ? "Close menu" : "Open menu",
+          );
+          navToggle.innerHTML = open
+            ? '<i class="fa-solid fa-xmark" aria-hidden="true"></i>'
+            : '<i class="fa-solid fa-bars" aria-hidden="true"></i>';
+        });
+
+        mobileNav
+          ?.querySelectorAll("a, button")
+          .forEach((item) => item.addEventListener("click", closeMobileNav));
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 1180) closeMobileNav();
+        });
+
+        navSearchToggle?.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const open = navSearch.classList.toggle("is-open");
+          navSearchToggle.setAttribute("aria-expanded", String(open));
+          navSearchToggle.setAttribute(
+            "aria-label",
+            open ? "Close search" : "Open search",
+          );
+          if (open) {
+            closeMobileNav();
+            window.setTimeout(() => navSearchInput?.focus(), 50);
+          }
+        });
+
+        document.addEventListener("click", (event) => {
+          if (navSearch && !navSearch.contains(event.target)) closeSearch();
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeMobileNav();
+            closeSearch();
+          }
+        });
+
+        // Hero panel tilt
+        const wbStage = document.querySelector("[data-wb-stage]");
+        const wbDevice = wbStage?.querySelector(".wb-device");
+        if (
+          wbStage &&
+          wbDevice &&
+          window.matchMedia("(pointer: fine)").matches &&
+          !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          wbStage.addEventListener("pointermove", (event) => {
+            if (window.innerWidth <= 900) return;
+            const bounds = wbStage.getBoundingClientRect();
+            const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+            const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+            wbDevice.style.setProperty("--dev-ry", `${x * 10 - 4}deg`);
+            wbDevice.style.setProperty("--dev-rx", `${y * -7}deg`);
+          });
+          wbStage.addEventListener("pointerleave", () => {
+            wbDevice.style.setProperty("--dev-ry", "-7deg");
+            wbDevice.style.setProperty("--dev-rx", "2deg");
+          });
+        }
+
+        // Model comparison tabs: keyboard navigable and screen-reader labelled.
+        (() => {
+          const tabs = [...document.querySelectorAll(".wb-tab")];
+          const panels = [...document.querySelectorAll(".wb-spec")];
+          function activate(i, moveFocus = false) {
+            tabs.forEach((tab, index) => {
+              const active = i === index;
+              tab.setAttribute("aria-selected", String(active));
+              tab.tabIndex = active ? 0 : -1;
+              if (active && moveFocus) tab.focus();
+            });
+            panels.forEach((panel, index) => {
+              const active = i === index;
+              panel.hidden = !active;
+              panel.classList.toggle("is-active", active);
+            });
+          }
+          tabs.forEach((tab, index) => {
+            tab.addEventListener("click", () => activate(index));
+            tab.addEventListener("keydown", (e) => {
+              if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key))
+                return;
+              e.preventDefault();
+              const next =
+                e.key === "Home"
+                  ? 0
+                  : e.key === "End"
+                    ? tabs.length - 1
+                    : e.key === "ArrowRight"
+                      ? (index + 1) % tabs.length
+                      : (index - 1 + tabs.length) % tabs.length;
+              activate(next, true);
+            });
+          });
+        })();
+
+        // Hero card tilt (same as Industries)
+        const heroPanelWrap = document.querySelector("[data-page-hero-panel]");
+        const heroPanel = heroPanelWrap?.querySelector(".page-hero__panel");
+        if (
+          heroPanelWrap &&
+          heroPanel &&
+          window.matchMedia("(pointer: fine)").matches &&
+          !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          heroPanelWrap.addEventListener("pointermove", (event) => {
+            if (window.innerWidth <= 900) return;
+            const bounds = heroPanelWrap.getBoundingClientRect();
+            const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+            const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+            heroPanel.style.setProperty("--panel-ry", `${x * 7}deg`);
+            heroPanel.style.setProperty("--panel-rx", `${y * -6}deg`);
+          });
+          heroPanelWrap.addEventListener("pointerleave", () => {
+            heroPanel.style.setProperty("--panel-ry", "0deg");
+            heroPanel.style.setProperty("--panel-rx", "0deg");
+          });
+        }
+
+        const newsletterForm = document.getElementById("newsletter-form");
+        if (newsletterForm) {
+          newsletterForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const email = document
+              .getElementById("newsletter-email")
+              .value.trim();
+            if (!email) return;
+            window.location.href = `mailto:info@dimensionsystems.com?subject=${encodeURIComponent("Newsletter Subscription")}&body=${encodeURIComponent(`Please add ${email} to the Dimension Systems newsletter list.`)}`;
+          });
+        }
+
+        document.querySelectorAll("[data-open-modal]").forEach((button) =>
+          button.addEventListener("click", () => {
+            window.location.href = "index.html#contact";
+          }),
+        );
+      })();
+    </script>
+  </body>
+</html>
