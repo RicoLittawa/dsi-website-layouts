@@ -434,6 +434,11 @@ textarea:focus-visible {
 .mobile-nav a[aria-current="page"] {
   color: var(--dsi-blue);
 }
+/* Support page: "Get Support" button marks the current page */
+.btn--outline[aria-current="page"] {
+  border-color: var(--dsi-blue);
+  background: var(--dsi-sky);
+}
 .header-actions,
 .desktop-actions {
   display: flex;
@@ -3044,4 +3049,84 @@ textarea:focus-visible {
   .dsi-map-pin::after {
     animation: none;
   }
+}
+
+/* 16. SITE SEARCH RESULTS (js/dsi-search.js) ============== */
+.nav-search-form,
+.mobile-search-form {
+  flex-wrap: wrap;
+}
+.dsi-search-results {
+  flex: 1 0 100%;
+  display: grid;
+  max-height: min(420px, 60vh);
+  overflow-y: auto;
+  padding-top: 6px;
+  border-top: 1px solid var(--dsi-line);
+}
+.dsi-search-results[hidden] {
+  display: none;
+}
+.dsi-search-result {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 9px 8px;
+  border-radius: 12px;
+  color: var(--dsi-ink);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.dsi-search-result:hover,
+.dsi-search-result.is-active {
+  background: var(--dsi-sky);
+}
+.dsi-search-result__icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--dsi-blue);
+  background: var(--dsi-sky);
+  font-size: var(--fs-xs);
+}
+.dsi-search-result:hover .dsi-search-result__icon,
+.dsi-search-result.is-active .dsi-search-result__icon {
+  color: #fff;
+  background: var(--dsi-gradient-primary);
+}
+.dsi-search-result strong,
+.dsi-search-result small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dsi-search-result strong {
+  display: -webkit-box;
+  font-size: var(--fs-sm);
+  line-height: 1.35;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.dsi-search-result small {
+  color: var(--dsi-muted);
+  font-size: var(--fs-xs);
+}
+.dsi-search-empty {
+  display: grid;
+  gap: 4px;
+  padding: 12px 8px;
+  font-size: var(--fs-sm);
+}
+.dsi-search-empty span {
+  color: var(--dsi-muted);
+  font-size: var(--fs-xs);
+}
+.dsi-search-empty a {
+  color: var(--dsi-blue);
+  font-weight: 700;
 }
